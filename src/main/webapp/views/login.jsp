@@ -41,6 +41,7 @@
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#cart"/>
                     </svg>Cart</a>
+                    <span class="badge rounded-pill ms-2 badge-counter">0</span>
                 </button>
 
 
@@ -68,6 +69,8 @@
 
 <main class="form-signin w-100 m-auto">
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+
+
         <symbol id="home" viewBox="0 0 16 16">
             <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
         </symbol>
@@ -104,11 +107,19 @@
         </div>
         <button class="btn btn-primary rounded-5 w-100 py-2" id="submitButton" type="submit">Sign in</button>
         <button class="btn btn-outline-secondary mt-3 rounded-5 w-100 py-2" id="createAccountButton" type="button" onclick="window.location.href='${pageContext.request.contextPath}/register'">Register</button>
-        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
     </form>
     </div>
 
 </main>
+
+<footer class="pb-2 text-body-secondary text-center text-small">
+    <p class="mb-1">&copy; 2023–2023 JPetStore, Created by Daniel and 蔡雅韵</p>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+</footer>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
 
