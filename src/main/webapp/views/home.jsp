@@ -100,8 +100,8 @@
   <img id="image-dog" src="${pageContext.request.contextPath}/images/dog-home.png"></img>
 </div>
 
-<div class="container mt-4 center-content">
-  <div class="row-cols-1 mt-5">
+<div class="container mt-1 center-content">
+  <div class="row-cols-1">
     <h1 class="text-center display-2">Find your new friend here</h1>
 
   </div>
