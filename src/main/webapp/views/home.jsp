@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=2">
   <title>JPetStore Home</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -49,7 +50,7 @@
       </div>
 
       <div class="dropdown">
-        <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle ms-4" data-bs-toggle="dropdown" aria-expanded="false">
+        <a onclick="window.location.href='${pageContext.request.contextPath}/login'" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle ms-4" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
           Log In
         </a>
@@ -106,7 +107,7 @@
   </div>
   <div class="row-cols-1 mt-5">
     <div class="d-flex justify-content-center">
-        <button class="btn-primary btn rounded-5 ps-2 pe-2 m-1" id="button-explore" onclick="window.location.href='${pageContext.request.contextPath}/store'">Explore</button>
+        <button class="btn-primary btn rounded-5 text-uppercase ps-2 pe-2 m-1" id="button-explore" onclick="window.location.href='${pageContext.request.contextPath}/store'">Explore</button>
     </div>
   </div>
 

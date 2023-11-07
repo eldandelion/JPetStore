@@ -41,7 +41,8 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav align-content-end me-auto mb-2 mb-lg-0">
 
-                    <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-cart" onclick="window.location.href='${pageContext.request.contextPath}/home'">
+                    <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-cart"
+                            onclick="window.location.href='${pageContext.request.contextPath}/home'">
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#home"/>
                         </svg>
@@ -50,7 +51,6 @@
 
 
                 </ul>
-
 
 
                 <div class="dropdown">
@@ -74,7 +74,7 @@
         </div>
     </nav>
 
-    <div class="container" id="container-form">
+    <div class="container w-75" id="container-form">
         <main>
             <div class="py-5 text-center">
                 <img class="d-block mx-auto mb-4" src="${pageContext.request.contextPath}/images/jpetstore.png" alt=""
@@ -86,12 +86,26 @@
             <div class="row">
 
                 <div class="col-md-7 col-lg-8 mx-auto">
-                    <h4 class="mb-3">Billing address</h4>
+                    <h4 class="mb-3">Account information</h4>
                     <form class="needs-validation" novalidate>
+
+
                         <div class="row g-3">
+                            <div class="col-12">
+                                <label for="username" class="form-label">User ID</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="user-id" placeholder="123456"
+                                           required>
+                                    <div class="invalid-feedback">
+                                        Your id is required.
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">First name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                <input type="text" class="form-control" id="firstName" placeholder="Jake" value=""
+                                       required>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
                                 </div>
@@ -99,7 +113,8 @@
 
                             <div class="col-sm-6">
                                 <label for="lastName" class="form-label">Last name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                                <input type="text" class="form-control" id="lastName" placeholder="Paul" value=""
+                                       required>
                                 <div class="invalid-feedback">
                                     Valid last name is required.
                                 </div>
@@ -116,6 +131,29 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-12">
+                                <label for="username" class="form-label">Password</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="password" placeholder="Password"
+                                           required>
+                                    <div class="invalid-feedback">
+                                        Your password is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="username" class="form-label">Confirm password</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="confirm-password" placeholder="Password"
+                                           required>
+                                    <div class="invalid-feedback">
+                                        Password is not the same.
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="col-12">
                                 <label for="email" class="form-label">Email <span
@@ -171,93 +209,77 @@
                             </div>
                         </div>
 
-                        <hr class="my-4">
-
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="same-address">
-                            <label class="form-check-label" for="same-address">Shipping address is the same as my
-                                billing address</label>
-                        </div>
-
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="save-info">
-                            <label class="form-check-label" for="save-info">Save this information for next time</label>
-                        </div>
 
                         <hr class="my-4">
 
-                        <h4 class="mb-3">Payment</h4>
+                        <h4 class="mb-3">Profile Information</h4>
 
-                        <div class="my-3">
-                            <div class="form-check">
-                                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked
-                                       required>
-                                <label class="form-check-label" for="credit">Credit card</label>
+                        <div class="row g-3">
+
+                            <div class="col-md-4">
+                                <label for="state" class="form-label">Language preference</label>
+                                <select class="form-select" id="language-preference" required>
+                                    <option value="">Choose...</option>
+                                    <option>English</option>
+                                    <option>Chinese</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please provide a language preference.
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                                <label class="form-check-label" for="debit">Debit card</label>
+                            <div class="col-md-8">
+                                <label for="state" class="form-label">Favorite category</label>
+                                <select class="form-select" id="favorite-category" required>
+                                    <option value="">Choose...</option>
+                                    <option>Fish</option>
+                                    <option>Dogs</option>
+                                    <option>Reptiles</option>
+                                    <option>Cats</option>
+                                    <option>Birds</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please provide a favorite category.
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-                                <label class="form-check-label" for="paypal">PayPal</label>
-                            </div>
+
+
                         </div>
 
-                        <div class="row gy-3">
-                            <div class="col-md-6">
-                                <label for="cc-name" class="form-label">Name on card</label>
-                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                                <small class="text-body-secondary">Full name as displayed on card</small>
-                                <div class="invalid-feedback">
-                                    Name on card is required
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="cc-number" class="form-label">Credit card number</label>
-                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Credit card number is required
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <label for="cc-expiration" class="form-label">Expiration</label>
-                                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Expiration date required
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <label for="cc-cvv" class="form-label">CVV</label>
-                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Security code required
-                                </div>
-                            </div>
+                        <div class="form-check mt-2">
+                            <input type="checkbox" class="form-check-input" id="enable-mylist">
+                            <label class="form-check-label" for="enable-mylist">Enable MyList</label>
                         </div>
+
+
+                        <div class="form-check mt-2">
+                            <input type="checkbox" class="form-check-input" id="enable-mybanner">
+                            <label class="form-check-label" for="enable-mybanner">Enable MyBanner</label>
+                        </div>
+
 
                         <hr class="my-4">
 
-                        <button class="w-100 btn btn-primary btn-lg rounded-5" id="buttonSubmit" type="submit">Continue</button>
+                        <button class="w-100 btn mb-5 btn-primary btn-lg rounded-5" id="buttonSubmit" type="submit">
+                            Continue
+                        </button>
                     </form>
                 </div>
             </div>
         </main>
 
-        <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-            <p class="mb-1">&copy; 2023–2023 JPetStore, Created By Daniel and 蔡雅韵</p>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Privacy</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Support</a></li>
-            </ul>
-        </footer>
+
     </div>
 </main>
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+<footer class="pb-2 text-body-secondary text-center text-small">
+    <p class="mb-1">&copy; 2023–2023 JPetStore, Created by Daniel and 蔡雅韵</p>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+</footer>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

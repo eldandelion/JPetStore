@@ -7,7 +7,7 @@ html {
     scroll-behavior: smooth;
 }
 
-#button-home, #button-cart, #button-search {
+#button-home, #button-cart, #button-search, #button-store {
     background-color: #ffffff;
 }
 
@@ -197,7 +197,7 @@ body.locked {
 }
 
 
-#button-search:hover, #button-home:hover, #button-cart:hover {
+#button-search:hover, #button-home:hover, #button-cart:hover, #button-store:hover {
     background-color: #ffb865;
 }
 
