@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav align-content-end me-auto mb-2 mb-lg-0">
 
-        <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-cart">
+        <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-cart" onclick="window.location.href='${pageContext.request.contextPath}/cart'">
           <svg class="bi pe-none me-2" width="16" height="16">
             <use xlink:href="#cart"/>
           </svg>Cart</a>
@@ -31,6 +31,8 @@
 
 
       </ul>
+
+
 
 
       <div class="dropdown">
@@ -43,6 +45,19 @@
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
           <li><a class="dropdown-item" href="#">English</a></li>
           <li><a class="dropdown-item" href="#">汉语</a></li>
+        </ul>
+      </div>
+
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle ms-4" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          Log In
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
         </ul>
       </div>
     </div>
@@ -79,23 +94,38 @@
   <div id="shape-six"></div>
   <div id="shape-seven"></div>
   <div id="shape-eight"></div>
+  <img id="image-cat" src="${pageContext.request.contextPath}/images/cat-home.png"></img>
+  <img id="image-fish" src="${pageContext.request.contextPath}/images/fish-home.png"></img>
+  <img id="image-dog" src="${pageContext.request.contextPath}/images/dog-home.png"></img>
 </div>
 
 <div class="container mt-4 center-content">
-  <div class="row-cols-1">
+  <div class="row-cols-1 mt-5">
     <h1 class="text-center display-2">Find your new friend here</h1>
 
   </div>
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <div class="text-center">
-        <button class="btn-outline-secondary rounded-5 m-1" id="button-explore" onclick="window.location.href='${pageContext.request.contextPath}/store'">Explore</button>
-      </div>
+  <div class="row-cols-1 mt-5">
+    <div class="d-flex justify-content-center">
+        <button class="btn-primary btn rounded-5 ps-2 pe-2 m-1" id="button-explore" onclick="window.location.href='${pageContext.request.contextPath}/store'">Explore</button>
+    </div>
+  </div>
+
+  <div class="row-cols-1 align-bottom">
+    <div class="d-flex justify-content-center">
+      <p class="mt-5 mb-3 text-body-secondary">&copy; 2023–2023 JPetStore, Created by Daniel and 蔡雅韵 for Web Development Class</p>
     </div>
   </div>
 
 
+
+
+
+
+
 </div>
 
 
+
+
 </body>
+</html>

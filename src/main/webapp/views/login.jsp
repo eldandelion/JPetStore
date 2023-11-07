@@ -93,8 +93,10 @@
             </label>
         </div>
         <button class="btn btn-primary rounded-5 w-100 py-2" id="submitButton" type="submit">Sign in</button>
+        <button class="btn btn-outline-secondary mt-2 rounded-5 w-100 py-2" id="createAccountButton" type="button" onclick="window.location.href='${pageContext.request.contextPath}/register'">Register</button>
         <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
     </form>
+
 </main>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
