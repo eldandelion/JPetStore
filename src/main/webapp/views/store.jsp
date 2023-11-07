@@ -9,8 +9,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../../css/sidebars.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sidebars.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-xl fixed-top shadow-sm">
@@ -197,7 +197,7 @@
                         <h1 id="scrollspyHeadingFish" class="display-1 h1-category-name">Fish</h1>
                     </div>
                     <div class="col-auto" id="col-category-fish">
-                        <img width="180" height="120" class="me-2" src="${pageContext.request.contextPath}/fish%20illustration.png">
+                        <img width="180" height="120" class="me-2" src="${pageContext.request.contextPath}/images/fish%20illustration.png">
                     </div>
                 </div>
 
@@ -312,7 +312,7 @@
                         <h1 id="scrollspyHeadingDogs" class="display-1 h1-category-name">Dogs</h1>
                     </div>
                     <div class="col-auto" id="col-category-dog">
-                        <img width="180" height="120" class="me-1" src="${pageContext.request.contextPath}/dog%20illustration.png">
+                        <img width="180" height="120" class="me-1" src="${pageContext.request.contextPath}/images/dog%20illustration.png">
                     </div>
                 </div>
 
@@ -427,7 +427,7 @@
                         <h1 id="scrollspyHeadingCats" class="display-1 h1-category-name">Cats</h1>
                     </div>
                     <div class="col-auto" id="col-category-cat">
-                        <img id="cat-image" width="100" height="100" class="me-4" src="${pageContext.request.contextPath}/cat%20illustration.png">
+                        <img id="cat-image" width="100" height="100" class="me-4" src="${pageContext.request.contextPath}/images/cat%20illustration.png">
                     </div>
                 </div>
 
@@ -542,7 +542,7 @@
                         <h1 id="scrollspyHeadingReptiles" class="display-1 h1-category-name">Reptiles</h1>
                     </div>
                     <div class="col-auto" id="col-category-reptile">
-                        <img width="160" height="100" class="me-4 mt-3" src="${pageContext.request.contextPath}/reptile%20illustration.png">
+                        <img width="160" height="100" class="me-4 mt-3" src="${pageContext.request.contextPath}/images/reptile%20illustration.png">
                     </div>
                 </div>
 
@@ -657,7 +657,7 @@
                             <h1 id="scrollspyHeadingBirds" class="display-1 h1-category-name">Birds</h1>
                         </div>
                         <div class="col-auto" id="col-category-bird">
-                            <img width="100" height="100" class="ms-5 me-4" src="${pageContext.request.contextPath}/bird%20illustration.png">
+                            <img width="100" height="100" class="ms-5 me-4" src="${pageContext.request.contextPath}/images/bird%20illustration.png">
                         </div>
                     </div>
 
@@ -776,7 +776,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-<script src="../../js/store.js" async></script>
+<script src="../js/store.js" async></script>
 
 </body>
 

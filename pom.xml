@@ -53,8 +53,33 @@
 
                 <directory>src/main/webapp/images</directory>
                 <includes>
-                    <include>**/*.png</include>
-                    <include>**/*.jpg</include>
+                    <include>**/*</include>
+                    <!-- Add more file extensions or patterns if needed -->
+                </includes>
+            </resource>
+
+            <resource>
+
+                <directory>src/main/webapp/css</directory>
+                <includes>
+                    <include>**/*</include>
+                    <!-- Add more file extensions or patterns if needed -->
+                </includes>
+            </resource>
+
+            <resource>
+
+                <directory>src/main/webapp/views</directory>
+                <includes>
+                    <include>**/*</include>
+                    <!-- Add more file extensions or patterns if needed -->
+                </includes>
+            </resource>
+            <resource>
+
+                <directory>src/main/webapp/js</directory>
+                <includes>
+                    <include>**/*</include>
                     <!-- Add more file extensions or patterns if needed -->
                 </includes>
             </resource>

@@ -3,12 +3,16 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/home" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/images" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/login" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/register" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/images" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/store" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/views" charset="UTF-8" />
+    <file url="file:///webapp/images" charset="UTF-8" />
   </component>
 </project>

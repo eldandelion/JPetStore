@@ -17,7 +17,7 @@ public class StoreServlet extends HttpServlet {
 
 
         // Forward the request to the JSP
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/views/store.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/store.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {

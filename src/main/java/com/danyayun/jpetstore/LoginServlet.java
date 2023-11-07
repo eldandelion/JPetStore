@@ -13,7 +13,7 @@ public class LoginServlet extends HttpServlet {
 
 
         // Forward the request to the JSP
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/views/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/login.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {

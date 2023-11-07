@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "HomeServlet", value = "/")
+@WebServlet(name = "HomeServlet", value = "/home")
 public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -13,7 +13,7 @@ public class HomeServlet extends HttpServlet {
 
 
         // Forward the request to the JSP
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/views/home.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("views/home.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
