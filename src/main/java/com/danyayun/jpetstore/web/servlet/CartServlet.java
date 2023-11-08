@@ -1,4 +1,4 @@
-package com.danyayun.jpetstore;
+package com.danyayun.jpetstore.web.servlet;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
