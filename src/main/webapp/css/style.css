@@ -196,6 +196,19 @@ body.locked {
     color: #ffffff;
 }
 
+#liveToast {
+    --bs-toast-border-radius: 12px !important;
+}
+
+.modal-dialog {
+    --bs-modal-border-radius: 22px !important;
+    --bs-modal-bg: #fff8f4;
+    --bs-modal-border-color:  #9d8e81;
+    --bs-modal-border-width: 2px;
+}
+
+
+
 
 #button-search:hover, #button-home:hover, #button-cart:hover, #button-store:hover {
     background-color: #ffb865;

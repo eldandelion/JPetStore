@@ -1,4 +1,95 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.danyayun.jpetstore.domain.Item" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.danyayun.jpetstore.domain.Category" %>
+<%@ page import="com.danyayun.jpetstore.domain.Product" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Objects" %>
+<%@ page import="java.math.BigDecimal" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    List<Item> itemList = (List<Item>) session.getAttribute("itemList");
+    List<Category> categoryList = (List<Category>) session.getAttribute("categoryList");
+    List<Product> productList = (List<Product>) session.getAttribute("productList");
+
+
+    String fishCategoryId = "";
+    String dogsCategoryId = "";
+    String catsCategoryId = "";
+    String reptilesCategoryId = "";
+    String birdsCategoryId = "";
+
+    for (Category c : categoryList) {
+        switch (c.getName()) {
+            case "Fish":
+                fishCategoryId = c.getCategoryId();
+                break;
+            case "Dogs":
+                dogsCategoryId = c.getCategoryId();
+                break;
+            case "Cats":
+                catsCategoryId = c.getCategoryId();
+            case "Reptiles":
+                reptilesCategoryId = c.getCategoryId();
+                break;
+            case "Birds":
+                birdsCategoryId = c.getCategoryId();
+                break;
+        }
+    }
+
+    List<Product> fishProducts = new ArrayList<>();
+    List<Product> dogsProducts = new ArrayList<>();
+    List<Product> catsProducts = new ArrayList<>();
+    List<Product> reptilesProducts = new ArrayList<>();
+    List<Product> birdsProducts = new ArrayList<>();
+
+    List<Item> fishItems = new ArrayList<>();
+    List<Item> dogsItems = new ArrayList<>();
+    List<Item> catsItems = new ArrayList<>();
+    List<Item> reptilesItems = new ArrayList<>();
+    List<Item> birdsItems = new ArrayList<>();
+
+    for (Product p : productList) {
+        if (Objects.equals(p.getProductId(), fishCategoryId)) fishProducts.add(p);
+        else if (Objects.equals(p.getProductId(), dogsCategoryId)) dogsProducts.add(p);
+        else if (Objects.equals(p.getProductId(), catsCategoryId)) catsProducts.add(p);
+        else if (Objects.equals(p.getProductId(), reptilesCategoryId)) reptilesProducts.add(p);
+        else if (Objects.equals(p.getProductId(), birdsCategoryId)) birdsProducts.add(p);
+    }
+
+    for (Item i : itemList) {
+        if (Objects.equals(i.getProduct().getCategoryId(), fishCategoryId)) fishItems.add(i);
+        else if (Objects.equals(i.getProduct().getCategoryId(), dogsCategoryId)) dogsItems.add(i);
+        else if (Objects.equals(i.getProduct().getCategoryId(), catsCategoryId)) catsItems.add(i);
+        else if (Objects.equals(i.getProduct().getCategoryId(), reptilesCategoryId)) reptilesItems.add(i);
+        else if (Objects.equals(i.getProduct().getCategoryId(), birdsCategoryId)) birdsItems.add(i);
+    }
+
+
+    Item item = new Item();
+    Product product = new Product();
+    product.setName("Angelfish");
+    product.setDescription("Salt Water fish from Australia");
+    item.setListPrice(new BigDecimal("10.5"));
+    item.setItemId("EST-1");
+    item.setQuantity(286);
+    item.setProduct(product);
+
+    fishItems.add(item);
+
+    session.setAttribute("fishItems", fishItems);
+    session.setAttribute("dogsItems", dogsItems);
+    session.setAttribute("catsItems", catsItems);
+    session.setAttribute("reptilesItems", reptilesItems);
+    session.setAttribute("birdsItems", birdsItems);
+
+
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,6 +186,7 @@
 
     <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 sidebar">
 
+
         <ul class="nav nav-pills flex-column mb-auto">
             <strong id="text-items" class="h5 text-muted">Categories</strong>
             <li class="nav-item">
@@ -106,7 +198,7 @@
                             Fish
                         </div>
                         <div class="col-auto badge-col">
-                            <span class="badge rounded-pill badge-counter">5</span>
+                            <span class="badge rounded-pill badge-counter"><%= fishItems.size()%></span>
                         </div>
                     </div>
 
@@ -122,7 +214,7 @@
                             Dogs
                         </div>
                         <div class="col-auto badge-col">
-                            <span class="badge rounded-pill badge-counter">5</span>
+                            <span class="badge rounded-pill badge-counter"><%= dogsItems.size()%></span>
                         </div>
                     </div>
 
@@ -137,7 +229,7 @@
                             Cats
                         </div>
                         <div class="col-auto badge-col">
-                            <span class="badge rounded-pill badge-counter">5</span>
+                            <span class="badge rounded-pill badge-counter"><%= catsItems.size()%></span>
                         </div>
                     </div>
                 </a>
@@ -151,7 +243,7 @@
                             Reptiles
                         </div>
                         <div class="col-auto badge-col">
-                            <span class="badge rounded-pill badge-counter">5</span>
+                            <span class="badge rounded-pill badge-counter"><%= reptilesItems.size()%></span>
                         </div>
                     </div>
 
@@ -166,7 +258,7 @@
                             Birds
                         </div>
                         <div class="col-auto badge-col">
-                            <span class="badge rounded-pill badge-counter">5</span>
+                            <span class="badge rounded-pill badge-counter"><%= birdsItems.size()%></span>
                         </div>
                     </div>
                 </a>
@@ -208,123 +300,114 @@
 
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button"
-                                            class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase"
-                                            id="btn-purchase">Purchase
-                                    </button>
+                <c:forEach var="item" items="${sessionScope.fishItems}">
+
+
+                    <div class="col" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <div class="card shadow-sm" >
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"/>
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">${item.product.name}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            View
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase">
+                                            Purchase
+                                        </button>
+                                    </div>
+                                    <span class="badge rounded-pill p-2">
+                                         <fmt:formatNumber value="${item.listPrice}" pattern="$#,##0.00"/>
+                                    </span>
                                 </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase">Get
-                                    </button>
+
+
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="container m-0 p-0">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">${item.product.name}</h1>
+                                                <small class="text-body-secondary">Item ID ${item.itemId}</small>
+                                            </div>
+                                            <div class="col-3 d-flex align-items-center">
+                                        <span class="badge rounded-pill p-3">
+                                                <fmt:formatNumber value="${item.listPrice}" pattern="$#,##0.00"/>
+                                            </span>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                 </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>
+                                                Placeholder</title>
+                                                <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                                            </svg>
+
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p>${item.product.description}</p>
+                                            <c:if test="${item.quantity <= 0}">
+                                                <p>Back ordered.</p>
+                                            </c:if>
+                                            <c:if test="${item.quantity > 0}">
+                                                <p>${item.quantity} in stock.</p>
+                                            </c:if>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-outline-secondary rounded-start-5"
+                                                        data-bs-dismiss="modal">Close
+                                                </button>
+
+                                                <button type="button"
+                                                        class="btn btn-sm btn-outline-secondary rounded-end-5 btn-purchase">
+                                                    Purchase
+                                                </button>
+                                            </div>
+
+
+                                        </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Get
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Get
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Get
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                </c:forEach>
+
+
             </div>
         </div>
         <div class="container" id="container-dogs">
@@ -340,121 +423,36 @@
             </div>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Get
-                                    </button>
+                <c:forEach var="item" items="${sessionScope.itemList}">
+
+
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"/>
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">${item.product.name}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
+                                            View
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase"
+                                                id="btn-purchase">Purchase
+                                        </button>
+                                    </div>
+                                    <span class="badge rounded-pill p-2">${item.listPrice} 元</span>
                                 </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Get
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Get
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Get
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Get
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                </c:forEach>
             </div>
         </div>
 
@@ -471,126 +469,36 @@
             </div>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
+                <c:forEach var="item" items="${sessionScope.itemList}">
+
+
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"/>
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">${item.product.name}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
+                                            View
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase">
+                                            Purchase
+                                        </button>
+                                    </div>
+                                    <span class="badge rounded-pill p-2">${item.listPrice} 元</span>
                                 </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                </c:forEach>
             </div>
         </div>
 
@@ -607,126 +515,36 @@
             </div>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
+                <c:forEach var="item" items="${sessionScope.itemList}">
+
+
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"/>
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">${item.product.name}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
+                                            View
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase">
+                                            Purchase
+                                        </button>
+                                    </div>
+                                    <span class="badge rounded-pill p-2">${item.listPrice} 元</span>
                                 </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                </c:forEach>
             </div>
         </div>
 
@@ -743,126 +561,36 @@
             </div>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
+                <c:forEach var="item" items="${sessionScope.itemList}">
+
+
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"/>
+                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">${item.product.name}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
+                                            View
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase">
+                                            Purchase
+                                        </button>
+                                    </div>
+                                    <span class="badge rounded-pill p-2">${item.listPrice} 元</span>
                                 </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">Fishy fish</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Add To
-                                        Cart
-                                    </button>
-                                </div>
-                                <span class="badge rounded-pill p-2">14 元</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                </c:forEach>
 
             </div>
         </div>
@@ -883,7 +611,15 @@
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
-            The item was added to the cart
+            <div class="row mx-auto">
+                <div class="col-8  justify-content-center align-content-center">The item was added to the cart</div>
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-4" id="btn-toast-view"
+                            onclick="window.location.href='${pageContext.request.contextPath}/cart'">View
+                    </button>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
