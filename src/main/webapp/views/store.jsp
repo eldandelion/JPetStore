@@ -247,7 +247,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
                                         View
                                     </button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4">Get
+                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase">Get
                                     </button>
                                 </div>
                                 <span class="badge rounded-pill p-2">14 元</span>
