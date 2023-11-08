@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sidebars.css">
 </head>
+
 <body>
 <nav class="navbar navbar-expand-xl fixed-top shadow-sm">
     <div class="container-fluid">
