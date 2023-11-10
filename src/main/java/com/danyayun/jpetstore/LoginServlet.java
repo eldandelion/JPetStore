@@ -5,15 +5,24 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
+import static sun.security.util.KeyUtil.validate;
+
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
+
+    private static final String SIGN_ON_FORM = "views/login.jsp";
+
+    private String username;
+    private String password;
+
+    private String msg;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
 
         // Forward the request to the JSP
-        RequestDispatcher dispatcher = request.getRequestDispatcher("views/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(SIGN_ON_FORM);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -23,6 +32,32 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.username = request.getParameter("username");
+        this.password = request.getParameter("password");
 
+        //校验用户输入的正确性
+        if(!validate()){
+            request.setAttribute("signOnMsg", this.msg);
+            r.getRequestDispatcher(SIGN_ON_FORM).forward(req,resp);
+        }else{
+            AccountService accountService = new AccountService();
+            Account loginAccount = accountService.getAccount(username, password);
+            if(loginAccount == null){
+                this.msg = "用户名或密码错误";
+                req.getRequestDispatcher(SIGN_ON_FORM).forward(req,resp);
+            }else {
+                loginAccount.setPassword(null);
+                HttpSession session = req.getSession();
+                session.setAttribute("loginAccount" , loginAccount);
+
+                if(loginAccount.isListOption()){
+                    CatalogService catalogService = new CatalogService();
+                    List<Product> myList = catalogService.getProductListByCategory(loginAccount.getFavouriteCategoryId());
+                    session.setAttribute("myList", myList);
+                }
+
+                resp.sendRedirect("mainForm");
+            }
+        }
     }
 }
