@@ -1,9 +1,15 @@
 package com.danyayun.jpetstore;
 
+import com.danyayun.jpetstore.domain.Account;
+import com.danyayun.jpetstore.domain.Product;
+import com.danyayun.jpetstore.service.AccountService;
+import com.danyayun.jpetstore.service.CatalogService;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
 import static sun.security.util.KeyUtil.validate;
 
@@ -38,16 +44,16 @@ public class LoginServlet extends HttpServlet {
         //校验用户输入的正确性
         if(!validate()){
             request.setAttribute("signOnMsg", this.msg);
-            r.getRequestDispatcher(SIGN_ON_FORM).forward(req,resp);
+            request.getRequestDispatcher(SIGN_ON_FORM).forward(request,response);
         }else{
             AccountService accountService = new AccountService();
             Account loginAccount = accountService.getAccount(username, password);
             if(loginAccount == null){
                 this.msg = "用户名或密码错误";
-                req.getRequestDispatcher(SIGN_ON_FORM).forward(req,resp);
+                request.getRequestDispatcher(SIGN_ON_FORM).forward(request,response);
             }else {
                 loginAccount.setPassword(null);
-                HttpSession session = req.getSession();
+                HttpSession session = request.getSession();
                 session.setAttribute("loginAccount" , loginAccount);
 
                 if(loginAccount.isListOption()){
@@ -56,8 +62,20 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("myList", myList);
                 }
 
-                resp.sendRedirect("mainForm");
+                response.sendRedirect("mainForm");
             }
         }
+    }
+
+    private boolean validate(){
+        if(this.username == null || this.username.equals("")){
+            this.msg = "用户名不能为空";
+            return false;
+        }
+        if(this.password == null || this.password.equals("")){
+            this.msg = "密码不能为空";
+            return false;
+        }
+        return true;
     }
 }
