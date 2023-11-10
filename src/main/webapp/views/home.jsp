@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=2">
   <title>JPetStore Home</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -23,14 +24,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav align-content-end me-auto mb-2 mb-lg-0">
 
-        <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-cart">
+        <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-cart" onclick="window.location.href='${pageContext.request.contextPath}/cart'">
           <svg class="bi pe-none me-2" width="16" height="16">
             <use xlink:href="#cart"/>
           </svg>Cart</a>
+          <span class="badge rounded-pill ms-2 badge-counter">0</span>
         </button>
 
 
       </ul>
+
+
 
 
       <div class="dropdown">
@@ -43,6 +47,19 @@
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
           <li><a class="dropdown-item" href="#">English</a></li>
           <li><a class="dropdown-item" href="#">汉语</a></li>
+        </ul>
+      </div>
+
+      <div class="dropdown">
+        <a onclick="window.location.href='${pageContext.request.contextPath}/login'" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle ms-4" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          Log In
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
         </ul>
       </div>
     </div>
@@ -62,6 +79,10 @@
     <symbol id="cart" viewBox="0 0 16 16">
       <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
     </symbol>
+
+    <symbol id="store" viewBox="0 0 16 16">
+      <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+    </symbol>
   </svg>
 
 
@@ -79,23 +100,40 @@
   <div id="shape-six"></div>
   <div id="shape-seven"></div>
   <div id="shape-eight"></div>
+  <img id="image-cat" src="${pageContext.request.contextPath}/images/cat-home.png"></img>
+  <img id="image-fish" src="${pageContext.request.contextPath}/images/fish-home.png"></img>
+  <img id="image-dog" src="${pageContext.request.contextPath}/images/dog-home.png"></img>
 </div>
 
-<div class="container mt-4 center-content">
+<div class="container mt-1 center-content">
   <div class="row-cols-1">
     <h1 class="text-center display-2">Find your new friend here</h1>
 
   </div>
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <div class="text-center">
-        <button class="btn-outline-secondary rounded-5 m-1" id="button-explore" onclick="window.location.href='${pageContext.request.contextPath}/store'">Explore</button>
-      </div>
+  <div class="row-cols-1 mt-5">
+    <div class="d-flex justify-content-center">
+        <button class="btn-primary btn rounded-5 text-uppercase ps-2 pe-2 m-1" id="button-explore" onclick="window.location.href='${pageContext.request.contextPath}/store'"><svg class="bi pe-none me-2" width="16" height="16">
+          <use xlink:href="#store"/>
+        </svg>Explore</button>
     </div>
   </div>
+
+  <div class="row-cols-1 align-bottom">
+    <div class="d-flex justify-content-center">
+      <p class="mt-5 mb-3 text-body-secondary">&copy; 2023–2023 JPetStore, Created by Daniel and 蔡雅韵 for Web Development Class</p>
+    </div>
+  </div>
+
+
+
+
+
 
 
 </div>
 
 
+
+
 </body>
+</html>

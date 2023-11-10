@@ -7,7 +7,7 @@ html {
     scroll-behavior: smooth;
 }
 
-#button-home, #button-cart, #button-search {
+#button-home, #button-cart, #button-search, #button-store {
     background-color: #ffffff;
 }
 
@@ -196,8 +196,21 @@ body.locked {
     color: #ffffff;
 }
 
+#liveToast {
+    --bs-toast-border-radius: 12px !important;
+}
 
-#button-search:hover, #button-home:hover, #button-cart:hover {
+.modal-dialog {
+    --bs-modal-border-radius: 22px !important;
+    --bs-modal-bg: #fff8f4;
+    --bs-modal-border-color:  #9d8e81;
+    --bs-modal-border-width: 2px;
+}
+
+
+
+
+#button-search:hover, #button-home:hover, #button-cart:hover, #button-store:hover {
     background-color: #ffb865;
 }
 

@@ -39,7 +39,7 @@ body.locked {
 #shape-one {
     height: 160px;
     width: 56px;
-    background-color: #bcdbe5;
+    background-color: #ffe1cb;
     position: absolute;
     bottom: 0px;
     left: 50px;
@@ -65,7 +65,7 @@ body.locked {
 
     height: 330px;
     width: 220px;
-    background-color: #bcdbe5;
+    background-color: #ffd6d1;
     position: absolute;
     top: 310px;
     left: 250px;
@@ -78,7 +78,7 @@ body.locked {
 
     height: 300px;
     width: 220px;
-    background-color: #bcdbe5;
+    background-color: #ffe1cb;
     position: absolute;
     top: 360px;
     left: 44%;
@@ -97,10 +97,19 @@ body.locked {
 
 
 #button-explore {
-    background-color: #ffb865;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+    --bs-btn-border-color: #ffb865 !important;
+    --bs-btn-bg: #ffb865;
+    width: 130px;
+    height: 46px;
+}
+
+.align-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
 }
 
 
@@ -116,6 +125,17 @@ body.locked {
 
 }
 
+#image-cat {
+    height: 360px;
+    width: 360px;
+    position: absolute;
+    top: 310px;
+    left: 160px;
+
+
+
+}
+
 #shape-six {
 
     height: 300px;
@@ -126,6 +146,24 @@ body.locked {
     left: 70%;
 
     border-radius: 120px;
+
+}
+
+#image-fish {
+    height: 340px;
+    width: 340px;
+    position: absolute;
+    top: 360px;
+    left: 40%;
+
+}
+
+#image-dog {
+    height: 340px;
+    width: 340px;
+    position: absolute;
+    top: 320px;
+    left: 68%;
 
 }
 
@@ -150,7 +188,7 @@ body.locked {
 
     height: 370px;
     width: 36px;
-    background-color: #bcdbe5;
+    background-color: #c4eecc;
     position: absolute;
     top: 240px;
     left: 94%;

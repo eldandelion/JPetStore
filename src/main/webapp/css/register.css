@@ -18,6 +18,21 @@ body {
     background-color: #ffb865;
 }
 
+#container-form {
+    background-color: #fff8f4 !important;
+    border-radius: 28px;
+    margin-bottom: 60px;
+}
+
+#buttonSubmit {
+    --bs-btn-bg:  #ffb865;
+    --bs-btn-border-color:  #ffb865;
+    --bs-btn-hover-bg: #ffe1cb !important;
+    --bs-btn-hover-border-color: #ffe1cb !important;
+
+
+}
+
 
 .navbar {
     border-bottom: 1px solid #9d8e81;
