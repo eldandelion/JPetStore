@@ -1,4 +1,4 @@
-package com.danyayun.jpetstore;
+package com.danyayun.jpetstore.web.servlet;
 
 import com.danyayun.jpetstore.domain.Account;
 import com.danyayun.jpetstore.domain.Product;

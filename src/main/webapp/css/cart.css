@@ -34,7 +34,7 @@ body {
 }
 
 .pagination {
-    --bs-pagination-color: #ffb865 !important;
+    --bs-pagination-color: #2e2c25 !important;
 }
 
 #table-cart {

@@ -31,6 +31,10 @@
         <symbol id="cart" viewBox="0 0 16 16">
             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
         </symbol>
+
+        <symbol id="store" viewBox="0 0 16 16">
+            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+        </symbol>
     </svg>
 
 
@@ -59,7 +63,7 @@
                     <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-store"
                             onclick="window.location.href='${pageContext.request.contextPath}/store'">
                         <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#cart"/>
+                            <use xlink:href="#store"/>
                         </svg>
                         Store</a>
                     </button>
@@ -116,6 +120,8 @@
                     </h4>
                     <ul class="list-group mb-3" id="table-cart">
 
+
+
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <ul class="pagination">
                                 <li class="page-item"><a class="page-link" href="#">-</a></li>
@@ -123,18 +129,36 @@
                                 <li class="page-item"><a class="page-link" href="#">+</a></li>
                             </ul>
                             <div>
+                                <h6 class="my-0">Product ID</h6>
+                                <small class="text-body-secondary">3124241</small>
+                            </div>
+                            <div>
+                                <h6 class="my-0">Item ID</h6>
+                                <small class="text-body-secondary">3124241</small>
+                            </div>
+                            <div>
                                 <h6 class="my-0">Product name</h6>
                                 <small class="text-body-secondary">Brief description</small>
                             </div>
                             <span class="text-body-secondary">$12</span>
 
                         </li>
+
+
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <ul class="pagination">
                                 <li class="page-item"><a class="page-link" href="#">-</a></li>
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                                 <li class="page-item"><a class="page-link" href="#">+</a></li>
                             </ul>
+                            <div>
+                                <h6 class="my-0">Product ID</h6>
+                                <small class="text-body-secondary">3124241</small>
+                            </div>
+                            <div>
+                                <h6 class="my-0">Item ID</h6>
+                                <small class="text-body-secondary">3124241</small>
+                            </div>
                             <div>
                                 <h6 class="my-0">Second product</h6>
                                 <small class="text-body-secondary">Brief description</small>
@@ -147,6 +171,14 @@
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                                 <li class="page-item"><a class="page-link" href="#">+</a></li>
                             </ul>
+                            <div>
+                                <h6 class="my-0">Product ID</h6>
+                                <small class="text-body-secondary">3124241</small>
+                            </div>
+                            <div>
+                                <h6 class="my-0">Item ID</h6>
+                                <small class="text-body-secondary">3124241</small>
+                            </div>
                             <div>
                                 <h6 class="my-0">Third item</h6>
                                 <small class="text-body-secondary">Brief description</small>
