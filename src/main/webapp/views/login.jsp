@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.captcha.botdetect.web.servlet.Captcha" %><%--
   Created by IntelliJ IDEA.
   User: daniel
   Date: 2023/11/1
@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="botDetect" uri="https://captcha.com/java/jsp"%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -18,6 +19,8 @@
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
+
+
 <nav class="navbar navbar-expand-xl fixed-top shadow-sm">
     <div class="container-fluid">
         <img src="${pageContext.request.contextPath}/images/jpetstore.png" alt="" width="32" height="32" class="me-2">
@@ -37,11 +40,14 @@
                     </svg>
                     Home</a>
                 </button>
-                <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-cart">
+                <button class="btn btn-outline-secondary rounded-5 m-1 position-relative" onclick="window.location.href='${pageContext.request.contextPath}/cart'" type="button" id="button-cart">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        99+
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#cart"/>
                     </svg>Cart</a>
-                    <span class="badge rounded-pill ms-2 badge-counter">0</span>
                 </button>
                 <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-store"
                         onclick="window.location.href='${pageContext.request.contextPath}/store'">
@@ -116,6 +122,17 @@
                 Remember me
             </label>
         </div>
+
+
+        <botDetect:captcha id="basicExample" userInputID="captchaCode" />
+
+        <div class="validationDiv">
+            <input name="captchaCode" type="text" id="captchaCode" value="${basicExample.captchaCode}" />
+            <input type="submit" name="validateCaptchaButton" value="Validate" id="validateCaptchaButton" />
+            <span class="correct">${basicExample.captchaCorrect}</span>
+            <span class="incorrect">${basicExample.captchaIncorrect}</span>
+        </div>
+
         <button class="btn btn-primary rounded-5 w-100 py-2" id="submitButton" type="submit">Sign in</button>
         <button class="btn btn-outline-secondary mt-3 rounded-5 w-100 py-2" id="createAccountButton" type="button" onclick="window.location.href='${pageContext.request.contextPath}/register'">Register</button>
     </form>

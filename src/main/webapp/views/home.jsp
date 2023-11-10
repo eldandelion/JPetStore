@@ -24,11 +24,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav align-content-end me-auto mb-2 mb-lg-0">
 
-        <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-cart" onclick="window.location.href='${pageContext.request.contextPath}/cart'">
+        <button class="btn btn-outline-secondary rounded-5 m-1 position-relative" type="button" id="button-cart"  onclick="window.location.href='${pageContext.request.contextPath}/cart'">
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        99+
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
           <svg class="bi pe-none me-2" width="16" height="16">
             <use xlink:href="#cart"/>
           </svg>Cart</a>
-          <span class="badge rounded-pill ms-2 badge-counter">0</span>
         </button>
 
 
@@ -57,7 +60,7 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
           <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" onclick="window.location.href='${pageContext.request.contextPath}/profile'">Profile</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#">Sign out</a></li>
         </ul>
