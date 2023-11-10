@@ -139,7 +139,7 @@ body.locked {
 
 
 
-.bd-placeholder-img {
+.image-holder {
     border-radius: 18px !important;
     font-size: 1.125rem;
     text-anchor: middle;
@@ -162,6 +162,10 @@ body.locked {
     padding-bottom: 16px;
     margin-top: 56px;
 
+}
+
+.badge-login {
+    background-color: #bdcd9c !important;
 }
 
 

@@ -124,15 +124,6 @@
         </div>
 
 
-        <botDetect:captcha id="basicExample" userInputID="captchaCode" />
-
-        <div class="validationDiv">
-            <input name="captchaCode" type="text" id="captchaCode" value="${basicExample.captchaCode}" />
-            <input type="submit" name="validateCaptchaButton" value="Validate" id="validateCaptchaButton" />
-            <span class="correct">${basicExample.captchaCorrect}</span>
-            <span class="incorrect">${basicExample.captchaIncorrect}</span>
-        </div>
-
         <button class="btn btn-primary rounded-5 w-100 py-2" id="submitButton" type="submit">Sign in</button>
         <button class="btn btn-outline-secondary mt-3 rounded-5 w-100 py-2" id="createAccountButton" type="button" onclick="window.location.href='${pageContext.request.contextPath}/register'">Register</button>
     </form>
