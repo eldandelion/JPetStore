@@ -11,7 +11,6 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-import static sun.security.util.KeyUtil.validate;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {

@@ -68,7 +68,7 @@
         else if (Objects.equals(i.getProduct().getCategoryId(), birdsCategoryId)) birdsItems.add(i);
     }
 
-
+//test
     Item item = new Item();
     Product product = new Product();
     product.setName("Angelfish");
@@ -97,6 +97,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=2">
     <title>JPetStore Store</title>
 
+    <!--这里下面的href跟着的是访问css的路径-->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           type="text/css"
