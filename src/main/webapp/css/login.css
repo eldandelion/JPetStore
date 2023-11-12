@@ -44,5 +44,11 @@ body {
     border-radius: 0 0 12px 12px;
 }
 
+
+.form-signin .form-floating input[type="text"] {
+    margin-bottom: 10px;
+    border-radius: 12px !important;
+}
+
 #container-login {
 }

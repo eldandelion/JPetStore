@@ -257,6 +257,22 @@
                             <label class="form-check-label" for="enable-mybanner">Enable MyBanner</label>
                         </div>
 
+                        <div class="container d-flex m-0 p-0 align-content-center justify-content-center">
+                            <img src="${pageContext.request.contextPath}/stickyImg"/>
+                        </div>
+
+                        <div class="mt-2 mb-4">
+
+                            <label for="username" class="form-label">Captcha</label>
+                            <div class="input-group has-validation">
+                                <input type="text" class="form-control" id="captcha" placeholder="Captcha" name="answer"
+                                       required>
+                                <div class="invalid-feedback">
+                                    Please enter correct captcha.
+                                </div>
+                            </div>
+                        </div>
+
 
                         <hr class="my-4">
 

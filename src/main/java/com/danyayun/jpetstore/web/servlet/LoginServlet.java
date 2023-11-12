@@ -1,5 +1,7 @@
 package com.danyayun.jpetstore.web.servlet;
 
+import nl.captcha.Captcha;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -14,6 +16,7 @@ public class LoginServlet extends HttpServlet {
 
         // Forward the request to the JSP
         RequestDispatcher dispatcher = request.getRequestDispatcher("views/login.jsp");
+
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -23,6 +26,15 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+
+        Captcha captcha = (Captcha) session.getAttribute(Captcha.NAME);
+        request.setCharacterEncoding("UTF-8"); // Do this so we can capture non-Latin chars
+        String answer = request.getParameter("answer");
+        if (captcha.isCorrect(answer)) {
+            //TODO 验证码逻辑
+
+        }
 
     }
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: daniel
@@ -143,6 +144,8 @@
 
                 </div>
 
+
+
                 <div class="row m-2 ps-2 pe-2">
                     <hr>
                     <div class="col-4">
@@ -174,11 +177,13 @@
                     </div>
                     <div class="col-3 d-flex justify-content-center">
                         <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">-</a></li>
+                            <li class="page-item"><a class="page-link" href="#" onclick="decrementNumber()">-</a></li>
                             <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">+</a></li>
+                            <li class="page-item"><a class="page-link" href="#" onclick="incrementNumber()">+</a></li>
                         </ul>
                     </div>
+
+
                     <div class="col-3 text-center">
                         <span class="badge rounded-pill badge-counter">12$</span>
                     </div>
@@ -279,4 +284,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/js/cart.js"></script>
 </html>

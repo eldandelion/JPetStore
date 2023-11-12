@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="botDetect" uri="https://captcha.com/java/jsp"%>
+<%@taglib prefix="botDetect" uri="https://captcha.com/java/jsp" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -40,14 +40,17 @@
                     </svg>
                     Home</a>
                 </button>
-                <button class="btn btn-outline-secondary rounded-5 m-1 position-relative" onclick="window.location.href='${pageContext.request.contextPath}/cart'" type="button" id="button-cart">
+                <button class="btn btn-outline-secondary rounded-5 m-1 position-relative"
+                        onclick="window.location.href='${pageContext.request.contextPath}/cart'" type="button"
+                        id="button-cart">
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         99+
                         <span class="visually-hidden">unread messages</span>
                     </span>
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#cart"/>
-                    </svg>Cart</a>
+                    </svg>
+                    Cart</a>
                 </button>
                 <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-store"
                         onclick="window.location.href='${pageContext.request.contextPath}/store'">
@@ -62,8 +65,10 @@
 
 
             <div class="dropdown">
-                <a href="#" class="d-flex align-items-center link-dark rounded-5 text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe-americas me-2" viewBox="0 0 16 16">
+                <a href="#" class="d-flex align-items-center link-dark rounded-5 text-decoration-none dropdown-toggle"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-globe-americas me-2" viewBox="0 0 16 16">
                         <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z"/>
                     </svg>
                     English
@@ -99,34 +104,47 @@
     </svg>
 
 
-
     <div class="container" id="container-login">
 
 
-    <form id="form-login">
-        <img class="mb-4" src="${pageContext.request.contextPath}/images/jpetstore.png" alt="" width="57" height="57">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <form id="form-login">
+            <img class="mb-4" src="${pageContext.request.contextPath}/images/jpetstore.png" alt="" width="57"
+                 height="57">
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-        <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-        </div>
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
 
-        <div class="form-check text-start my-3">
-            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                Remember me
-            </label>
-        </div>
+            <div class="form-check text-start my-3">
+                <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Remember me
+                </label>
+            </div>
 
 
-        <button class="btn btn-primary rounded-5 w-100 py-2" id="submitButton" type="submit">Sign in</button>
-        <button class="btn btn-outline-secondary mt-3 rounded-5 w-100 py-2" id="createAccountButton" type="button" onclick="window.location.href='${pageContext.request.contextPath}/register'">Register</button>
-    </form>
+            <div class="container d-flex m-0 p-0 align-content-center justify-content-center">
+                <img src="${pageContext.request.contextPath}/stickyImg"/>
+            </div>
+
+            <div class="form-floating mt-2 mb-4">
+                <input type="text" class="form-control" id="captcha" placeholder="Captcha" name="answer"
+                       required>
+                <label for="captcha">Captcha</label>
+            </div>
+
+
+            <button class="btn btn-primary rounded-5 w-100 py-2" id="submitButton" type="submit">Sign in</button>
+            <button class="btn btn-outline-secondary mt-3 rounded-5 w-100 py-2" id="createAccountButton" type="button"
+                    onclick="window.location.href='${pageContext.request.contextPath}/register'">Register
+            </button>
+        </form>
     </div>
 
 </main>

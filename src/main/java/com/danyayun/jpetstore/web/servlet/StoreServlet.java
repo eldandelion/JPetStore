@@ -49,6 +49,7 @@ public class StoreServlet extends HttpServlet {
         session.setAttribute("categoryList" , categoryList);
         session.setAttribute("productList" , productList);
         session.setAttribute("itemList" , itemList);
+        session.setAttribute("myVariable", 1);
 
         try {
             request.getRequestDispatcher(PRODUCT_FORM).forward(request,response);

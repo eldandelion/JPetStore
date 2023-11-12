@@ -1,4 +1,6 @@
 
+
+
 const toastTrigger = document.getElementsByClassName('btn-purchase')
 const toastLiveExample = document.getElementById('liveToast')
 
@@ -20,5 +22,7 @@ document.getElementById("backToTop").addEventListener("click", function(event) {
         });
 
 });
+
+
 
 

@@ -95,6 +95,12 @@
     fishItems.add(item);
     fishItems.add(itemTwo);
 
+    dogsItems.add(item);
+
+    catsItems.add(item);
+    reptilesItems.add(item);
+    birdsItems.add(item);
+
 
     //putting lists into the session
     session.setAttribute("fishItems", fishItems);
@@ -455,12 +461,13 @@
             </div>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row">
-                <c:forEach var="item" items="${sessionScope.itemList}">
+                <c:forEach var="item" items="${sessionScope.dogsItems}">
 
 
-                    <div class="col">
+                    <%--                Card view contains information about Product.class --%>
+                    <div class="col" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            <svg class="bd-placeholder-img card-img-top image-holder" width="100%" height="225"
                                  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                                  preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
                                 <rect width="100%" height="100%" fill="#55595c"/>
@@ -470,15 +477,18 @@
                                 <p class="card-text">${item.product.name}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                             View
                                         </button>
                                         <button type="button"
-                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase"
-                                                id="btn-purchase">Purchase
+                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase">
+                                            Purchase
                                         </button>
                                     </div>
-                                    <span class="badge rounded-pill p-2">${item.listPrice} 元</span>
+                                    <span class="badge rounded-pill p-2">
+                                         <fmt:formatNumber value="${item.listPrice}" pattern="$#,##0.00"/>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -501,12 +511,13 @@
             </div>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row">
-                <c:forEach var="item" items="${sessionScope.itemList}">
+                <c:forEach var="item" items="${sessionScope.catsItems}">
 
 
-                    <div class="col">
+                    <%--                Card view contains information about Product.class --%>
+                    <div class="col" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            <svg class="bd-placeholder-img card-img-top image-holder" width="100%" height="225"
                                  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                                  preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
                                 <rect width="100%" height="100%" fill="#55595c"/>
@@ -516,7 +527,8 @@
                                 <p class="card-text">${item.product.name}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                             View
                                         </button>
                                         <button type="button"
@@ -524,7 +536,9 @@
                                             Purchase
                                         </button>
                                     </div>
-                                    <span class="badge rounded-pill p-2">${item.listPrice} 元</span>
+                                    <span class="badge rounded-pill p-2">
+                                         <fmt:formatNumber value="${item.listPrice}" pattern="$#,##0.00"/>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -547,12 +561,13 @@
             </div>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row">
-                <c:forEach var="item" items="${sessionScope.itemList}">
+                <c:forEach var="item" items="${sessionScope.reptilesItems}">
 
 
-                    <div class="col">
+                    <%--                Card view contains information about Product.class --%>
+                    <div class="col" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            <svg class="bd-placeholder-img card-img-top image-holder" width="100%" height="225"
                                  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                                  preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
                                 <rect width="100%" height="100%" fill="#55595c"/>
@@ -562,7 +577,8 @@
                                 <p class="card-text">${item.product.name}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                             View
                                         </button>
                                         <button type="button"
@@ -570,7 +586,9 @@
                                             Purchase
                                         </button>
                                     </div>
-                                    <span class="badge rounded-pill p-2">${item.listPrice} 元</span>
+                                    <span class="badge rounded-pill p-2">
+                                         <fmt:formatNumber value="${item.listPrice}" pattern="$#,##0.00"/>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -593,12 +611,13 @@
             </div>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row">
-                <c:forEach var="item" items="${sessionScope.itemList}">
+                <c:forEach var="item" items="${sessionScope.birdsItems}">
 
 
-                    <div class="col">
+                    <%--                Card view contains information about Product.class --%>
+                    <div class="col" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            <svg class="bd-placeholder-img card-img-top image-holder" width="100%" height="225"
                                  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                                  preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
                                 <rect width="100%" height="100%" fill="#55595c"/>
@@ -608,7 +627,8 @@
                                 <p class="card-text">${item.product.name}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                             View
                                         </button>
                                         <button type="button"
@@ -616,7 +636,9 @@
                                             Purchase
                                         </button>
                                     </div>
-                                    <span class="badge rounded-pill p-2">${item.listPrice} 元</span>
+                                    <span class="badge rounded-pill p-2">
+                                         <fmt:formatNumber value="${item.listPrice}" pattern="$#,##0.00"/>
+                                    </span>
                                 </div>
                             </div>
                         </div>

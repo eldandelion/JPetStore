@@ -4,13 +4,24 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <servlet-mapping>
+        <servlet-name>SimpleCaptchaServlet</servlet-name>
+        <url-pattern>/stickyImg</url-pattern>
+    </servlet-mapping>
 
     <servlet>
-        <servlet-name>BotDetect Captcha</servlet-name>
-        <servlet-class>com.captcha.botdetect.web.servlet.CaptchaServlet</servlet-class>
+        <servlet-class>nl.captcha.servlet.SimpleCaptchaServlet</servlet-class>
+        <servlet-name>SimpleCaptchaServlet</servlet-name>
+        <init-param>
+            <param-name>width</param-name>
+            <param-value>250</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>height</param-name>
+            <param-value>75</param-value>
+        </init-param>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>BotDetect Captcha</servlet-name>
-        <url-pattern>/botdetectcaptcha</url-pattern>
-    </servlet-mapping>
+
+
 </web-app>
