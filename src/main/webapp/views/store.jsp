@@ -10,6 +10,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
+
+
+    //test
+
     //getting data from the session
     List<Item> itemList = (List<Item>) session.getAttribute("itemList");
     List<Category> categoryList = (List<Category>) session.getAttribute("categoryList");
@@ -166,10 +170,10 @@
 
             </ul>
 
-            <form class="d-flex" role="search">
+            <form class="d-flex" role="search" method="POST" id="search-form">
                 <div class="input-group me-2">
                     <input type="text" class="form-control rounded-start-5 search-input" placeholder="Search"
-                           aria-label="Search" aria-describedby="button-addon2">
+                           aria-label="Search" aria-describedby="button-addon2" id="search-input">
                     <button class="btn btn-outline-secondary rounded-end-5" type="submit" id="button-search">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-search" viewBox="0 0 16 16">
@@ -324,7 +328,30 @@
     <div data-bs-spy="scroll" data-target="#sidebar" id="album-categories" data-bs-smooth-scroll="true"
          class="album py-5 px-4 bg-body-tertiary">
 
-        <%--        container is 盒子 --%>
+            <div class="container" id="container-search">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-auto">
+                        <h1 id="search-results" class="display-1 h1-category-name">Search Results</h1>
+                    </div>
+                    <div class="col-auto" id="col-close-button">
+                        <button class="btn btn-secondary m-3 ps-2 pe-2 pt-1 pb-1 rounded-circle" type="button" id="button-close">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="58" height="58" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row" id="cards-search">
+<%--                    check store.js ajax to understand how it actually works --%>
+
+
+
+                </div>
+
+
+            </div>
         <div class="container" id="container-fish">
 
             <div class="row justify-content-between align-items-center">
@@ -648,6 +675,10 @@
 
             </div>
         </div>
+        <%--        container is 盒子 --%>
+
+
+
         <footer class="container">
             <p class="float-end"><a id="backToTop" href="#">Back to top</a></p>
             <p>&copy; 2023–2023 JPetStore, Created By Daniel and 蔡雅韵 &middot; <a href="#">Privacy</a> &middot; <a
@@ -681,6 +712,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/js/store.js" async></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
 

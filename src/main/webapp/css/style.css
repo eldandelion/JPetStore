@@ -196,6 +196,31 @@ body.locked {
     border-radius: 28px;
 }
 
+#container-search {
+    background-color: #ffd6d1;
+    /*background-color: #ffede7;*/
+    border-radius: 28px;
+    display: none;
+}
+
+#button-close {
+    background-color: transparent !important;
+    --bs-btn-border-color: trasparent !important;
+}
+
+#container-search, #container-fish, #container-dogs, #container-cats, #container-reptiles, #container-birds {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 5s ease-in-out, transform 5s ease-in-out !important;
+    transform: translateY(0) !important;
+}
+
+#container-search.hidden, #container-fish.hidden, #container-dogs.hidden, #container-cats.hidden, #container-reptiles.hidden, #container-birds.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+}
+
 #container-reptiles {
     /*background-color: #dff7e4;*/
     background-color: #c4eecc;

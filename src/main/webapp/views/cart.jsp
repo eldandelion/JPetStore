@@ -178,7 +178,7 @@
                     <div class="col-3 d-flex justify-content-center">
                         <ul class="pagination">
                             <li class="page-item"><a class="page-link" href="#" onclick="decrementNumber()">-</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link disabled" href="#">1</a></li>
                             <li class="page-item"><a class="page-link" href="#" onclick="incrementNumber()">+</a></li>
                         </ul>
                     </div>

@@ -23,5 +23,15 @@
         </init-param>
     </servlet>
 
+    <servlet>
+        <servlet-name>StoreServlet</servlet-name>
+        <servlet-class>com.danyayun.jpetstore.web.servlet.StoreServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>StoreServlet</servlet-name>
+        <url-pattern>/store</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

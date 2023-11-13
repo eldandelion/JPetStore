@@ -8,16 +8,17 @@ import com.danyayun.jpetstore.service.CatalogService;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet(name = "storeServlet", value = "/store")
 public class StoreServlet extends HttpServlet {
 
     private CatalogService catalogService;
 
+    private static final Logger logger = Logger.getLogger(StoreServlet.class.getName());
     private static final String PRODUCT_FORM = "/views/store.jsp";
 
     public void init() {
@@ -46,6 +47,8 @@ public class StoreServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
+
+        session.setAttribute("searchVisibility", true);
         session.setAttribute("categoryList" , categoryList);
         session.setAttribute("productList" , productList);
         session.setAttribute("itemList" , itemList);
@@ -56,6 +59,38 @@ public class StoreServlet extends HttpServlet {
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
+
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+
+
+        //Test
+        Item item = new Item();
+        Product product = new Product();
+        product.setName("Bitch it works");
+        item.setProduct(product);
+
+
+        //TODO create an algorithm that searches for items according to search request
+
+        // Get the search query
+        String searchQuery = request.getParameter("searchQuery");
+
+        List<Item> searchResults = new ArrayList<>();
+
+        searchResults.add(item);
+
+        request.setAttribute("searchItems", searchResults);
+
+        // Forward the request to the JSP file for rendering
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/search_results.jsp");
+
+        dispatcher.forward(request, response);
 
 
     }
