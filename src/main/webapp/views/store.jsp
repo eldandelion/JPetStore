@@ -369,6 +369,7 @@
                 <%--                forEach loop creates cards for every Product.class available in the database --%>
                 <c:forEach var="item" items="${sessionScope.fishItems}">
 
+<%--                    TODO create a new page with product details instead of a modal --%>
                     <%--                Card view contains information about Product.class --%>
                     <div class="col" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <div class="card shadow-sm">

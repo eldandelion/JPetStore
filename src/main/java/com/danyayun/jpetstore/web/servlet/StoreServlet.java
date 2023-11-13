@@ -49,13 +49,13 @@ public class StoreServlet extends HttpServlet {
 
 
         session.setAttribute("searchVisibility", true);
-        session.setAttribute("categoryList" , categoryList);
-        session.setAttribute("productList" , productList);
-        session.setAttribute("itemList" , itemList);
+        session.setAttribute("categoryList", categoryList);
+        session.setAttribute("productList", productList);
+        session.setAttribute("itemList", itemList);
         session.setAttribute("myVariable", 1);
 
         try {
-            request.getRequestDispatcher(PRODUCT_FORM).forward(request,response);
+            request.getRequestDispatcher(PRODUCT_FORM).forward(request, response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
@@ -65,8 +65,6 @@ public class StoreServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
 
 
         //Test
@@ -88,7 +86,15 @@ public class StoreServlet extends HttpServlet {
         request.setAttribute("searchItems", searchResults);
 
         // Forward the request to the JSP file for rendering
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/search_results.jsp");
+
+        RequestDispatcher dispatcher;
+
+
+        if (searchQuery.isEmpty() || searchResults.isEmpty()) {
+            dispatcher = request.getRequestDispatcher("/views/search_results_not_found.jsp");
+        } else {
+            dispatcher = request.getRequestDispatcher("/views/search_results.jsp");
+        }
 
         dispatcher.forward(request, response);
 
