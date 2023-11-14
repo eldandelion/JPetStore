@@ -202,6 +202,10 @@
     </div>
 </nav>
 
+<div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="progress-bar">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+</div>
+
 <main class="d-flex flex-nowrap">
 
     <%--    Icons for navigation bars buttons Home button and Cart button--%>

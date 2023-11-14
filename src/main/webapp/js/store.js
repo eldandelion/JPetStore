@@ -47,6 +47,8 @@ btnClose.addEventListener("click", function() {
     }
 });
 
+const progressBar = document.getElementById('progress-bar');
+
 
 
 $(document).ready(function() {
@@ -54,6 +56,7 @@ $(document).ready(function() {
     $("#search-form").submit(function(event) {
         // Prevent the default form submission
         event.preventDefault();
+        progressBar.style.display = 'block'
 
         // Get the search query from the input field
         var searchQuery = $("#search-input").val();
@@ -75,9 +78,11 @@ $(document).ready(function() {
             success: function(response) {
                 // Update the search results container with the response HTML
                 $("#cards-search").html(response);
+                progressBar.style.display = 'none'
             },
             error: (error) => {
                 console.log(JSON.stringify(error));
+                progressBar.style.display = 'none'
             }
         });
     });

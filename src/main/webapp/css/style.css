@@ -190,6 +190,14 @@ body.locked {
     border-radius: 28px;
 }
 
+#progress-bar {
+    display: none;
+
+    --bs-progress-height: 10px;
+    --bs-progress-bar-bg: #ffb865;
+    --bs-progress-border-radius: 0px;
+}
+
 #container-dogs {
     background-color: #ffd6d1;
     /*background-color: #ffede7;*/

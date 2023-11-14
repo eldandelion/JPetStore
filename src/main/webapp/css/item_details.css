@@ -1,0 +1,37 @@
+
+
+html {
+    height: 100%;
+    height: -webkit-fill-available;
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+body {
+    height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    padding-top: 60px;
+    overflow-x: hidden;
+
+}
+
+body.locked {
+    overflow: hidden;
+}
+
+#container-content {
+    margin: 70px !important;
+    background-color: #fff8f4 !important;
+    border-radius: 29px;
+    border: 1px solid #9d8e81;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+#image-holder {
+    padding: 20px;
+    border-radius: 40px !important;
+}
+
