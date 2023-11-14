@@ -35,8 +35,6 @@
       </ul>
 
 
-
-
       <div class="dropdown">
         <a href="#" class="d-flex align-items-center link-dark rounded-5 text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe-americas me-2" viewBox="0 0 16 16">
@@ -91,7 +89,6 @@
 <div class="container">
 
 
-
   <div id="shape-one"></div>
   <div id="shape-two"></div>
   <div id="shape-three"></div>
@@ -124,16 +121,7 @@
     </div>
   </div>
 
-
-
-
-
-
-
 </div>
-
-
-
 
 </body>
 </html>

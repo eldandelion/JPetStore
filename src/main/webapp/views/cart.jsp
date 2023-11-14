@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: daniel
@@ -13,13 +14,13 @@
     <title>JPetStore Cart</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/cart.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sidebars.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           type="text/css"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-
 
 <main class="d-flex flex-nowrap">
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -36,6 +37,7 @@
             <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
         </symbol>
     </svg>
+
 
 
     <nav class="navbar navbar-expand-xl fixed-top shadow-sm">
@@ -88,133 +90,205 @@
                     </ul>
                 </div>
 
-                <div class="dropdown">
-                    <a href="#"
-                       class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle ms-4"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                        Log In
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
-                </div>
+                <span class="badge d-flex align-items-center ms-4 p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill">
+
+            <div class="dropdown">
+                <a href="#"
+                   class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle "
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+</svg>
+                    Log In
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" onclick="window.location.href='${pageContext.request.contextPath}/profile'">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+            </div>
+            </span>
             </div>
 
 
         </div>
     </nav>
 
-    <div class="container w-75" id="container-cart">
-        <main>
-            <div class="row g-5 mt-5 mx-auto">
-                <div class="col-md-5 w-75 col-lg-4 order-md-last mx-auto">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-primary" id="text-your-cart">Your cart</span>
-                        <span class="badge bg-primary rounded-pill" id="badge-counter">3</span>
-                    </h4>
-                    <ul class="list-group mb-3" id="table-cart">
+    <div class="container container-fluid mx-auto scrollarea pt-5" id="container-main">
+        <div class="row mt-1 mx-auto">
+            <div class="col-md-5 w-100 ps-5 pe-5 col-lg-4 order-md-last mx-auto">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="display-2 h2-category-name" id="text-your-cart">Your cart</span>
+                    <span class="badge bg-primary p-3 ps-3 pe-3 rounded-pill" id="badge-counter">3</span>
+                </h4>
+
+
+                <div class="container" id="container-items-list">
+                    <div class="row m-2 p-2" id="list-heading">
+                        <div class="col-4 text-uppercase">
+                            <strong>Product details</strong>
+                        </div>
+                        <div class="col-3 text-center text-uppercase">
+                            <strong>Quantity</strong>
+                        </div>
+                        <div class="col-3 text-center text-uppercase">
+                            <strong>Price</strong>
+                        </div>
+                        <div class="col-2 text-end text-uppercase">
+                            <strong>Total</strong>
+                        </div>
+
+                    </div>
 
 
 
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div class="row m-2 ps-2 pe-2">
+                        <hr>
+                        <div class="col-4">
+                            <div class="container p-0 m-0">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <svg class="bd-placeholder-img rounded-circle" width="100" height="100"
+                                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                                             preserveAspectRatio="xMidYMid slice" focusable="false">
+                                            <title>Placeholder</title>
+                                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                                        </svg>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="container p-0 m-0">
+                                            <div class="row">
+                                                <div class="col-12 d-flex flex-column justify-content-center">
+                                                    <h6 class="my-0">Product name</h6>
+                                                    <small class="text-body-secondary">Brief description</small>
+                                                    <small class="text-body-secondary">Product ID: 3124241</small>
+                                                    <small class="text-body-secondary">Item ID: 3124241</small>
+                                                    <small class="text-body-secondary" id="text-remove">Remove</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 d-flex justify-content-center">
                             <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">-</a></li>
+                                <li class="page-item"><a class="page-link" href="#" onclick="decrementNumber()">-</a></li>
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">+</a></li>
+                                <li class="page-item"><a class="page-link" href="#" onclick="incrementNumber()">+</a></li>
                             </ul>
-                            <div>
-                                <h6 class="my-0">Product ID</h6>
-                                <small class="text-body-secondary">3124241</small>
-                            </div>
-                            <div>
-                                <h6 class="my-0">Item ID</h6>
-                                <small class="text-body-secondary">3124241</small>
-                            </div>
-                            <div>
-                                <h6 class="my-0">Product name</h6>
-                                <small class="text-body-secondary">Brief description</small>
-                            </div>
-                            <span class="text-body-secondary">$12</span>
+                        </div>
 
-                        </li>
-
-
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div class="col-3 d-flex justify-content-center">
                             <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">-</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">+</a></li>
+                                <li class="page-item"><a class="page-link" href="#" onclick="decrementNumber('group${group.id}')">-</a></li>
+                                <li class="page-item"><a id="number-group${group.id}" class="page-link" href="#">${group.counter}</a></li>
+                                <li class="page-item"><a class="page-link" href="#" onclick="incrementNumber('group${group.id}')">+</a></li>
                             </ul>
-                            <div>
-                                <h6 class="my-0">Product ID</h6>
-                                <small class="text-body-secondary">3124241</small>
-                            </div>
-                            <div>
-                                <h6 class="my-0">Item ID</h6>
-                                <small class="text-body-secondary">3124241</small>
-                            </div>
-                            <div>
-                                <h6 class="my-0">Second product</h6>
-                                <small class="text-body-secondary">Brief description</small>
-                            </div>
-                            <span class="text-body-secondary">$8</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">-</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">+</a></li>
-                            </ul>
-                            <div>
-                                <h6 class="my-0">Product ID</h6>
-                                <small class="text-body-secondary">3124241</small>
-                            </div>
-                            <div>
-                                <h6 class="my-0">Item ID</h6>
-                                <small class="text-body-secondary">3124241</small>
-                            </div>
-                            <div>
-                                <h6 class="my-0">Third item</h6>
-                                <small class="text-body-secondary">Brief description</small>
-                            </div>
-                            <span class="text-body-secondary">$5</span>
-                        </li>
+                        </div>
+                        <div class="col-3 text-center">
+                            <span class="badge rounded-pill badge-counter">12$</span>
+                        </div>
+                        <div class="col-2 text-end">
+                            <span class="badge rounded-pill badge-counter">12$</span>
+                        </div>
+                    </div>
 
-                        <li class="list-group-item d-flex justify-content-between">
+
+
+
+
+
+
+                    <div class="row p-2 ms-2 me-2" id="list-bottom">
+                        <hr>
+                        <div class="col-6">
                             <span>Total (USD)</span>
-                            <strong>$20</strong>
-                        </li>
-                    </ul>
 
-                    <button class="w-100 btn btn-primary btn-lg mt-4 rounded-5" id="buttonSubmit" type="submit">Continue to check out
-                    </button>
+
+                        </div>
+                        <div class="col-6 text-end">
+                            <strong>$20</strong>
+
+                        </div>
+
+                    </div>
 
 
                 </div>
+
+
             </div>
-        </main>
+        </div>
+
+        <footer class="text-body-secondary mt-5 text-center text-small">
+            <p class="mb-1">&copy; 2023–2023 JPetStore, Developed by Daniel and 蔡雅韵</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Privacy</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Support</a></li>
+            </ul>
+        </footer>
 
     </div>
 
 
+    <div class="d-flex flex-column flex-shrink-0 p-3" id="sidebar-summary">
+
+        <strong id="text-items" class="h5 text-muted mt-1 mb-0">Order Summary</strong>
+        <hr>
+
+        <div class="container m-2">
+
+            <div class="row me-2">
+                <div class="col-6">
+                    <span class="text-body-secondary text-uppercase">Items 3</span>
+                </div>
+                <div class="col-6 text-end">
+                    <span class="text-body-secondary text-uppercase">432$</span>
+                </div>
+
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-12">
+                    <span class="text-body-secondary text-uppercase">Shipping address</span>
+                </div>
+
+            </div>
+
+            <div class="row mt-3 me-2">
+
+                <select class="form-select" aria-label="Address">
+                    <option selected value="1">One</option>
+                    <option value="2">Two</option>
+                </select>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="flex-grow-1"></div>
+
+        <button class="w-100 btn btn-primary btn-lg mt-5 mb-2 rounded-5 text-uppercase" id="buttonSubmit" type="submit">Checkout
+        </button>
+
+
+    </div>
+
 </main>
-
-<footer class="text-body-secondary text-center text-small">
-    <p class="mb-1">&copy; 2023–2023 JPetStore, Developed by Daniel and 蔡雅韵</p>
-    <ul class="list-inline">
-        <li class="list-inline-item"><a href="#">Privacy</a></li>
-        <li class="list-inline-item"><a href="#">Terms</a></li>
-        <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-</footer>
-
 
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/js/cart.js"></script>
 </html>

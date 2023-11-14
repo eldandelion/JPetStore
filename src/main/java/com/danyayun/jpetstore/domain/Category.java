@@ -36,4 +36,14 @@ public class Category implements Serializable {
     public String toString() {
         return getCategoryId();
     }
+
+
+
+/*    public String toString() {
+        return "Category{" +
+                "catid=" + categoryId +
+                ", name='" + name + '\'' +
+                ", descn='" + description +
+                '}';
+    }*/
 }
