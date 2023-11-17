@@ -1,6 +1,3 @@
-
-
-
 const toastTrigger = document.getElementsByClassName('btn-purchase')
 const toastLiveExample = document.getElementById('liveToast')
 
@@ -13,7 +10,7 @@ if (toastTrigger) {
         });
     }
 }
-document.getElementById("backToTop").addEventListener("click", function(event) {
+document.getElementById("backToTop").addEventListener("click", function (event) {
     event.preventDefault(); // Pr  event the default link behavior
     document.getElementById("album-categories").scrollTo(
         {
@@ -33,7 +30,7 @@ const reptilesContainer = document.getElementById('container-reptiles');
 const birdsContainer = document.getElementById('container-birds');
 const searchInput = document.getElementById('search-input');
 
-btnClose.addEventListener("click", function() {
+btnClose.addEventListener("click", function () {
     if (searchContainer.style.display === 'none') {
         searchContainer.style.display = 'block';
     } else {
@@ -50,16 +47,16 @@ btnClose.addEventListener("click", function() {
 const progressBar = document.getElementById('progress-bar');
 
 
-
-$(document).ready(function() {
+$(document).ready(function () {
     // Handle form submission
-    $("#search-form").submit(function(event) {
+    $("#search-form").submit(function (event) {
         // Prevent the default form submission
         event.preventDefault();
         progressBar.style.display = 'block'
 
+
         // Get the search query from the input field
-        var searchQuery = $("#search-input").val();
+        const searchQuery = $("#search-input").val();
         $("#container-search").show();
         $("#container-fish").hide();
         $("#container-dogs").hide();
@@ -72,10 +69,10 @@ $(document).ready(function() {
         $.ajax({
             url: "/JPetStore_war/store",
             type: "POST",
-            data: { searchQuery: searchQuery },
+            data: {searchQuery: searchQuery},
             dataType: "text",
 
-            success: function(response) {
+            success: function (response) {
                 // Update the search results container with the response HTML
                 $("#cards-search").html(response);
                 progressBar.style.display = 'none'
@@ -87,6 +84,46 @@ $(document).ready(function() {
         });
     });
 });
+
+
+$(document).ready(function () {
+    const cards = document.getElementsByClassName('card');
+    console.log(cards.length);
+    for (let i = 0; i < cards.length; i++) {
+        const card = cards[i];
+        const viewButton = card.querySelector('.btn-view');
+
+        // if (viewButton) {
+        //     viewButton.addEventListener('click', function () {
+        //         const itemId = card.getElementsByClassName('item-id');
+        //         const itemIdText = itemId.item(0).textContent;
+        //         console.log('Item ID:', itemId[0].textContent);
+        //         // Perform any additional actions with the item ID
+        //         $.ajax({
+        //             url: "/JPetStore_war/item",
+        //             type: "GET",
+        //             data: {itemId: itemIdText},
+        //             dataType: "json",
+        //
+        //             success: function (response) {
+        //                 // Update the search results container with the response HTML
+        //                 window.open('')
+        //             },
+        //             error: (error) => {
+        //                 console.log(JSON.stringify(error));
+        //             }
+        //         });
+        //     });
+        // }
+
+
+    }
+});
+
+
+
+
+
 
 
 

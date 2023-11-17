@@ -52,11 +52,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.captcha</groupId>
-            <artifactId>botdetect-jsp20</artifactId>
-            <version>4.0.beta3.7</version>
-        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->

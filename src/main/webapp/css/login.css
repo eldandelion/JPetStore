@@ -34,14 +34,14 @@ body {
     background-color: #ffb865 !important;
 }
 
-.form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-radius: 12px 12px 0 0;
+.form-signin #form-username {
+    margin-bottom: -1px !important;
+    border-radius: 12px 12px 0 0 !important;
 }
 
 .form-signin input[type="password"] {
     margin-bottom: 10px;
-    border-radius: 0 0 12px 12px;
+    border-radius: 12px;
 }
 
 

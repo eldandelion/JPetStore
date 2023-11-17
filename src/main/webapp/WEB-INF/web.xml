@@ -10,8 +10,8 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-class>nl.captcha.servlet.SimpleCaptchaServlet</servlet-class>
         <servlet-name>SimpleCaptchaServlet</servlet-name>
+        <servlet-class>nl.captcha.servlet.SimpleCaptchaServlet</servlet-class>
         <init-param>
             <param-name>width</param-name>
             <param-value>250</param-value>

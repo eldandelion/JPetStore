@@ -1,4 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.danyayun.jpetstore.domain.Account" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%
+  Account account = (Account) session.getAttribute("loginAccount");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +30,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav align-content-end me-auto mb-2 mb-lg-0">
 
-        <button class="btn btn-outline-secondary rounded-5 m-1 position-relative" type="button" id="button-cart"  onclick="window.location.href='${pageContext.request.contextPath}/cart'">
+        <button class="btn btn-outline-secondary rounded-5 m-1 position-relative" type="button" id="button-cart" onclick="window.open('${pageContext.request.contextPath}/cart', '_blank')">
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         99+
                         <span class="visually-hidden">unread messages</span>
@@ -55,25 +61,38 @@
         </ul>
       </div>
 
-      <span class="badge d-flex align-items-center ms-4 p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill">
-
-      <div class="dropdown">
-        <a onclick="window.location.href='${pageContext.request.contextPath}/login'" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
-  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-</svg>
-<%--          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">--%>
-          Log In
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" onclick="window.location.href='${pageContext.request.contextPath}/profile'">Profile</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
-      </div>
-      </span>
+      <c:choose>
+        <c:when test="${sessionScope.loginAccount != null}">
+        <span class="badge d-flex align-items-center ms-4 p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill">
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                    <%= account.getUsername() %>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" onclick="window.location.href='${pageContext.request.contextPath}/profile'">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+            </div>
+        </span>
+        </c:when>
+        <c:otherwise>
+          <span class="badge d-flex align-items-center ms-4 p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill" id="login-button">
+                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none pe-1" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                    Log In
+                </a>
+        </span>
+        </c:otherwise>
+      </c:choose>
     </div>
 
 
@@ -114,7 +133,7 @@
   <div id="shape-seven"></div>
   <div id="shape-eight"></div>
   <img id="image-cat" src="${pageContext.request.contextPath}/images/cat-home.png"></img>
-  <img id="image-fish" src="${pageContext.request.contextPath}/images/fish-home.png"></img>
+  <img id="image-fish" src="${pageContext.request.contextPath}/images/rabbit-home.png"></img>
   <img id="image-dog" src="${pageContext.request.contextPath}/images/dog-home.png"></img>
 </div>
 
@@ -153,4 +172,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/js/home.js" async></script>
 </html>

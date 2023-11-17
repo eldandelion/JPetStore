@@ -1,12 +1,4 @@
-<%@ page import="com.captcha.botdetect.web.servlet.Captcha" %><%--
-  Created by IntelliJ IDEA.
-  User: daniel
-  Date: 2023/11/1
-  Time: 09:07
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="botDetect" uri="https://captcha.com/java/jsp" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -41,7 +33,7 @@
                     Home</a>
                 </button>
                 <button class="btn btn-outline-secondary rounded-5 m-1 position-relative"
-                        onclick="window.location.href='${pageContext.request.contextPath}/cart'" type="button"
+                        onclick="window.open('${pageContext.request.contextPath}/cart', '_blank')" type="button"
                         id="button-cart">
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         99+
@@ -53,7 +45,7 @@
                     Cart</a>
                 </button>
                 <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-store"
-                        onclick="window.location.href='${pageContext.request.contextPath}/store'">
+                        onclick="window.open('${pageContext.request.contextPath}/store', '_blank')">
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#store"/>
                     </svg>
@@ -104,7 +96,7 @@
     </svg>
 
 
-    <div class="container" id="container-login">
+    <div class="container needs-validation" id="container-login" novalidate>
 
 
         <form id="form-login">
@@ -112,12 +104,17 @@
                  height="57">
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+
+            <div class="form-floating" id="form-username">
+                <input type="text" class="form-control" name="username" id="floatingUsername" placeholder="Username"
+                       required>
+                <label for="floatingUsername">Username</label>
             </div>
+
+
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password"
+                       required>
                 <label for="floatingPassword">Password</label>
             </div>
 
@@ -134,9 +131,9 @@
             </div>
 
             <div class="form-floating mt-2 mb-4">
-                <input type="text" class="form-control" id="captcha" placeholder="Captcha" name="answer"
+                <input type="text" class="form-control" id="floatingCaptcha" placeholder="Captcha" name="answer"
                        required>
-                <label for="captcha">Captcha</label>
+                <label for="floatingCaptcha">Captcha</label>
             </div>
 
 
@@ -158,6 +155,8 @@
     </ul>
 </footer>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/login.js" async></script>
 
 
 </body>

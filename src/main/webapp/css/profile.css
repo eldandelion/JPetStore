@@ -6,3 +6,11 @@
     background-color: #bdcd9c !important;
     border-radius: 28px;
 }
+
+.form-label {
+    color: #ffffff !important;
+}
+
+#album-categories .container .row .col .row. col .form-control {
+    border-radius: 20px !important;
+}

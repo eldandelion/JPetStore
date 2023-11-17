@@ -63,7 +63,7 @@
                 </button>
 
                 <button class="btn btn-outline-secondary rounded-5 m-1" type="button" id="button-store"
-                        onclick="window.location.href='${pageContext.request.contextPath}/store'">
+                        onclick="window.open('${pageContext.request.contextPath}/store', '_blank')">
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#store"/>
                     </svg>

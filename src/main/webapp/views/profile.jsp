@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.danyayun.jpetstore.domain.Account" %><%--
   Created by IntelliJ IDEA.
   User: daniel
   Date: 2023/11/10
@@ -6,6 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    Account account = (Account) session.getAttribute("loginAccount");
+    if (account == null) {
+        String contextPath = request.getContextPath();
+        String path = contextPath + "/login";
+        response.sendRedirect(path);
+        return;
+    }
+
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,18 +72,7 @@
 
             </ul>
 
-            <form class="d-flex" role="search">
-                <div class="input-group me-2">
-                    <input type="text" class="form-control rounded-start-5 search-input" placeholder="Search"
-                           aria-label="Search" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary rounded-end-5" type="submit" id="button-search">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-search" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                        </svg>
-                    </button>
-                </div>
-            </form>
+
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center link-dark rounded-5 text-decoration-none dropdown-toggle"
                    data-bs-toggle="dropdown" aria-expanded="false">
@@ -128,31 +129,7 @@
     <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 sidebar">
         <ul class="nav nav-pills flex-column mb-auto">
 
-            <div class="container m-0 p-0">
 
-                <div class="row-cols-1">
-                    <div class="col d-flex align-content-center justify-content-center">
-                        <svg class="bd-placeholder-img rounded-circle" width="100" height="100"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
-                             preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-
-                            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="row-cols-1">
-
-                    <div class="col d-flex align-content-center justify-content-center">
-                        <strong id="text-items" class="h3 text-muted mt-2 mb-0">Hello, Jake</strong>
-                    </div>
-                </div>
-
-
-            </div>
-
-            <hr>
             <li class="nav-item">
                 <a class="nav-link rounded-4 link-body-emphasis active" aria-current="page">
                     <div class="row justify-content-between align-items-center">
@@ -200,12 +177,14 @@
         <div class="dropdown m-0 p-0">
             <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
                data-bs-toggle="dropdown" aria-expanded="false">
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle me-2"
+     viewBox="0 0 16 16">
   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+  <path fill-rule="evenodd"
+        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
 </svg>
 <%--                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">--%>
-                Log In
+                <%= account.getFirstName() %> <%= account.getLastName()%>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                 <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -225,8 +204,128 @@
 
             <div class="row justify-content-between align-items-center">
                 <div class="col-auto">
-                    <h1 id="scrollspyHeadingFish" class="display-1 h1-category-name">Jake Miller</h1>
+                    <h1 id="profile-name"
+                        class="display-1 h1-category-name"><%= account.getFirstName() %> <%= account.getLastName() %>
+                    </h1>
                 </div>
+
+
+
+
+
+            </div>
+
+            <div class="row d-flex m-0 p-0">
+
+                <div class="col m-3 mb-5">
+
+
+                    <div class="row g-3">
+
+                        <div class="col-6">
+                            <h4 class="mb-3 text-white">Account information</h4>
+                            <hr>
+                        </div>
+                        <div class="col-6">
+                            <h4 class="mb-3 text-white">Shipping</h4>
+                            <hr>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="firstName" class="form-label text-white">First name</label>
+                            <input disabled type="text" class="form-control rounded-3" id="firstName" placeholder=<%= account.getFirstName()%> value="">
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="lastName" class="form-label text-white">Last name</label>
+                            <input disabled type="text" class="form-control rounded-3" id="lastName" placeholder=<%= account.getLastName()%>  value="">
+
+                        </div>
+
+                        <div class="col-6">
+                            <label for="address" class="form-label text-white">Address</label>
+                            <input type="text" class="form-control rounded-3" id="address" placeholder=<%= account.getAddress1()%> ></div>
+
+                        <div class="col-3">
+                            <label for="username" class="form-label text-white">Username</label>
+                            <div class="input-group has-validation">
+                                <input disabled type="text" class="form-control rounded-3" id="username" placeholder=<%= account.getUsername()%>>
+
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <label for="password" class="form-label text-white">Password</label>
+                            <div class="input-group has-validation">
+                                <input type="text" class="form-control rounded-3" id="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="address2" class="form-label text-white">Address 2 <span
+                                    class="text-white">(Optional)</span></label>
+                            <input type="text" class="form-control rounded-3" id="address2"
+                                   placeholder=<%= account.getAddress2()%>>
+                        </div>
+
+                        <div class="col-3">
+                            <label for="email" class="form-label text-white">Email</label>
+                            <input type="email" class="form-control rounded-3" id="email" placeholder=<%= account.getEmail()%>>
+                        </div>
+
+                        <div class="col-3">
+                            <label for="phone" class="form-label text-white">Phone Number</label>
+                            <input type="tel" class="form-control rounded-3" id="phone" placeholder=<%= account.getPhone()%>>
+                        </div>
+
+
+                        <div class="col-3">
+                            <label for="country" class="form-label text-white">Country</label>
+                            <select class="form-select rounded-3" id="country">
+                                <option value="">Choose...</option>
+                                <option>United States</option>
+                            </select>
+                        </div>
+
+                        <div class="col-3">
+                            <label for="state" class="form-label text-white">State</label>
+                            <select class="form-select rounded-3" id="state">
+                                <option value="">Choose...</option>
+                                <option>California</option>
+                            </select>
+                        </div>
+
+                        <div class="col-3">
+                            <label for="state" class="form-label text-white">Favorite category</label>
+                            <select class="form-select rounded-3" id="favorite-category">
+                                <option value=""><%= account.getFavouriteCategoryId()%></option>
+                                <option>Fish</option>
+                                <option>Dogs</option>
+                                <option>Reptiles</option>
+                                <option>Cats</option>
+                                <option>Birds</option>
+                            </select>
+                        </div>
+
+                        <div class="col-3">
+                            <label for="state" class="form-label text-white">Language preference</label>
+                            <select class="form-select rounded-3" id="language-preference">
+                                <option value=""><%= account.getLanguagePreference()%></option>
+                                <option>English</option>
+                                <option>Chinese</option>
+                            </select>
+                        </div>
+
+                        <div class="col-3">
+                            <label for="zip" class="form-label text-white">Zip</label>
+                            <input type="text" class="form-control rounded-3" id="zip" placeholder=<%= account.getZip()%>>
+                            <div class="invalid-feedback">
+                                Zip code required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </div>
@@ -234,5 +333,9 @@
 
 
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 </html>

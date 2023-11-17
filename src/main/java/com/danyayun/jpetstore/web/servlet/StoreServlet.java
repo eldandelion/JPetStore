@@ -8,17 +8,20 @@ import com.danyayun.jpetstore.service.CatalogService;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+import java.util.logging.Logger;
 import javax.servlet.annotation.*;
 
 public class StoreServlet extends HttpServlet {
 
+
+
+
+
     private CatalogService catalogService;
 
-    private static final Logger logger = Logger.getLogger(StoreServlet.class.getName());
     private static final String PRODUCT_FORM = "/views/store.jsp";
 
     public void init() {
@@ -36,6 +39,75 @@ public class StoreServlet extends HttpServlet {
 
         List<Item> itemList = new ArrayList<>();
 
+        //List<Item> fishItems = new ArrayList<>();
+
+        /*String fishCategoryId = "";
+        String dogsCategoryId = "";
+        String catsCategoryId = "";
+        String reptilesCategoryId = "";
+        String birdsCategoryId = "";*/
+
+        List<Product> fishProducts = new ArrayList<>();
+        List<Product> dogsProducts = new ArrayList<>();
+        List<Product> catsProducts = new ArrayList<>();
+        List<Product> reptilesProducts = new ArrayList<>();
+        List<Product> birdsProducts = new ArrayList<>();
+
+        List<Item> fishItems = new ArrayList<>();
+        List<Item> dogsItems = new ArrayList<>();
+        List<Item> catsItems = new ArrayList<>();
+        List<Item> reptilesItems = new ArrayList<>();
+        List<Item> birdsItems = new ArrayList<>();
+
+        for (Category c : categoryList) {
+            switch (c.getName()) {
+                case "Fish":
+                   // fishCategoryId = c.getCategoryId();
+                    fishProducts.addAll(catalogService.getProductListByCategory(c.getCategoryId()));
+                    for (Product p : fishProducts) {
+                        fishItems.addAll(catalogService.getItemListByProduct(p.getProductId()));
+                    }
+                    break;
+                case "Dogs":
+                   // dogsCategoryId = c.getCategoryId();
+                    dogsProducts.addAll(catalogService.getProductListByCategory(c.getCategoryId()));
+                    for (Product p : dogsProducts) {
+                        dogsItems.addAll(catalogService.getItemListByProduct(p.getProductId()));
+                    }
+                    break;
+                case "Cats":
+                    //catsCategoryId = c.getCategoryId();
+                    catsProducts.addAll(catalogService.getProductListByCategory(c.getCategoryId()));
+                    for (Product p : catsProducts) {
+                        catsItems.addAll(catalogService.getItemListByProduct(p.getProductId()));
+                    }
+                    break;
+                case "Reptiles":
+                    //reptilesCategoryId = c.getCategoryId();
+                    reptilesProducts.addAll(catalogService.getProductListByCategory(c.getCategoryId()));
+                    for (Product p : reptilesProducts) {
+                        reptilesItems.addAll(catalogService.getItemListByProduct(p.getProductId()));
+                    }
+                    break;
+                case "Birds":
+                   // birdsCategoryId = c.getCategoryId();
+                    birdsProducts.addAll(catalogService.getProductListByCategory(c.getCategoryId()));
+                    for (Product p : birdsProducts) {
+                        birdsItems.addAll(catalogService.getItemListByProduct(p.getProductId()));
+                    }
+                    break;
+            }
+        }
+
+        HttpSession session = request.getSession();
+
+        session.setAttribute("fishItems" , fishItems);
+        session.setAttribute("dogsItems" , dogsItems);
+        session.setAttribute("catsItems" , catsItems);
+        session.setAttribute("reptilesItems" , reptilesItems);
+        session.setAttribute("birdsItems" , birdsItems);
+
+
         for (Category c : categoryList) {
             productList.addAll(catalogService.getProductListByCategory(c.getCategoryId()));
         }
@@ -45,17 +117,13 @@ public class StoreServlet extends HttpServlet {
         }
 
 
-        HttpSession session = request.getSession();
 
-
-        session.setAttribute("searchVisibility", true);
-        session.setAttribute("categoryList", categoryList);
-        session.setAttribute("productList", productList);
-        session.setAttribute("itemList", itemList);
-        session.setAttribute("myVariable", 1);
+        session.setAttribute("categoryList" , categoryList);
+        session.setAttribute("productList" , productList);
+        session.setAttribute("itemList" , itemList);
 
         try {
-            request.getRequestDispatcher(PRODUCT_FORM).forward(request, response);
+            request.getRequestDispatcher(PRODUCT_FORM).forward(request,response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
@@ -67,21 +135,14 @@ public class StoreServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        //Test
-        Item item = new Item();
-        Product product = new Product();
-        product.setName("Bitch it works");
-        item.setProduct(product);
 
-
-        //TODO create an algorithm that searches for items according to search request
 
         // Get the search query
         String searchQuery = request.getParameter("searchQuery");
 
         List<Item> searchResults = new ArrayList<>();
 
-        searchResults.add(item);
+        searchResults = findResults(searchQuery);
 
         request.setAttribute("searchItems", searchResults);
 
@@ -90,7 +151,7 @@ public class StoreServlet extends HttpServlet {
         RequestDispatcher dispatcher;
 
 
-        if (searchQuery.isEmpty() || searchResults.isEmpty()) {
+        if (searchQuery == null || searchQuery.isEmpty() || searchResults.isEmpty()) {
             dispatcher = request.getRequestDispatcher("/views/search_results_not_found.jsp");
         } else {
             dispatcher = request.getRequestDispatcher("/views/search_results.jsp");
@@ -99,6 +160,21 @@ public class StoreServlet extends HttpServlet {
         dispatcher.forward(request, response);
 
 
+    }
+
+    private List<Item> findResults(String searchQuery) {
+        catalogService = new CatalogService();
+
+        List<Product> productList = catalogService.searchProductList(searchQuery);
+
+        List<Item> itemList = new ArrayList<>();
+
+        for (Product p : productList) {
+            itemList.addAll(catalogService.getItemListByProduct(p.getProductId()));
+        }
+
+
+        return itemList;
     }
 
     public void destroy() {
