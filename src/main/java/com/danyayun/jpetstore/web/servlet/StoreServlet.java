@@ -18,8 +18,6 @@ public class StoreServlet extends HttpServlet {
 
 
 
-
-
     private CatalogService catalogService;
 
     private static final String PRODUCT_FORM = "/views/store.jsp";

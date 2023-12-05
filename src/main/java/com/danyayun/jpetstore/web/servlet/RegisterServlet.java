@@ -1,5 +1,7 @@
 package com.danyayun.jpetstore.web.servlet;
 
+//import nl.captcha.Captcha;
+
 import nl.captcha.Captcha;
 
 import javax.servlet.*;
@@ -32,6 +34,8 @@ public class RegisterServlet extends HttpServlet {
         String answer = request.getParameter("answer");
         if (captcha.isCorrect(answer)) {
             //TODO 验证码逻辑
+
+
 
         }
     }
