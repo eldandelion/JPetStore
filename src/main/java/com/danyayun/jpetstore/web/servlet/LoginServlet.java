@@ -5,6 +5,7 @@ import com.danyayun.jpetstore.domain.Product;
 import com.danyayun.jpetstore.service.AccountService;
 import com.danyayun.jpetstore.service.CatalogService;
 import nl.captcha.Captcha;
+//import nl.captcha.Captcha;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
