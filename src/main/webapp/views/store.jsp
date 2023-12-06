@@ -74,8 +74,8 @@
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#cart"/>
                     </svg>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        99+
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-size-span">
+                        0
                         <span class="visually-hidden">unread messages</span>
                     </span>
                     Cart</a>

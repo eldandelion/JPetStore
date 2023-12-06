@@ -26,7 +26,7 @@
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
-                      data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                      onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
                 View
               </button>
               <button type="button"

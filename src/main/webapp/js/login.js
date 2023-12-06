@@ -94,3 +94,20 @@ $(document).ready(function () {
 
     });
 });
+
+
+$.ajax({
+    url: "/JPetStore_war/cart",
+    type: "GET",
+    data: {cartSizeQuery: "give me cart"},
+    dataType: "json",
+
+    success: function (response) {
+        const cartSpan = document.getElementById("cart-size-span")
+        cartSpan.innerText = response
+
+    },
+    error: (error) => {
+        console.log(JSON.stringify(error));
+    }
+});

@@ -2,14 +2,41 @@ const toastTrigger = document.getElementsByClassName('btn-purchase')
 const toastLiveExample = document.getElementById('liveToast')
 
 
-if (toastTrigger) {
-    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-    for (let i = 0; i < toastTrigger.length; i++) {
-        toastTrigger[i].addEventListener('click', () => {
-            toastBootstrap.show();
-        });
+
+setToastListener(toastTrigger)
+updateCart()
+function setToastListener(trigger) {
+    if (trigger) {
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+        for (let i = 0; i < trigger.length; i++) {
+            trigger[i].addEventListener('click', () => {
+                toastBootstrap.show();
+                updateCart()
+            });
+        }
     }
+
 }
+
+function updateCart() {
+    // Make an AJAX request to the server
+    $.ajax({
+        url: "/JPetStore_war/cart",
+        type: "GET",
+        data: {cartSizeQuery: "give me cart"},
+        dataType: "json",
+
+        success: function (response) {
+            const cartSpan = document.getElementById("cart-size-span")
+            cartSpan.innerText = response
+
+        },
+        error: (error) => {
+            console.log(JSON.stringify(error));
+        }
+    });
+}
+
 document.getElementById("backToTop").addEventListener("click", function (event) {
     event.preventDefault(); // Pr  event the default link behavior
     document.getElementById("album-categories").scrollTo(
@@ -75,6 +102,13 @@ $(document).ready(function () {
             success: function (response) {
                 // Update the search results container with the response HTML
                 $("#cards-search").html(response);
+
+                const btnPurchase = $("#cards-search .btn-purchase");
+
+
+                setToastListener(btnPurchase)
+
+
                 progressBar.style.display = 'none'
             },
             error: (error) => {
@@ -83,7 +117,18 @@ $(document).ready(function () {
             }
         });
     });
+
+
+
+
+
+
+
+
 });
+
+
+
 
 
 $(document).ready(function () {
