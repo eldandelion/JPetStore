@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.danyayun.jpetstore.domain.Item" %>
@@ -59,7 +60,7 @@
                 </button>
                 <button class="btn btn-outline-secondary rounded-5 m-1 position-relative" type="button" id="button-cart"
                         onclick="window.open('${pageContext.request.contextPath}/cart', '_blank')" >
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-size-span">
                         99+
                         <span class="visually-hidden">unread messages</span>
                     </span>
@@ -159,6 +160,7 @@
 
     <div class="container w-75 m-0 p-0" id="container-element">
         <main>
+            <div style="display: none" id="item-id" ><%= item.getItemId() %></div>
 
 
             <div class="row d-flex w-100 h-100 m-0 p-0">
@@ -283,4 +285,10 @@
 
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script defer src="${pageContext.request.contextPath}/js/item_details.js"></script>
 </html>

@@ -28,7 +28,6 @@
     List<Item> birdsItems = (List<Item>) session.getAttribute("birdsItems");
 
 
-
 %>
 
 
@@ -75,8 +74,8 @@
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#cart"/>
                     </svg>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        99+
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-size-span">
+                        0
                         <span class="visually-hidden">unread messages</span>
                     </span>
                     Cart</a>
@@ -117,7 +116,8 @@
     </div>
 </nav>
 
-<div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="progress-bar">
+<div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0"
+     aria-valuemax="100" id="progress-bar">
     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
 </div>
 
@@ -224,16 +224,20 @@
             <c:when test="${sessionScope.loginAccount != null}">
         <span class="badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill">
             <div class="dropdown">
-                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                         class="bi bi-person-circle me-2" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        <path fill-rule="evenodd"
+                              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                     </svg>
                     <%= account.getUsername() %>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                     <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" onclick="window.location.href='${pageContext.request.contextPath}/profile'">Profile</a></li>
+                    <li><a class="dropdown-item"
+                           onclick="window.location.href='${pageContext.request.contextPath}/profile'">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#">Sign out</a></li>
                 </ul>
@@ -241,11 +245,15 @@
         </span>
             </c:when>
             <c:otherwise>
-          <span class="badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill" id="login-button" >
-                <a onclick="window.open('${pageContext.request.contextPath}/login', '_blank')" href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none pe-1" aria-expanded="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+          <span class="badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill"
+                id="login-button">
+                <a onclick="window.open('${pageContext.request.contextPath}/login', '_blank')" href="#"
+                   class="d-flex align-items-center link-body-emphasis text-decoration-none pe-1" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                         class="bi bi-person-circle me-2" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        <path fill-rule="evenodd"
+                              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                     </svg>
                     Log In
                 </a>
@@ -257,30 +265,31 @@
     <div data-bs-spy="scroll" data-target="#sidebar" id="album-categories" data-bs-smooth-scroll="true"
          class="album py-5 px-4 bg-body-tertiary">
 
-            <div class="container" id="container-search">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-auto">
-                        <h1 id="search-results" class="display-1 h1-category-name">Search Results</h1>
-                    </div>
-                    <div class="col-auto" id="col-close-button">
-                        <button class="btn btn-secondary m-3 ps-2 pe-2 pt-1 pb-1 rounded-circle" type="button" id="button-close">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="58" height="58" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                            </svg>
-                        </button>
-                    </div>
-
+        <div class="container" id="container-search">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-auto">
+                    <h1 id="search-results" class="display-1 h1-category-name">Search Results</h1>
+                </div>
+                <div class="col-auto" id="col-close-button">
+                    <button class="btn btn-secondary m-3 ps-2 pe-2 pt-1 pb-1 rounded-circle" type="button"
+                            id="button-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="58" height="58" fill="currentColor"
+                             class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                        </svg>
+                    </button>
                 </div>
 
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row" id="cards-search">
-<%--                    check store.js ajax to understand how it actually works --%>
+            </div>
 
-
-
-                </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row" id="cards-search">
+                <%--                    check store.js ajax to understand how it actually works --%>
 
 
             </div>
+
+
+        </div>
         <div class="container" id="container-fish">
 
             <div class="row justify-content-between align-items-center">
@@ -298,7 +307,7 @@
                 <%--                forEach loop creates cards for every Product.class available in the database --%>
                 <c:forEach var="item" items="${sessionScope.fishItems}">
 
-<%--                    TODO create a new page with product details instead of a modal --%>
+                    <%--                    TODO create a new page with product details instead of a modal --%>
                     <%--                Card view contains information about Product.class --%>
                     <div class="col">
                         <div class="card shadow-sm">
@@ -314,7 +323,9 @@
                                 <p class="text-secondary p-0 mt-1">${item.attribute1}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4 btn-view" onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-secondary rounded-start-4 btn-view"
+                                                onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
                                             View
                                         </button>
                                         <button type="button"
@@ -355,18 +366,21 @@
                     <%--                Card view contains information about Product.class --%>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top image-holder" width="100%" height="225"
-                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"/>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
+                                <%--                            <svg class="bd-placeholder-img card-img-top image-holder" width="100%" height="225"--%>
+                                <%--                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"--%>
+                                <%--                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>--%>
+                                <%--                                <rect width="100%" height="100%" fill="#55595c"></rect>--%>
+                                <%--                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>--%>
+                                <%--                            </svg>--%>
+
+                            <img class="bd-placeholder-img card-img-top image-holder" src="" width="100%" height="225">
                             <div class="card-body">
                                 <p class="card-text mb-0">${item.product.name}</p>
                                 <p class="text-secondary p-0 mt-1">${item.attribute1}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4" onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
+                                                onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
                                             View
                                         </button>
                                         <button type="button"
@@ -416,7 +430,8 @@
                                 <p class="text-secondary p-0 mt-1">${item.attribute1}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4" onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
+                                                onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
                                             View
                                         </button>
                                         <button type="button"
@@ -466,7 +481,8 @@
                                 <p class="text-secondary p-0 mt-1">${item.attribute1}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4" onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
+                                                onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
                                             View
                                         </button>
                                         <button type="button"
@@ -516,7 +532,8 @@
                                 <p class="text-secondary p-0 mt-1">${item.attribute1}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4" onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
+                                                onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
                                             View
                                         </button>
                                         <button type="button"
@@ -537,7 +554,6 @@
             </div>
         </div>
         <%--        container is 盒子 --%>
-
 
 
         <footer class="container">

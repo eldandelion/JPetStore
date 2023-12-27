@@ -21,7 +21,6 @@ public class ItemServlet extends HttpServlet {
 
         String itemId = request.getParameter("itemId");
 
-        logger.info(itemId);
 
         String redirectUrl = "views/item_details.jsp";
 
@@ -44,7 +43,10 @@ public class ItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String itemId = request.getParameter("itemId");
+        if (itemId != null) {
+            logger.info(itemId);
+        }
     }
 
 
