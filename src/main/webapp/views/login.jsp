@@ -118,16 +118,9 @@
                 <label for="floatingPassword">Password</label>
             </div>
 
-            <div class="form-check text-start my-3">
-                <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Remember me
-                </label>
-            </div>
-
 
             <div class="container d-flex m-0 p-0 align-content-center justify-content-center">
-                <img src="${pageContext.request.contextPath}/stickyImg"/>
+                <img id="image-captcha" src="${pageContext.request.contextPath}/stickyImg"/>
             </div>
 
             <div class="form-floating mt-2 mb-4">
@@ -137,8 +130,8 @@
             </div>
 
 
-            <button class="btn btn-primary rounded-5 w-100 py-2" id="submitButton" type="submit">Sign in</button>
-            <button class="btn btn-outline-secondary mt-3 rounded-5 w-100 py-2" id="createAccountButton" type="button"
+            <button class="btn btn-primary rounded-5 w-100 py-2 text-uppercase" id="submitButton" type="submit">Sign in</button>
+            <button class="btn btn-outline-secondary mt-3 rounded-5 w-100 py-2 text-uppercase" id="createAccountButton" type="button"
                     onclick="window.location.href='${pageContext.request.contextPath}/register'">Register
             </button>
         </form>
@@ -146,14 +139,21 @@
 
 </main>
 
-<footer class="pb-2 text-body-secondary text-center text-small">
-    <p class="mb-1">&copy; 2023–2023 JPetStore, Created by Daniel and 蔡雅韵</p>
-    <ul class="list-inline">
-        <li class="list-inline-item"><a href="#">Privacy</a></li>
-        <li class="list-inline-item"><a href="#">Terms</a></li>
-        <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-</footer>
+<div id="container-footer" class="row-cols-1 align-bottom">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 border-top">
+        <div class="col-auto d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24"><img src="${pageContext.request.contextPath}/images/jpetstore.png" alt="" width="32" height="32" class="me-2"></svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2023 JPetstore, Inc</span>
+
+        </div>
+
+
+    </footer>
+
+
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>

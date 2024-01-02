@@ -1,10 +1,15 @@
-var numbers = {}; // Object to store the numbers for each group
 
-// Initialize the numbers for each group
-<c:forEach var="group" items="${groupList}">
-    numbers['group${group.id}'] = ${group.counter};
-</c:forEach>
 
+const loginButton = document.getElementById('login-button');
+
+if (loginButton) {
+    loginButton.addEventListener('click', function() {
+        const contextPath = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 1));
+        console.log(contextPath);
+        window.location.href=contextPath + '/login'
+
+    });
+}
 function incrementNumber(group) {
     numbers[group]++;
     updateNumberElement(group);

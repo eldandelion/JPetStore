@@ -44,8 +44,11 @@ public class ItemServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String itemId = request.getParameter("itemId");
-        if (itemId != null) {
-            logger.info(itemId);
+        String operation = request.getParameter("operation");
+
+        //TODO utilize cartItem for quantity
+        if (itemId != null && operation != null) {
+
         }
     }
 

@@ -181,6 +181,8 @@
 
                     <div class="row m-0 p-0">
                         <div class="col-8 p-0 m-0">
+
+
                             <h1 class="modal-title fs-3 p-0 m-0"
                                 id="text-item-name"><%= item.getProduct().getName()%>
                                 <small class="text-body-secondary"><%= item.getAttribute1()%>
@@ -277,9 +279,19 @@
 
 
 <div id="container-footer">
-    <footer class="text-body-secondary mt-5 text-center text-small">
-        <p class="mb-1">&copy; 2023–2023 JPetStore, Developed by Daniel and 蔡雅韵</p>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24"><img src="${pageContext.request.contextPath}/images/jpetstore.png" alt="" width="32" height="32" class="me-2"></svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2023 JPetstore, Inc</span>
+        </div>
+
+
     </footer>
+<%--    <footer class="text-body-secondary mt-5 text-center text-small">--%>
+<%--        <p class="mb-1">&copy; 2023–2023 JPetStore, Developed by Daniel and 蔡雅韵</p>--%>
+<%--    </footer>--%>
 
 </div>
 

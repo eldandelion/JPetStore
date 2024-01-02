@@ -2,6 +2,7 @@ package com.danyayun.jpetstore.web.servlet;
 
 //import nl.captcha.Captcha;
 
+import com.danyayun.jpetstore.service.AccountService;
 import nl.captcha.Captcha;
 
 import javax.servlet.*;
@@ -11,6 +12,8 @@ import java.io.IOException;
 
 @WebServlet(name = "RegisterServlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
+
+    private AccountService accountService = new AccountService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -28,6 +31,10 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+
+
+
+
 
         Captcha captcha = (Captcha) session.getAttribute(Captcha.NAME);
         request.setCharacterEncoding("UTF-8"); // Do this so we can capture non-Latin chars

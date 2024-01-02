@@ -150,11 +150,27 @@
     </div>
   </div>
 
-  <div class="row-cols-1 align-bottom">
-    <div class="d-flex justify-content-center">
-      <p class="mt-5 mb-3 text-body-secondary">&copy; 2023–2023 JPetStore, Created by Daniel and 蔡雅韵 for Web Development Class</p>
+<%--  <div class="row-cols-1 align-bottom">--%>
+    <%--    <div class="d-flex justify-content-center">--%>
+    <%--      <p class="mt-5 mb-3 text-body-secondary">&copy; 2023–2023 JPetStore, Created by Daniel and 蔡雅韵 for Web Development Class</p>--%>
+    <%--    </div>--%>
+    <%--  </div>--%>
+
+    <div id="container-footer" class="row-cols-1 align-bottom">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 border-top">
+            <div class="col-auto d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24"><img src="${pageContext.request.contextPath}/images/jpetstore.png" alt="" width="32" height="32" class="me-2"></svg>
+                </a>
+                <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2023 JPetstore, Inc</span>
+
+            </div>
+
+
+        </footer>
+
+
     </div>
-  </div>
 
 
 

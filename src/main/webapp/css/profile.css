@@ -3,14 +3,37 @@
 
 
 #container-profile {
-    background-color: #bdcd9c !important;
+    background-color: #d5e3ff !important;
     border-radius: 28px;
+
+}
+
+#profile-badge-text {
+    color: #001c3b !important;
 }
 
 .form-label {
-    color: #ffffff !important;
+
 }
 
 #album-categories .container .row .col .row. col .form-control {
     border-radius: 20px !important;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+hr {
+    background-color: #ffffff !important;
+}
+
+#container-info {
+    background-color: #fff8f4 !important;
+    border-radius: 20px !important;
+
+}
+
+#text-account-info, #text-shipping {
+    color: #875200 !important
 }

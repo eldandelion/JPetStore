@@ -26,12 +26,26 @@ body {
 }
 
 #buttonSubmit {
-    --bs-btn-bg:  #ffb865;
+    background: linear-gradient(to right, #ffb865, #ff9e26) !important;
+    //--bs-btn-bg:  #ffb865;
     --bs-btn-border-color:  #ffb865;
-    --bs-btn-hover-bg: #ffe1cb !important;
+    //--bs-btn-hover-bg: #ffe1cb !important;
     --bs-btn-hover-border-color: #ffe1cb !important;
 
 
+}
+
+#buttonSubmit:hover {
+    background: linear-gradient(to right, #ffe1cb, #ffb865) !important;
+    transition: background 2s ease !important;
+}
+
+#text-header, #text-account-info, #text-profile-info , #text-shipping-info{
+    color: #875200 !important;
+}
+
+#image-captcha {
+    border-radius: 10px;
 }
 
 

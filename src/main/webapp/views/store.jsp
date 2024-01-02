@@ -74,7 +74,8 @@
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#cart"/>
                     </svg>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-size-span">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                          id="cart-size-span">
                         0
                         <span class="visually-hidden">unread messages</span>
                     </span>
@@ -86,14 +87,23 @@
 
             <form class="d-flex" role="search" method="POST" id="search-form">
                 <div class="input-group me-2">
-                    <input type="text" class="form-control rounded-start-5 search-input" placeholder="Search"
+                    <input type="text" autocomplete="off" class="form-control rounded-start-5 search-input" placeholder="Search"
                            aria-label="Search" aria-describedby="button-addon2" id="search-input">
+
                     <button class="btn btn-outline-secondary rounded-end-5" type="submit" id="button-search">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                         </svg>
                     </button>
+
+                    <div id="search-list" style="display: none">
+                        <ul class="dropdown-menu position-static d-grid pt-5 gap-1 p-2 rounded-3 mx-0" id="dropdown-search">
+                        </ul>
+                    </div>
+
+
+
                 </div>
             </form>
             <div class="dropdown">
@@ -144,7 +154,7 @@
             <strong id="text-items" class="h5 mt-1 mb-0 text-muted">Categories</strong>
             <hr>
             <li class="nav-item">
-                <a href="#container-fish" class="nav-link rounded-4 link-body-emphasis active" aria-current="page">
+                <a href="#container-fish" class="nav-link rounded-5 link-body-emphasis active" aria-current="page">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto name ">
                             <img src="${pageContext.request.contextPath}/images/fish.png" alt="" width="22" height="22"
@@ -160,7 +170,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#container-dogs" class="nav-link rounded-4 link-body-emphasis">
+                <a href="#container-dogs" class="nav-link rounded-5 link-body-emphasis">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto name">
                             <img src="${pageContext.request.contextPath}/images/paws.png" alt="" width="22" height="22"
@@ -175,7 +185,7 @@
                 </a>
             </li>
             <li>
-                <a href="#container-cats" class="nav-link rounded-4 link-body-emphasis">
+                <a href="#container-cats" class="nav-link rounded-5 link-body-emphasis">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto name">
                             <img src="${pageContext.request.contextPath}/images/cats.png" alt="" width="22" height="22"
@@ -189,7 +199,7 @@
                 </a>
             </li>
             <li>
-                <a href="#container-reptiles" class="nav-link rounded-4 link-body-emphasis">
+                <a href="#container-reptiles" class="nav-link rounded-5 link-body-emphasis">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto name">
                             <img src="${pageContext.request.contextPath}/images/reptiles.png" alt="" width="22"
@@ -204,7 +214,7 @@
                 </a>
             </li>
             <li>
-                <a href="#container-birds" class="nav-link rounded-4 link-body-emphasis">
+                <a href="#container-birds" class="nav-link rounded-5 link-body-emphasis">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto name">
                             <img src="${pageContext.request.contextPath}/images/birds.png" alt="" width="22" height="22"
@@ -234,12 +244,13 @@
                     </svg>
                     <%= account.getUsername() %>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                <ul class="dropdown-menu rounded-4 dropdown-menu-dark text-small shadow">
+                 <li><a class="dropdown-item" href="#">Settings</a></li>
+                      <li>
+                    <hr class="dropdown-divider">
+                </li>
                     <li><a class="dropdown-item"
                            onclick="window.location.href='${pageContext.request.contextPath}/profile'">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
                 </ul>
             </div>
         </span>
@@ -263,7 +274,7 @@
     </div>
 
     <div data-bs-spy="scroll" data-target="#sidebar" id="album-categories" data-bs-smooth-scroll="true"
-         class="album py-5 px-4 bg-body-tertiary">
+         class="album py-5 pb-0 px-4 bg-body-tertiary">
 
         <div class="container" id="container-search">
             <div class="row justify-content-between align-items-center">
@@ -280,7 +291,9 @@
                     </button>
                 </div>
 
+
             </div>
+
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-row" id="cards-search">
                 <%--                    check store.js ajax to understand how it actually works --%>
@@ -555,12 +568,52 @@
         </div>
         <%--        container is 盒子 --%>
 
+        <div id="container-footer">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4">
+                <div class="col-auto d-flex align-items-center">
+                    <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                        <svg class="bi" width="30" height="24"><img
+                                src="${pageContext.request.contextPath}/images/jpetstore.png" alt="" width="32"
+                                height="32" class="me-2"></svg>
+                    </a>
+                    <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2023 JPetstore, Inc</span>
 
-        <footer class="container">
-            <p class="float-end"><a id="backToTop" href="#">Back to top</a></p>
-            <p>&copy; 2023–2023 JPetStore, Created By Daniel and 蔡雅韵 &middot; <a href="#">Privacy</a> &middot; <a
-                    href="#">Terms</a></p>
-        </footer>
+
+                    <button class="btn ms-3 btn-outline-secondary rounded-5" id="backToTop">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-arrow-up me-2" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                        </svg>
+                        Back to top
+                    </button>
+                </div>
+
+
+            </footer>
+            <%--    <footer class="text-body-secondary mt-5 text-center text-small">--%>
+            <%--        <p class="mb-1">&copy; 2023–2023 JPetStore, Developed by Daniel and 蔡雅韵</p>--%>
+            <%--    </footer>--%>
+
+        </div>
+
+
+        <%--        <footer class="container">--%>
+
+
+        <%--            <div class="row-cols-2" >--%>
+        <%--                <div class="col-auto">--%>
+        <%--                    <p>&copy; 2023–2023 JPetStore, Created By Daniel and 蔡雅韵</p>--%>
+        <%--                </div>--%>
+        <%--                <div class="col-auto">--%>
+        <%--                    <button class="btn btn-outline-secondary rounded-5" id="backToTop"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up me-2" viewBox="0 0 16 16">--%>
+        <%--                        <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>--%>
+        <%--                    </svg>Back To Top</button>--%>
+        <%--                </div>--%>
+        <%--            </div>--%>
+
+
+        <%--        </footer>--%>
     </div>
 
 

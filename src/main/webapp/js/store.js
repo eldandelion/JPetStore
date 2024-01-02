@@ -2,9 +2,9 @@ const toastTrigger = document.getElementsByClassName('btn-purchase')
 const toastLiveExample = document.getElementById('liveToast')
 
 
-
 setToastListener(toastTrigger)
 updateCart()
+
 function setToastListener(trigger) {
     if (trigger) {
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
@@ -44,6 +44,7 @@ document.getElementById("backToTop").addEventListener("click", function (event) 
             top: 0,
             behavior: "smooth" // Use smooth scrolling behavior for a smooth transition
         });
+
 
 });
 
@@ -119,16 +120,7 @@ $(document).ready(function () {
     });
 
 
-
-
-
-
-
-
 });
-
-
-
 
 
 $(document).ready(function () {
@@ -164,6 +156,73 @@ $(document).ready(function () {
 
     }
 });
+
+
+// Get the search input and dropdown menu elements
+const dropdownList = document.getElementById('search-list');
+const dropdownMenu = document.getElementById('dropdown-search')
+
+
+// Add click event listener to the dropdown menu items
+
+setDropdownListener(dropdownMenu)
+
+function setDropdownListener(dropdownMenu) {
+    dropdownMenu.addEventListener('click', (event) => {
+
+        // Check if the clicked element is a dropdown item
+        if (event.target.classList.contains('dropdown-item')) {
+            // Update the search input value with the selected item
+            searchInput.value = event.target.textContent;
+            dropdownList.style.display = 'none';
+
+        }
+    });
+}
+
+
+// Add input event listener to the search input
+searchInput.addEventListener('input', () => {
+    const searchText = searchInput.value.trim();
+
+    if (searchText.length > 0) {
+        sendSearchRequest(searchText);
+
+        // Show the dropdown menu
+        dropdownList.style.display = 'block';
+    } else {
+        // Hide the dropdown menu
+        dropdownList.style.display = 'none';
+    }
+});
+
+// Add click event listener to the document to hide the dropdown when clicking outside
+document.addEventListener('click', (event) => {
+    // Check if the clicked element is inside the dropdown menu or search input
+    if (!dropdownMenu.contains(event.target) && event.target !== searchInput) {
+        // Hide the dropdown menu
+        dropdownList.style.display = 'none';
+    }
+});
+
+function sendSearchRequest(input) {
+    $.ajax({
+        url: "/JPetStore_war/store",
+        type: "POST",
+        data: {input: input},
+        dataType: "text",
+
+        success: function (response) {
+            // Update the search results container with the response HTML
+            $("#dropdown-search").html(response);
+
+
+        },
+        error: (error) => {
+            console.log(JSON.stringify(error));
+        }
+    });
+}
 
 
 

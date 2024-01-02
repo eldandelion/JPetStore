@@ -62,8 +62,9 @@
                     <svg class="bi pe-none me-2" width="16" height="16">
                         <use xlink:href="#cart"/>
                     </svg>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        99+
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                          id="cart-size-span">
+                        0
                         <span class="visually-hidden">unread messages</span>
                     </span>
                     Cart</a>
@@ -131,7 +132,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link rounded-4 link-body-emphasis active" aria-current="page">
+                <a class="nav-link rounded-5 link-body-emphasis active" aria-current="page">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto name">
                             <svg class="bi pe-none me-2" width="22" height="22">
@@ -146,7 +147,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link rounded-4 link-body-emphasis" aria-current="page">
+                <a class="nav-link rounded-5 link-body-emphasis" aria-current="page">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto name">
                             <svg class="bi pe-none me-2" width="22" height="22">
@@ -159,7 +160,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link rounded-4 link-body-emphasis" aria-current="page">
+                <a class="nav-link rounded-5 link-body-emphasis" aria-current="page">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto name">
                             <svg class="bi pe-none me-2" width="22" height="22">
@@ -175,7 +176,8 @@
         <hr>
         <span class="badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill badge-login">
         <div class="dropdown m-0 p-0">
-            <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+            <a href="#" id="profile-badge-text"
+               class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
                data-bs-toggle="dropdown" aria-expanded="false">
 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle me-2"
      viewBox="0 0 16 16">
@@ -186,19 +188,19 @@
 <%--                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">--%>
                 <%= account.getFirstName() %> <%= account.getLastName()%>
             </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+            <ul class="dropdown-menu rounded-4 dropdown-menu-dark text-small shadow">
                 <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                <li><a class="dropdown-item" href="#" id="btn-sign-out">Sign out</a></li>
             </ul>
         </div>
         </span>
     </div>
 
     <div data-bs-spy="scroll" data-target="#sidebar" id="album-categories" data-bs-smooth-scroll="true"
-         class="album py-5 px-4 bg-body-tertiary">
+         class="album py-5 px-4 pb-0 bg-body-tertiary">
 
         <div class="container" id="container-profile">
 
@@ -210,95 +212,160 @@
                 </div>
 
 
-
-
-
             </div>
 
-            <div class="row d-flex m-0 p-0">
+            <div class="row m-0 p-0 g-3">
 
-                <div class="col m-3 mb-5">
+                <div class="col mt-0 p-0">
 
 
-                    <div class="row g-3">
+                    <div class="row p-4 mt-0 mb-1 m-2" id="container-info">
 
                         <div class="col-6">
-                            <h4 class="mb-3 text-white">Account information</h4>
+                            <h4 class="mb-3" id="text-account-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                     class="bi bi-person-fill me-2" viewBox="0 0 16 16">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                                </svg>
+                                Account information
+                            </h4>
                             <hr>
                         </div>
                         <div class="col-6">
-                            <h4 class="mb-3 text-white">Shipping</h4>
+                            <h4 class="mb-3" id="text-shipping">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                     class="bi bi-rocket-takeoff me-2" viewBox="0 0 16 16">
+                                    <path d="M9.752 6.193c.599.6 1.73.437 2.528-.362.798-.799.96-1.932.362-2.531-.599-.6-1.73-.438-2.528.361-.798.8-.96 1.933-.362 2.532"/>
+                                    <path d="M15.811 3.312c-.363 1.534-1.334 3.626-3.64 6.218l-.24 2.408a2.56 2.56 0 0 1-.732 1.526L8.817 15.85a.51.51 0 0 1-.867-.434l.27-1.899c.04-.28-.013-.593-.131-.956a9.42 9.42 0 0 0-.249-.657l-.082-.202c-.815-.197-1.578-.662-2.191-1.277-.614-.615-1.079-1.379-1.275-2.195l-.203-.083a9.556 9.556 0 0 0-.655-.248c-.363-.119-.675-.172-.955-.132l-1.896.27A.51.51 0 0 1 .15 7.17l2.382-2.386c.41-.41.947-.67 1.524-.734h.006l2.4-.238C9.005 1.55 11.087.582 12.623.208c.89-.217 1.59-.232 2.08-.188.244.023.435.06.57.093.067.017.12.033.16.045.184.06.279.13.351.295l.029.073a3.475 3.475 0 0 1 .157.721c.055.485.051 1.178-.159 2.065Zm-4.828 7.475.04-.04-.107 1.081a1.536 1.536 0 0 1-.44.913l-1.298 1.3.054-.38c.072-.506-.034-.993-.172-1.418a8.548 8.548 0 0 0-.164-.45c.738-.065 1.462-.38 2.087-1.006ZM5.205 5c-.625.626-.94 1.351-1.004 2.09a8.497 8.497 0 0 0-.45-.164c-.424-.138-.91-.244-1.416-.172l-.38.054 1.3-1.3c.245-.246.566-.401.91-.44l1.08-.107-.04.039Zm9.406-3.961c-.38-.034-.967-.027-1.746.163-1.558.38-3.917 1.496-6.937 4.521-.62.62-.799 1.34-.687 2.051.107.676.483 1.362 1.048 1.928.564.565 1.25.941 1.924 1.049.71.112 1.429-.067 2.048-.688 3.079-3.083 4.192-5.444 4.556-6.987.183-.771.18-1.345.138-1.713a2.835 2.835 0 0 0-.045-.283 3.078 3.078 0 0 0-.3-.041Z"/>
+                                    <path d="M7.009 12.139a7.632 7.632 0 0 1-1.804-1.352A7.568 7.568 0 0 1 3.794 8.86c-1.102.992-1.965 5.054-1.839 5.18.125.126 3.936-.896 5.054-1.902Z"/>
+                                </svg>
+                                Shipping
+                            </h4>
                             <hr>
                         </div>
 
                         <div class="col-sm-3">
-                            <label for="firstName" class="form-label text-white">First name</label>
-                            <input disabled type="text" class="form-control rounded-3" id="firstName" placeholder=<%= account.getFirstName()%> value="">
+                            <label for="firstName" class="form-label text-secondary">First name</label>
+                            <input disabled type="text" class="form-control rounded-3" id="firstName"
+                                   value=<%= account.getFirstName()%> value="">
 
                         </div>
 
                         <div class="col-sm-3">
-                            <label for="lastName" class="form-label text-white">Last name</label>
-                            <input disabled type="text" class="form-control rounded-3" id="lastName" placeholder=<%= account.getLastName()%>  value="">
+                            <label for="lastName" class="form-label text-secondary">Last name</label>
+                            <input disabled type="text" class="form-control rounded-3" id="lastName"
+                                   value=<%= account.getLastName()%>  value="">
 
                         </div>
 
                         <div class="col-6">
-                            <label for="address" class="form-label text-white">Address</label>
-                            <input type="text" class="form-control rounded-3" id="address" placeholder=<%= account.getAddress1()%> ></div>
-
-                        <div class="col-3">
-                            <label for="username" class="form-label text-white">Username</label>
+                            <label for="address" class="form-label text-secondary">Address</label>
                             <div class="input-group has-validation">
-                                <input disabled type="text" class="form-control rounded-3" id="username" placeholder=<%= account.getUsername()%>>
+                                <input type="text" disabled class="form-control rounded-3" id="address"
+                                       value=<%= account.getAddress1()%>>
+                                <button class="btn text-secondary rounded-3 btn-edit" type="button"
+                                        id="button-edit-address">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-pencil" viewBox="0 0 16 16">
+                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <div class="col-3 mt-2">
+                            <label for="username" class="form-label text-secondary">Username</label>
+                            <div class="input-group has-validation">
+                                <input disabled type="text" class="form-control rounded-3" id="username"
+                                       value=<%= account.getUsername()%>>
 
                             </div>
                         </div>
 
-                        <div class="col-3">
-                            <label for="password" class="form-label text-white">Password</label>
+                        <div class="col-3 mt-2">
+                            <label for="password" class="form-label text-secondary">Password</label>
                             <div class="input-group has-validation">
-                                <input type="text" class="form-control rounded-3" id="password" placeholder="Password">
+                                <input type="text" disabled class="form-control rounded-3" id="password"
+                                       placeholder="Password">
+                                <button class="btn text-secondary rounded-3 btn-edit" type="button"
+                                        id="button-edit-password">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-pencil" viewBox="0 0 16 16">
+                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <label for="address2" class="form-label text-white">Address 2 <span
-                                    class="text-white">(Optional)</span></label>
-                            <input type="text" class="form-control rounded-3" id="address2"
-                                   placeholder=<%= account.getAddress2()%>>
+                        <div class="col-6 mt-2">
+                            <label for="address2" class="form-label text-secondary">Address 2 <span
+                                    class="text-secondary">(Optional)</span></label>
+                            <div class="input-group has-validation">
+                                <input disabled type="text" class="form-control rounded-3" id="address2"
+                                       value="<%= account.getAddress2()%>"
+                                       placeholder="">
+                                <button class="btn text-secondary rounded-3 btn-edit" type="button"
+                                        id="button-edit-address-two">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-pencil" viewBox="0 0 16 16">
+                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
 
-                        <div class="col-3">
-                            <label for="email" class="form-label text-white">Email</label>
-                            <input type="email" class="form-control rounded-3" id="email" placeholder=<%= account.getEmail()%>>
+                        <div class="col-3 mt-2">
+                            <label for="email" class="form-label text-secondary">Email</label>
+                            <div class="input-group has-validation">
+                                <input type="email" disabled class="form-control rounded-3" id="email"
+                                       value=<%= account.getEmail()%>>
+                                <button class="btn text-secondary rounded-3 btn-edit" type="button"
+                                        id="button-edit-email">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-pencil" viewBox="0 0 16 16">
+                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
 
-                        <div class="col-3">
-                            <label for="phone" class="form-label text-white">Phone Number</label>
-                            <input type="tel" class="form-control rounded-3" id="phone" placeholder=<%= account.getPhone()%>>
+                        <div class="col-3 mt-2">
+                            <label for="phone" class="form-label text-secondary">Phone Number</label>
+                            <div class="input-group has-validation">
+                                <input type="tel" disabled class="form-control rounded-3" id="phone"
+                                       placeholder=<%= account.getPhone()%>>
+                                <button class="btn text-secondary rounded-3 btn-edit" type="button"
+                                        id="button-edit-phone">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-pencil" viewBox="0 0 16 16">
+                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
 
 
-                        <div class="col-3">
-                            <label for="country" class="form-label text-white">Country</label>
+                        <div class="col-3 mt-2">
+                            <label for="country" class="form-label text-secondary">Country</label>
                             <select class="form-select rounded-3" id="country">
                                 <option value="">Choose...</option>
                                 <option>United States</option>
                             </select>
                         </div>
 
-                        <div class="col-3">
-                            <label for="state" class="form-label text-white">State</label>
+                        <div class="col-3 mt-2">
+                            <label for="state" class="form-label text-secondary">State</label>
                             <select class="form-select rounded-3" id="state">
                                 <option value="">Choose...</option>
                                 <option>California</option>
                             </select>
                         </div>
 
-                        <div class="col-3">
-                            <label for="state" class="form-label text-white">Favorite category</label>
+                        <div class="col-3 mt-2">
+                            <label for="state" class="form-label text-secondary">Favorite category</label>
                             <select class="form-select rounded-3" id="favorite-category">
-                                <option value=""><%= account.getFavouriteCategoryId()%></option>
+                                <option value=""><%= account.getFavouriteCategoryId()%>
+                                </option>
                                 <option>Fish</option>
                                 <option>Dogs</option>
                                 <option>Reptiles</option>
@@ -307,21 +374,30 @@
                             </select>
                         </div>
 
-                        <div class="col-3">
-                            <label for="state" class="form-label text-white">Language preference</label>
+                        <div class="col-3 mt-2">
+                            <label for="state" class="form-label text-secondary">Language preference</label>
                             <select class="form-select rounded-3" id="language-preference">
-                                <option value=""><%= account.getLanguagePreference()%></option>
+                                <option value=""><%= account.getLanguagePreference()%>
+                                </option>
                                 <option>English</option>
                                 <option>Chinese</option>
                             </select>
                         </div>
 
-                        <div class="col-3">
-                            <label for="zip" class="form-label text-white">Zip</label>
-                            <input type="text" class="form-control rounded-3" id="zip" placeholder=<%= account.getZip()%>>
+                        <div class="col-3 mt-2">
+                            <label for="zip" class="form-label text-secondary">Zip</label>
+                            <input type="text" class="form-control rounded-3" id="zip"
+                                   placeholder=<%= account.getZip()%>>
                             <div class="invalid-feedback">
                                 Zip code required.
                             </div>
+                        </div>
+                        <div class="col-3 d-flex flex-column align-items-center">
+                            <div class="flex-grow-1"></div>
+                            <button disabled class="w-100 btn btn-primary btn-lg rounded-5 text-uppercase"
+                                    id="buttonSubmit"
+                                    type="submit">Save changes
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -329,13 +405,34 @@
 
             </div>
         </div>
+        <div id="container-footer" class="row-cols-1 align-bottom">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4">
+                <div class="col-auto d-flex align-items-center">
+                    <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                        <svg class="bi" width="30" height="24"><img
+                                src="${pageContext.request.contextPath}/images/jpetstore.png" alt="" width="32"
+                                height="32" class="me-2"></svg>
+                    </a>
+                    <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2023 JPetstore, Inc</span>
+
+                </div>
+
+
+            </footer>
+
+
+        </div>
     </div>
 
 
 </main>
 
+
+</body>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-</body>
+<script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script defer src="${pageContext.request.contextPath}/js/profile.js"></script>
 </html>

@@ -31,7 +31,12 @@ body {
 
 #submitButton {
     border-color: #ffb865;
-    background-color: #ffb865 !important;
+    background: linear-gradient(to right, #ffb865, #ff9e26);
+}
+
+#submitButton:hover {
+    background: linear-gradient(to right, #ffe1cb, #ffb865) !important;
+    transition: background 2s ease !important;
 }
 
 .form-signin #form-username {
@@ -43,6 +48,12 @@ body {
     margin-bottom: 10px;
     border-radius: 12px;
 }
+
+#image-captcha {
+    border-radius: 10px;
+}
+
+
 
 
 .form-signin .form-floating input[type="text"] {

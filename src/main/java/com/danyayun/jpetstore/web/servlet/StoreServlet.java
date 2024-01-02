@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.servlet.annotation.*;
 
 public class StoreServlet extends HttpServlet {
+    private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
 
 
     private CatalogService catalogService;
@@ -128,38 +129,62 @@ public class StoreServlet extends HttpServlet {
 
     }
 
+    private static final String INPUT_RESULTS_STRING = "/views/input_results.jsp";
+    private static final String SEARCH_RESULTS_STRING = "/views/search_results.jsp";
+    private static final String SEARCH_RESULTS_NOT_FOUND_STRING = "/views/search_results_not_found.jsp";
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
 
 
         // Get the search query
         String searchQuery = request.getParameter("searchQuery");
 
+        String input = request.getParameter("input");
+
+        String CONTENT_URL = "";
+
         List<Item> searchResults = new ArrayList<>();
 
-        searchResults = findResults(searchQuery);
+
+        if (searchQuery != null) {
+            searchResults = findResults(searchQuery);
+            CONTENT_URL = searchResults.isEmpty() ? SEARCH_RESULTS_NOT_FOUND_STRING : SEARCH_RESULTS_STRING;
+
+        } else if (input != null) {
+            searchResults = deleteDuplicates(findResults(input));
+
+            if (searchResults.isEmpty()) return;
+            CONTENT_URL = INPUT_RESULTS_STRING;
+        }
 
         request.setAttribute("searchItems", searchResults);
 
         // Forward the request to the JSP file for rendering
 
-        RequestDispatcher dispatcher;
-
-
-        if (searchQuery == null || searchQuery.isEmpty() || searchResults.isEmpty()) {
-            dispatcher = request.getRequestDispatcher("/views/search_results_not_found.jsp");
-        } else {
-            dispatcher = request.getRequestDispatcher("/views/search_results.jsp");
-        }
-
+        RequestDispatcher dispatcher = request.getRequestDispatcher(CONTENT_URL);
         dispatcher.forward(request, response);
+    }
 
-
+    private List<Item> deleteDuplicates(List<Item> original) {
+        List<Item> temp = new ArrayList<>();
+        for (Item i: original) {
+            boolean contains = false;
+            for (Item j: temp) {
+                if (i.getProduct().getName().equals(j.getProduct().getName())){
+                    contains = true;
+                    break;
+                }
+            }
+            if (!contains) {
+                temp.add(i);
+            }
+        }
+        return temp;
     }
 
     private List<Item> findResults(String searchQuery) {
+
         catalogService = new CatalogService();
 
         List<Product> productList = catalogService.searchProductList(searchQuery);

@@ -4,6 +4,8 @@ html, body {
     height: 100%;
     height: -webkit-fill-available;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 * {
@@ -12,6 +14,10 @@ html, body {
 
 #container-footer {
     width: 100%;
+    margin-top: auto;
+
+
+
 }
 
 body {
@@ -76,4 +82,13 @@ body.locked {
 #buttonPurchase {
     background: linear-gradient(to right, #ffb865, #ff9e26);
     --bs-btn-border-color: #ffb865;
+    --bs-btn-hover-bg: #ffe1cb !important;
+    --bs-btn-hover-border-color: #ffe1cb !important;
+    transition: background 2s ease !important;
 }
+
+#buttonPurchase:hover {
+    background: linear-gradient(to right, #ffe1cb, #ffb865) !important;
+    transition: background 2s ease !important;
+}
+

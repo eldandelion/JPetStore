@@ -11,11 +11,12 @@
 
 }
 #text-your-cart {
-    color: #ffb865 !important;
 }
 
 #badge-counter {
-    background-color: #ffb865 !important;
+    background-color: #ffffff !important;
+    color: #ffb865 !important;
+    font-size: 24px !important;
 }
 
 .pagination {
@@ -42,13 +43,14 @@
 
     background-color: #fff8f4 !important;
     border-radius: 16px;
-    border: 1px solid #9d8e81;
+   // border: 1px solid #9d8e81;
 
 
 }
 
 #container-main {
-    margin-top: 0px !important;
+    background-color: #d5e3ff !important;
+    border-radius: 28px;
 
 }
 
@@ -73,4 +75,5 @@
 #list-heading, #text-items, #list-bottom {
     color: #875200 !important;
 }
+
 
