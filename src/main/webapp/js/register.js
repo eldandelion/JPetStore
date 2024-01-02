@@ -9,6 +9,7 @@ const passwordInput = document.getElementById('password');
 const confirmPasswordInput = document.getElementById('confirm-password');
 
 const username = document.getElementById('username');
+const emailInput = document.getElementById('email');
 
 // Add click event listener to the submit button
 
@@ -43,6 +44,22 @@ confirmPasswordInput.addEventListener('input', () => {
 
 username.addEventListener('input', () => {
 
+})
+
+emailInput.addEventListener('input', () => {
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailInput.value === "") {
+        emailInput.classList.remove('is-invalid');
+        return
+    }
+
+    if (!emailRegex.test(emailInput.value.trim())) {
+        emailInput.classList.add('is-invalid');
+    } else {
+        emailInput.classList.remove('is-invalid');
+    }
 })
 
 

@@ -39,4 +39,9 @@ public class AccountService {
             accountDao.updateSignon(account);
         }
     }
+
+    public Account getAccountByUsername(String username) {
+        return accountDao.getAccountByUsername(username);
+    }
+
 }
