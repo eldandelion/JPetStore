@@ -9,8 +9,8 @@ public class Cart implements Serializable {
     //提高查找效率
     private final Map<String, CartItem> itemMap = Collections.synchronizedMap(new HashMap<String, CartItem>());
 
-    private final List<CartItem> itemList = new ArrayList<CartItem>();
-
+    //private final List<CartItem> itemList = new ArrayList<CartItem>();
+    private List<CartItem> itemList = new ArrayList<CartItem>();
     public Iterator<CartItem> getCartItems() {
         return itemList.iterator();
     }
@@ -69,7 +69,7 @@ public class Cart implements Serializable {
     public BigDecimal getSubTotal() {
         BigDecimal subTotal = new BigDecimal("0");
         Iterator<CartItem> items = getAllCartItems();
-        while (items.hasNext()) {
+        while (items.hasNext())  {
             CartItem cartItem = (CartItem) items.next();
             Item item = cartItem.getItem();
             BigDecimal listPrice = item.getListPrice();
@@ -78,4 +78,9 @@ public class Cart implements Serializable {
         }
         return subTotal;
     }
+
+    public void setItemList(List<CartItem> cartItemList){
+        this.itemList=cartItemList;
+    }
+
 }

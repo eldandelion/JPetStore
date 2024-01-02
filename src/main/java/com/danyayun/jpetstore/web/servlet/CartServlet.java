@@ -1,5 +1,8 @@
 package com.danyayun.jpetstore.web.servlet;
 
+import com.danyayun.jpetstore.domain.Account;
+import com.danyayun.jpetstore.service.LogService;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -33,6 +36,19 @@ public class CartServlet extends HttpServlet {
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
+
+        /*HttpSession session = request.getSession();
+        Account account = (Account)session.getAttribute("account");
+
+        if(account != null){
+            HttpServletRequest httpRequest= request;
+            String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()
+                    + httpRequest.getContextPath() + httpRequest.getServletPath() + "?" + (httpRequest.getQueryString());
+
+            LogService logService = new LogService();
+            String logInfo = logService.logInfo(" ") + strBackUrl + " 查看购物车 " + cart;
+            logService.insertLogInfo(account.getUsername(), logInfo);
+        }*/
     }
 
     @Override
