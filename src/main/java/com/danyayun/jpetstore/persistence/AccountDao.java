@@ -3,9 +3,13 @@ package com.danyayun.jpetstore.persistence;
 import com.danyayun.jpetstore.domain.Account;
 
 public interface AccountDao {
-    Account getAccountByUsername(String username);
+    //Account getAccountByUsername(String username);
 
     Account getAccountByUsernameAndPassword(Account account);
+
+    Account getAccountByUsername(String username);
+
+    //Account getAccountByUsernameAndPassword(Account account);
 
     void insertAccount(Account account);
 
