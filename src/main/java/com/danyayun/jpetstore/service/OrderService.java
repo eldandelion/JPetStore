@@ -1,26 +1,28 @@
 package com.danyayun.jpetstore.service;
 
 import com.danyayun.jpetstore.domain.Order;
+import com.danyayun.jpetstore.domain.Sequence;
 import com.danyayun.jpetstore.persistence.ItemDao;
 import com.danyayun.jpetstore.persistence.OrderDao;
+import com.danyayun.jpetstore.persistence.SequenceDao;
 import com.danyayun.jpetstore.persistence.impl.ItemDaoImpl;
 import com.danyayun.jpetstore.persistence.impl.OrderDaoImpl;
+import com.danyayun.jpetstore.persistence.impl.SequenceDaoImpl;
 
-import javax.sound.midi.Sequence;
 import java.util.List;
 
 public class OrderService {
     private ItemDao itemDao;
     private OrderDao orderDao;
-    //private SequenceDao sequenceDao;
+    private SequenceDao sequenceDao;
 
     public OrderService(){
         itemDao = new ItemDaoImpl();
         orderDao = new OrderDaoImpl();
-        //sequenceDao = new SequenceDaoImpl();
+        sequenceDao = new SequenceDaoImpl();
     }
 
-    /*public int getNextId(String name){
+    public int getNextId(String name){
         Sequence sequence = new Sequence(name,-1);
         sequence = sequenceDao.getSequence(sequence);
         if(sequence == null){
@@ -30,7 +32,7 @@ public class OrderService {
         Sequence parameterObject = new Sequence(name,sequence.getNextId()+1);
         sequenceDao.updateSequence(parameterObject);
         return sequence.getNextId();
-    }*/
+    }
 
     public void insertOrder(Order order) {
         //order.setOrderId(getNextId("ordernum"));
