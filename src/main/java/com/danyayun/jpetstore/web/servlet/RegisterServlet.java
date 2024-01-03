@@ -2,6 +2,7 @@ package com.danyayun.jpetstore.web.servlet;
 
 //import nl.captcha.Captcha;
 
+import com.danyayun.jpetstore.domain.Account;
 import com.danyayun.jpetstore.service.AccountService;
 import nl.captcha.Captcha;
 
@@ -14,6 +15,7 @@ import java.io.IOException;
 public class RegisterServlet extends HttpServlet {
 
     private AccountService accountService = new AccountService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -32,8 +34,21 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
+        String username = request.getParameter("username");
 
 
+        String msg;
+
+        if (username != null) {
+            if (accountService.getAccountByUsername(username) != null) {
+                msg = "USER_EXISTS";
+            } else {
+                msg = "ALLOWED";
+            }
+            String json = "{\"message\": \"" + msg + "\"}";
+            flush(json, response);
+            return;
+        }
 
 
         Captcha captcha = (Captcha) session.getAttribute(Captcha.NAME);
@@ -43,7 +58,16 @@ public class RegisterServlet extends HttpServlet {
             //TODO 验证码逻辑
 
 
+        }
+    }
 
+    private void flush(String msg, HttpServletResponse response) {
+        response.setContentType("application/json");
+        response.setStatus(HttpServletResponse.SC_OK);
+        try {
+            response.getWriter().write(msg);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

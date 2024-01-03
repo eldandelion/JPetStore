@@ -122,7 +122,7 @@
                                     <input type="text" class="form-control" id="username" placeholder="jakepaul"
                                            >
                                     <div class="invalid-feedback">
-                                        Your username is required.
+                                        Username already exists
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +208,7 @@
                                 <label for="zip" class="form-label">Zip</label>
                                 <input type="text" class="form-control" id="zip" placeholder="">
                                 <div class="invalid-feedback">
-                                    Zip code required.
+                                    Zip code is not valid.
                                 </div>
                             </div>
                         </div>
@@ -237,11 +237,11 @@
                                 <label for="state" class="form-label">Favorite category</label>
                                 <select class="form-select" id="favorite-category">
                                     <option value="">Choose...</option>
-                                    <option>Fish</option>
-                                    <option>Dogs</option>
-                                    <option>Reptiles</option>
-                                    <option>Cats</option>
-                                    <option>Birds</option>
+                                    <option value="FISH">Fish</option>
+                                    <option value="DOGS">Dogs</option>
+                                    <option value="REPTILES">Reptiles</option>
+                                    <option value="CATS">Cats</option>
+                                    <option value="BIRDS">Birds</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Please provide a favorite category.
@@ -262,9 +262,13 @@
                             <label class="form-check-label" for="enable-mybanner">Enable MyBanner</label>
                         </div>
 
+                        <hr  class="my-4">
+
                         <div class="container d-flex m-0 p-0 align-content-center justify-content-center">
                             <img id="image-captcha" src="${pageContext.request.contextPath}/stickyImg"/>
                         </div>
+
+
 
                         <div class="mt-2 mb-4">
 

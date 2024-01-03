@@ -115,6 +115,9 @@ public class StoreServlet extends HttpServlet {
         }
 
 
+        for (Item fish: fishItems) {
+            logger.info(fish.getAttribute2());
+        }
 
         session.setAttribute("categoryList" , categoryList);
         session.setAttribute("productList" , productList);

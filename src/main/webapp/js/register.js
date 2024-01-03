@@ -11,6 +11,21 @@ const confirmPasswordInput = document.getElementById('confirm-password');
 const username = document.getElementById('username');
 const emailInput = document.getElementById('email');
 
+const zipInput = document.getElementById('zip');
+
+const addressOneInput = document.getElementById('address');
+const addressTwoInput = document.getElementById('address2');
+
+const countrySpinner = document.getElementById('country');
+const stateSpinner = document.getElementById('state');
+
+const languageSpinner = document.getElementById('language-preference');
+const favCategorySpinner = document.getElementById('favorite-category');
+
+const enableMyList = document.getElementById('enable-mylist');
+const enableMyBanner = document.getElementById('enable-mybanner');
+
+const captcha = document.getElementById('captcha');
 // Add click event listener to the submit button
 
 firstNameInput.addEventListener('input', () => {
@@ -44,6 +59,30 @@ confirmPasswordInput.addEventListener('input', () => {
 
 username.addEventListener('input', () => {
 
+    const inputValue = username.value.trim()
+
+    $.ajax({
+        url: "/JPetStore_war/register",
+        type: "POST",
+        data: {
+            purpose: "CHECK",
+            username: inputValue
+        },
+        dataType: "json",
+
+        success: function (data, textStatus) {
+            console.log(data)
+            if (data.message === "USER_EXISTS") {
+                username.classList.add('is-invalid');
+            } else if (data.message === "ALLOWED") {
+                username.classList.remove('is-invalid');
+            }
+
+        },
+        error: (error) => {
+            console.log(JSON.stringify(error));
+        }
+    });
 })
 
 emailInput.addEventListener('input', () => {
@@ -63,6 +102,23 @@ emailInput.addEventListener('input', () => {
 })
 
 
+zipInput.addEventListener('input', () => {
+    const zipValue = zipInput.value.trim();
+    const numericRegex = /^\d+$/;
+
+    if (zipValue === "") {
+        // Field is empty
+        zipInput.classList.add("is-invalid");
+    } else if (!numericRegex.test(zipValue)) {
+        // Field does not contain a numeric value
+        zipInput.classList.add("is-invalid");
+    } else {
+        // Field contains a valid numeric ZIP code
+        zipInput.classList.remove("is-invalid");
+    }
+})
+
+
 
 $(document).ready(function () {
     // Handle form submission
@@ -72,6 +128,8 @@ $(document).ready(function () {
         event.stopPropagation()
 
         if (!this.checkValidity()) {
+
+
 
         } else {
             // Check if the first name contains symbols other than letters
@@ -93,9 +151,88 @@ $(document).ready(function () {
                 lastNameInput.classList.remove('is-invalid'); // Remove "is-invalid" class if valid
             }
 
+            //avengers assemble!
+
+            const firstName = firstNameInput.value.trim()
+            const lastName = lastNameInput.value.trim()
+            const username = usernameInput.value.trim()
+            const password = passwordInput.value.trim()
+            const emailAddress = emailInput.value.trim()
+            const shippingAddress = addressOneInput.value.trim()
+            const shippingAddressTwo = addressTwoInput.value.trim()
+            const country = countrySpinner.value
+            const state = stateSpinner.value
+            const zip = zipInput.value.trim()
+            const languagePreference = languageSpinner.value
+            const favoriteCategory = favCategorySpinner.value
+            const mybanner = enableMyBanner.value
+            const mylist = enableMyList.value
+
+            const captcha = captchaInput.value.trim()
+
+
+            submitData(firstName, lastName, username, password, emailAddress, shippingAddress, shippingAddressTwo, country, state, zip, languagePreference, favoriteCategory, mybanner, mylist, captcha)
+
+
+
+
 
         }
 
        // this.classList.add('was-validated')
     })
 })
+
+function submitData(firstName,
+                    lastName,
+                    username,
+                    password,
+                    emailAddress,
+                    shippingAddress,
+                    shippingAddressTwo,
+                    country,
+                    state,
+                    zip,
+                    languagePreference,
+                    favoriteCategory,
+                    mybanner,
+                    mylist,
+                    captcha) {
+    $.ajax({
+        url: "/JPetStore_war/register",
+        type: "POST",
+        data: {
+            purpose: "SAVE",
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            password: password,
+            emailAddress: emailAddress,
+            shippingAddress: shippingAddress,
+            shippingAddressTwo: shippingAddressTwo,
+            country: country,
+            state: state,
+            zip: zip,
+            languagePreference: languagePreference,
+            favoriteCategory: favoriteCategory,
+            mybanner: mybanner,
+            mylist: mylist,
+            captcha: captcha
+        },
+        dataType: "json",
+
+        success: function (data, textStatus) {
+            console.log(data)
+            if (data.message === "USER_EXISTS") {
+                username.classList.add('is-invalid');
+            } else if (data.message === "ALLOWED") {
+                username.classList.remove('is-invalid');
+            }
+
+        },
+
+        error: (error) => {
+            console.log(JSON.stringify(error));
+        }
+    });
+}
