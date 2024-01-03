@@ -323,7 +323,7 @@
                     <%--                    TODO create a new page with product details instead of a modal --%>
                     <%--                Card view contains information about Product.class --%>
                     <div class="col">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm" onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
                             <div style="display: none" class="item-id">${item.itemId}</div>
                             <img class="bd-placeholder-img card-img-top image-holder crop-image" src="${pageContext.request.contextPath}/${item.attribute2}" width="100%" height="225">
                             <div class="card-body">
@@ -373,7 +373,7 @@
 
                     <%--                Card view contains information about Product.class --%>
                     <div class="col">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm" onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
                                 <%--                            <svg class="bd-placeholder-img card-img-top image-holder" width="100%" height="225"--%>
                                 <%--                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"--%>
                                 <%--                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>--%>
@@ -425,7 +425,7 @@
 
                     <%--                Card view contains information about Product.class --%>
                     <div class="col">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm" onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
                             <img class="bd-placeholder-img card-img-top image-holder crop-image" src="${pageContext.request.contextPath}/${item.attribute2}" width="100%" height="225">
                             <div class="card-body">
                                 <p class="card-text mb-0">${item.product.name}</p>
@@ -471,7 +471,7 @@
 
                     <%--                Card view contains information about Product.class --%>
                     <div class="col">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm" onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
                             <img class="bd-placeholder-img card-img-top image-holder crop-image" src="${pageContext.request.contextPath}/${item.attribute2}" width="100%" height="225">
                             <div class="card-body">
                                 <p class="card-text mb-0">${item.product.name}</p>
@@ -517,7 +517,7 @@
 
                     <%--                Card view contains information about Product.class --%>
                     <div class="col">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm" onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
                             <img class="bd-placeholder-img card-img-top image-holder crop-image" src="${pageContext.request.contextPath}/${item.attribute2}" width="100%" height="225">
                             <div class="card-body">
                                 <p class="card-text mb-0">${item.product.name}</p>
