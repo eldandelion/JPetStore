@@ -29,7 +29,7 @@ public class AccountDaoImpl implements AccountDao {
     //private static final String GET_ACCOUNT_BY_USERNAME_AND_PASSWORD = "SELECT SIGNON.USERNAME, ACCOUNT.EMAIL, ACCOUNT.FIRSTNAME, ACCOUNT.LASTNAME, ACCOUNT.STATUS, ACCOUNT.ADDR1 AS address1, ACCOUNT.ADDR2 AS address2, ACCOUNT.CITY, ACCOUNT.STATE, ACCOUNT.ZIP, ACCOUNT.COUNTRY, ACCOUNT.PHONE, PROFILE.LANGPREF AS languagePreference, PROFILE.FAVCATEGORY AS favouriteCategoryId, PROFILE.MYLISTOPT AS listOption, PROFILE.BANNEROPT AS bannerOption, BANNERDATA.BANNERNAME    FROM ACCOUNT, PROFILE, SIGNON, BANNERDATA    WHERE ACCOUNT.USERID = ? AND SIGNON.PASSWORD = ? AND SIGNON.USERNAME = ACCOUNT.USERID AND PROFILE.USERID = ACCOUNT.USERID AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY";
     private static final String INSERTACCOUNT = "INSERT INTO ACCOUNT(EMAIL, FIRSTNAME, LASTNAME, STATUS, ADDR1, ADDR2, CITY,STATE,ZIP,COUNTRY,PHONE,USERID)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
     private static final String INSERTPROFILE = "INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, MYLISTOPT, BANNEROPT, USERID)    VALUES (?, ?, ?, ?, ?)";
-    private static final String INSERTSIGNON = "INSERT INTO SIGNON (PASSWORD,USERNAME) VALUES (?, ?)";
+    private static final String INSERTSIGNON = "INSERT INTO SIGNON (USERNAME,PASSWORD) VALUES (?, ?)";
     private static final String UPDATEACCOUNT = "UPDATE ACCOUNT SET EMAIL = ?,FIRSTNAME = ?,LASTNAME = ?,STATUS = ?,ADDR1 = ?,ADDR2 = ?,CITY = ?,STATE = ?,ZIP = ?,COUNTRY = ?,PHONE = ? WHERE USERID = ?";
     private static final String UPDATEPROFILE = "UPDATE PROFILE SET LANGPREF = ?,FAVCATEGORY = ?,MYLISTOPT = ?,BANNEROPT = ? WHERE USERID = ?";
     private static final String UPDATESIGNON = "UPDATE SIGNON SET PASSWORD = ? WHERE USERNAME = ?";
@@ -164,8 +164,8 @@ public class AccountDaoImpl implements AccountDao {
         try {
             Connection connection = DBUtil.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(INSERTSIGNON);
-            preparedStatement.setString(1,account.getPassword());
-            preparedStatement.setString(2,account.getUsername());
+            preparedStatement.setString(1,account.getUsername());
+            preparedStatement.setString(2,account.getPassword());
             preparedStatement.executeUpdate();
             DBUtil.closePreparedStatement(preparedStatement);
             DBUtil.closeConnection(connection);
