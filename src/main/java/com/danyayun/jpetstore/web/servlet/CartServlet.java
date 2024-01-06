@@ -1,6 +1,9 @@
 package com.danyayun.jpetstore.web.servlet;
 
 import com.danyayun.jpetstore.domain.Account;
+import com.danyayun.jpetstore.domain.CartItem;
+import com.danyayun.jpetstore.domain.Item;
+import com.danyayun.jpetstore.domain.Product;
 import com.danyayun.jpetstore.service.CartService;
 import com.danyayun.jpetstore.service.LogService;
 
@@ -9,6 +12,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.awt.image.CropImageFilter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -24,6 +29,7 @@ public class CartServlet extends HttpServlet {
         int cartSize = 4;
 
         String sizeRequest = request.getParameter("cartSizeQuery");
+        HttpSession session = request.getSession();
 
         if (sizeRequest != null) {
             flush(Integer.toString(cartSize), response);
@@ -31,6 +37,17 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
+       // List<CartItem> cartItems = cartService.getCartItemList();
+        List<CartItem> cartItems = new ArrayList<>();
+        CartItem example = new CartItem();
+        Item itemExample = new Item();
+        Product productExample = new Product();
+        productExample.setName("CaiYaYun");
+        itemExample.setProduct(productExample);
+        example.setItem(itemExample);
+
+        cartItems.add(example);
+        session.setAttribute("cartItems", cartItems);
 
 
 

@@ -8,7 +8,7 @@ const lastNameInput = document.getElementById('lastName');
 const passwordInput = document.getElementById('password');
 const confirmPasswordInput = document.getElementById('confirm-password');
 
-const username = document.getElementById('username');
+const usernameInput = document.getElementById('username');
 const emailInput = document.getElementById('email');
 
 const zipInput = document.getElementById('zip');
@@ -57,7 +57,7 @@ confirmPasswordInput.addEventListener('input', () => {
     }
 })
 
-username.addEventListener('input', () => {
+usernameInput.addEventListener('input', () => {
 
     const inputValue = username.value.trim()
 
@@ -73,9 +73,9 @@ username.addEventListener('input', () => {
         success: function (data, textStatus) {
             console.log(data)
             if (data.message === "USER_EXISTS") {
-                username.classList.add('is-invalid');
+                usernameInput.classList.add('is-invalid');
             } else if (data.message === "ALLOWED") {
-                username.classList.remove('is-invalid');
+                usernameInput.classList.remove('is-invalid');
             }
 
         },
@@ -155,7 +155,7 @@ $(document).ready(function () {
 
             const firstName = firstNameInput.value.trim()
             const lastName = lastNameInput.value.trim()
-            const username = usernameInput.value.trim()
+            const username = this.username.value.trim()
             const password = passwordInput.value.trim()
             const emailAddress = emailInput.value.trim()
             const shippingAddress = addressOneInput.value.trim()
@@ -165,13 +165,13 @@ $(document).ready(function () {
             const zip = zipInput.value.trim()
             const languagePreference = languageSpinner.value
             const favoriteCategory = favCategorySpinner.value
-            const mybanner = enableMyBanner.value
-            const mylist = enableMyList.value
+            const myBanner = enableMyBanner.value
+            const myList = enableMyList.value
 
-            const captcha = captchaInput.value.trim()
+            const captcha = this.captcha.value.trim()
 
 
-            submitData(firstName, lastName, username, password, emailAddress, shippingAddress, shippingAddressTwo, country, state, zip, languagePreference, favoriteCategory, mybanner, mylist, captcha)
+            submitData(firstName, lastName, username, password, emailAddress, shippingAddress, shippingAddressTwo, country, state, zip, languagePreference, favoriteCategory, myBanner, myList, captcha)
 
 
 
@@ -195,8 +195,8 @@ function submitData(firstName,
                     zip,
                     languagePreference,
                     favoriteCategory,
-                    mybanner,
-                    mylist,
+                    myBanner,
+                    myList,
                     captcha) {
     $.ajax({
         url: "/JPetStore_war/register",
@@ -215,20 +215,23 @@ function submitData(firstName,
             zip: zip,
             languagePreference: languagePreference,
             favoriteCategory: favoriteCategory,
-            mybanner: mybanner,
-            mylist: mylist,
+            myBanner: myBanner,
+            myList: myList,
             captcha: captcha
         },
         dataType: "json",
 
         success: function (data, textStatus) {
             console.log(data)
-            if (data.message === "USER_EXISTS") {
-                username.classList.add('is-invalid');
-            } else if (data.message === "ALLOWED") {
-                username.classList.remove('is-invalid');
+            if (data.redirect) {
+                console.log(data.redirect)
+                window.location.href = data.redirect;
             }
-
+            if (data.message === "USER_EXISTS") {
+                usernameInput.classList.add('is-invalid');
+            } else if (data.message === "ALLOWED") {
+                usernameInput.classList.remove('is-invalid');
+            }
         },
 
         error: (error) => {

@@ -1,4 +1,7 @@
 <%@ page import="com.danyayun.jpetstore.domain.Account" %>
+<%@ page import="com.danyayun.jpetstore.domain.Cart" %>
+<%@ page import="com.danyayun.jpetstore.domain.CartItem" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -12,6 +15,7 @@
 
 <%
     Account account = (Account) session.getAttribute("loginAccount");
+    List<CartItem> cartItems = (List<CartItem>) session.getAttribute("cartItems");
 %>
 <html>
 <head>
@@ -174,6 +178,8 @@
 
 
                         <div class="row m-2 ps-2 pe-2">
+
+                            <c:forEach var="item" items="${sessionScope.cartItems}">
                             <hr>
                             <div class="col-4">
                                 <div class="container p-0 m-0">
@@ -190,7 +196,7 @@
                                             <div class="container p-0 m-0">
                                                 <div class="row">
                                                     <div class="col-12 d-flex flex-column justify-content-center">
-                                                        <h6 class="my-0">Product name</h6>
+                                                        <h6 class="my-0">${item.item.product.name}</h6>
                                                         <small class="text-body-secondary">Brief description</small>
                                                         <small class="text-body-secondary">Product ID: 3124241</small>
                                                         <small class="text-body-secondary">Item ID: 3124241</small>
@@ -221,6 +227,7 @@
                                 <span class="badge rounded-pill badge-counter">12$</span>
                             </div>
                         </div>
+                        </c:forEach>
 
 
                         <div class="row p-2 ms-2 me-2" id="list-bottom">
@@ -246,6 +253,7 @@
 
 
         </div>
+    </div>
 
 
         <%--    <footer class="text-body-secondary mt-5 text-center text-small">--%>

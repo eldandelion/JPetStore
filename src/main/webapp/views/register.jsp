@@ -247,8 +247,6 @@
                                     Please provide a favorite category.
                                 </div>
                             </div>
-
-
                         </div>
 
                         <div class="form-check mt-2">

@@ -132,7 +132,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link rounded-5 link-body-emphasis active" aria-current="page">
+                <a class="nav-link rounded-5 link-body-emphasis active" id="nav-link-profile" aria-current="page">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto name">
                             <svg class="bi pe-none me-2" width="22" height="22">
@@ -147,7 +147,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link rounded-5 link-body-emphasis" aria-current="page">
+                <a class="nav-link rounded-5 link-body-emphasis" id="nav-link-orders" aria-current="page">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-auto name">
                             <svg class="bi pe-none me-2" width="22" height="22">
@@ -261,8 +261,9 @@
                         <div class="col-6">
                             <label for="address" class="form-label text-secondary">Address</label>
                             <div class="input-group has-validation">
-                                <input type="text" disabled class="form-control rounded-3" id="address"
-                                       value=<%= account.getAddress1()%>>
+                                <input disabled type="text" class="form-control rounded-3" id="address"
+                                       value="<%= account.getAddress1()%>"
+                                       placeholder="">
                                 <button class="btn text-secondary rounded-3 btn-edit" type="button"
                                         id="button-edit-address">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -333,7 +334,7 @@
                             <label for="phone" class="form-label text-secondary">Phone Number</label>
                             <div class="input-group has-validation">
                                 <input type="tel" disabled class="form-control rounded-3" id="phone"
-                                       placeholder=<%= account.getPhone()%>>
+                                       placeholder="" value=<%= account.getPhone()%>>
                                 <button class="btn text-secondary rounded-3 btn-edit" type="button"
                                         id="button-edit-phone">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -386,19 +387,219 @@
 
                         <div class="col-3 mt-2">
                             <label for="zip" class="form-label text-secondary">Zip</label>
-                            <input type="text" class="form-control rounded-3" id="zip"
-                                   placeholder=<%= account.getZip()%>>
+                            <div class="input-group has-validation">
+                                <input disabled type="text" class="form-control rounded-3" id="zip"
+                                       value=<%= account.getZip()%>>
+                                <button class="btn text-secondary rounded-3 btn-edit" type="button"
+                                        id="button-edit-zip">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-pencil" viewBox="0 0 16 16">
+                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                </button>
+                            </div>
                             <div class="invalid-feedback">
                                 Zip code required.
                             </div>
+
                         </div>
                         <div class="col-3 d-flex flex-column align-items-center">
                             <div class="flex-grow-1"></div>
                             <button disabled class="w-100 btn btn-primary btn-lg rounded-5 text-uppercase"
-                                    id="buttonSubmit"
+                                    id="button-save"
                                     type="submit">Save changes
                             </button>
                         </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="container" id="container-order-history">
+
+            <div class="row justify-content-between align-items-center">
+                <div class="col-auto">
+                    <h1 id="container-name"
+                        class="display-1 h1-category-name">Order History
+                    </h1>
+                </div>
+
+
+            </div>
+
+            <div class="row m-0 p-0 g-3">
+
+                <div class="col mt-0 p-0">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Order #1232 2024/01/09 09:28:41
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                 data-bs-parent="#accordionExample">
+                                <dl class="row">
+
+                                    <div class="row m-5">
+
+
+                                        <dt class="col-sm-12 text-uppercase">Shipping Address</dt>
+                                        <dd class="col-sm-3">First name:</dd>
+                                        <dd class="col-sm-9">Daniel</dd>
+
+                                        <dd class="col-sm-3">Last name:</dd>
+                                        <dd class="col-sm-9">Petrov</dd>
+
+                                        <dd class="col-sm-3">Address 1:</dd>
+                                        <dd class="col-sm-9">first address</dd>
+
+                                        <dd class="col-sm-3">Address 2:</dd>
+                                        <dd class="col-sm-9">second address</dd>
+
+                                        <dd class="col-sm-3">City:</dd>
+                                        <dd class="col-sm-9">second address</dd>
+
+                                        <dd class="col-sm-3">State:</dd>
+                                        <dd class="col-sm-9">CA</dd>
+
+                                        <dd class="col-sm-3">Zip:</dd>
+                                        <dd class="col-sm-9">123441</dd>
+
+                                        <dd class="col-sm-3">Country:</dd>
+                                        <dd class="col-sm-9">Russia</dd>
+
+                                        <dd class="col-sm-3">Courier:</dd>
+                                        <dd class="col-sm-9">UPS</dd>
+
+                                    </div>
+
+                                    <div class="col w-100 mt-0">
+
+
+                                        <div class="container mt-0" id="container-items-list">
+                                            <div class="row mt-0 pt-3 m-2 p-2" id="list-heading">
+                                                <div class="col-4 text-uppercase">
+                                                    <strong>Product details</strong>
+                                                </div>
+                                                <div class="col-3 text-center text-uppercase">
+                                                    <strong>Quantity</strong>
+                                                </div>
+                                                <div class="col-3 text-center text-uppercase">
+                                                    <strong>Price</strong>
+                                                </div>
+                                                <div class="col-2 text-end text-uppercase">
+                                                    <strong>Total</strong>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="row m-2 ps-2 pe-2">
+                                                <hr>
+                                                <div class="col-4">
+                                                    <div class="container p-0 m-0">
+                                                        <div class="row">
+                                                            <div class="col-auto d-flex flex-column justify-content-center align-content-center">
+                                                                <svg class="bd-placeholder-img rounded-circle"
+                                                                     width="100" height="100"
+                                                                     xmlns="http://www.w3.org/2000/svg" role="img"
+                                                                     aria-label="Placeholder"
+                                                                     preserveAspectRatio="xMidYMid slice"
+                                                                     focusable="false">
+                                                                    <title>Placeholder</title>
+                                                                    <rect width="100%" height="100%"
+                                                                          fill="var(--bs-secondary-color)"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <div class="container p-0 m-0">
+                                                                    <div class="row">
+                                                                        <div class="col-12 d-flex flex-column justify-content-center">
+                                                                            <h6 class="my-0">Product name</h6>
+                                                                            <small class="text-body-secondary">Brief
+                                                                                description</small>
+                                                                            <small class="text-body-secondary">Product
+                                                                                ID: 3124241</small>
+                                                                            <small class="text-body-secondary">Item ID:
+                                                                                3124241</small>
+                                                                            <small class="text-body-secondary"
+                                                                                   id="text-remove">Remove</small>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 d-flex justify-content-center">
+                                                    <ul class="pagination">
+                                                        <li class="page-item"><a class="page-link" href="#"
+                                                                                 onclick="decrementNumber()">-</a></li>
+                                                        <li class="page-item"><a class="page-link disabled"
+                                                                                 href="#">1</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#"
+                                                                                 onclick="incrementNumber()">+</a></li>
+                                                    </ul>
+                                                </div>
+
+
+                                                <div class="col-3 text-center">
+                                                    <span class="badge rounded-pill badge-counter">12$</span>
+                                                </div>
+                                                <div class="col-2 text-end">
+                                                    <span class="badge rounded-pill badge-counter">12$</span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row p-2 ms-2 me-2" id="list-bottom">
+                                                <hr>
+                                                <div class="col-6">
+                                                    <span>Total (USD)</span>
+
+
+                                                </div>
+                                                <div class="col-6 text-end">
+                                                    <strong>$20</strong>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Accordion Item #2
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the second item's accordion body.</strong> It is hidden by default,
+                                    until the collapse plugin adds the appropriate classes that we use to style each
+                                    element. These classes control the overall appearance, as well as the showing and
+                                    hiding via CSS transitions. You can modify any of this with custom CSS or overriding
+                                    our default variables. It's also worth noting that just about any HTML can go within
+                                    the <code>.accordion-body</code>, though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -426,6 +627,23 @@
 
 
 </main>
+
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Meow!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            <div class="row mx-auto">
+                <div class="col-8  justify-content-center align-content-center">The changes have been saved to the
+                    server
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </body>

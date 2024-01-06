@@ -2,10 +2,14 @@
 
 
 
-#container-profile {
+#container-profile, #container-order-history {
     background-color: #d5e3ff !important;
     border-radius: 28px;
 
+}
+
+#container-order-history {
+    display: none;
 }
 
 #profile-badge-text {

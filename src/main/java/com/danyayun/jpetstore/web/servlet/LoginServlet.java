@@ -63,8 +63,6 @@ public class LoginServlet extends HttpServlet {
 
 
 
-
-
         //校验用户输入的正确性
         AccountService accountService = new AccountService();
         Account loginAccount = accountService.getAccount(username, password);
