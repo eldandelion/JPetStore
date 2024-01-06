@@ -2,6 +2,5 @@ package com.danyayun.jpetstore.persistence;
 
 public interface LogDao {
 
-
-    void insertLog(String username,String action);
+    void insertLog(String username,String action,String request);
 }
