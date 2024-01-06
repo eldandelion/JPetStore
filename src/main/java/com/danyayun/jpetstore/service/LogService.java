@@ -11,11 +11,10 @@ public class LogService {
     public LogService(){
         this.logDao = new LogDaoImpl();
     }
-
     public void insertLog(String username, String action, String request){
         if(username == null || username.isEmpty()){
             return;
         }
-        logDao.insertLog(username,action);
+        logDao.insertLog(username,action,request);
     }
 }

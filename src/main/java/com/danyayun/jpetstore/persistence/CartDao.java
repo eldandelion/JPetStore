@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface CartDao {
 
+    //void insertCartItem(CartItem cartItem, String userid);
     void insertCartItem(CartItem cartItem, String userid);
 
     List<CartItem> getCartItemListByUserid(String userid);
@@ -20,6 +21,8 @@ public interface CartDao {
     void updateQuantityByItemId(CartItem cartItem, int quantity);
 
     void removeAllCartItemsByUserid(String userid);
+
+    Item getItem(String itemId);
 
 
 }

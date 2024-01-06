@@ -19,23 +19,35 @@ public class CartDaoImpl implements CartDao {
 
     ItemDao itemDao = new ItemDaoImpl();
 
-    private static final String insertCartItemString = "INSERT INTO cart (userid, cartItemItemItemId, cartItemItemProductProductId, \n" +
+/*    private static final String insertCartItemString = "INSERT INTO cart (userid, cartItemItemItemId, cartItemItemProductProductId, \n" +
             "cartItemItemAttribute1, cartItemItemAttribute2, cartItemItemAttribute3,\n" +
             "cartItemItemAttribute4, cartItemItemAttribute5, cartItemItemProductName,\n" +
             "cartItemInStock, cartItemQuantity, cartItemItemListPrice, cartItemTotal)\n" +
-            "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";*/
 
-    private static final String getCartItemListByUserid = "SELECT cartItemItemItemId, cartItemQuantity FROM cart WHERE userid = ?";
+    private static final String insertCartItemString = "INSERT INTO cart (itemid,quantity,userid ) VALUES(?, ?, ?)";
+    private static final String getItemString = "SELECT I.ITEMID,LISTPRICE,UNITCOST,SUPPLIER AS supplierId," +
+                    "I.PRODUCTID AS productId,NAME AS productName," +
+                    "DESCN AS productDescription,CATEGORY AS CategoryId,STATUS," +
+                    "ATTR1 AS attribute1,ATTR2 AS attribute2,ATTR3 AS attribute3," +
+                    "ATTR4 AS attribute4,ATTR5 AS attribute5,QTY AS quantity " +
+                    "from ITEM I, INVENTORY V, PRODUCT P where P.PRODUCTID = I.PRODUCTID and I.ITEMID = V.ITEMID and I.ITEMID=?";
 
-    private static final String incrementQuantityString = "UPDATE cart SET cartItemQuantity = ? WHERE cartItemItemItemId = ?";
+   // private static final String getCartItemListByUserid = "SELECT cartItemItemItemId, cartItemQuantity FROM cart WHERE userid = ?";
+   private static final String getCartItemListByUserid = "SELECT itemid, quantity FROM cart WHERE userid = ?";
 
-    private static final String removeItemByIdString = "DELETE FROM cart WHERE cartItemItemItemId = ?";
+   //private static final String incrementQuantityString = "UPDATE cart SET cartItemQuantity = ? WHERE cartItemItemItemId = ?";
+    private static final String incrementQuantityString = "UPDATE cart SET quantity = ? WHERE itemid = ?";
 
-    private static final String updateQuantityByItemIdString = "UPDATE cart SET cartItemQuantity = ? WHERE cartItemItemItemId = ?";
+    //private static final String removeItemByIdString = "DELETE FROM cart WHERE cartItemItemItemId = ?";
+    private static final String removeItemByIdString = "DELETE FROM cart WHERE itemid = ?";
+
+    //private static final String updateQuantityByItemIdString = "UPDATE cart SET cartItemQuantity = ? WHERE cartItemItemItemId = ?";
+    private static final String updateQuantityByItemIdString = "UPDATE cart SET quantity = ? WHERE itemid = ?";
 
     private static final String removeAllCartItemsByUseridString = "DELETE FROM cart WHERE userid = ?";
 
-    @Override
+/*    @Override
     public void insertCartItem(CartItem cartItem, String userid) {
         try {
             Connection connection = DBUtil.getConnection();
@@ -64,6 +76,60 @@ public class CartDaoImpl implements CartDao {
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }*/
+
+    @Override
+    public void insertCartItem(CartItem cartItem, String userid) {
+        try {
+            Connection connection = DBUtil.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(insertCartItemString);
+            preparedStatement.setString(1, cartItem.getItem().getItemId());
+            preparedStatement.setInt(2, cartItem.getQuantity());
+            preparedStatement.setString(3, userid);
+            preparedStatement.executeUpdate();
+            DBUtil.closePreparedStatement(preparedStatement);
+            DBUtil.closeConnection(connection);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Item getItem(String itemId) {
+        Item item = null;
+        try {
+            Connection connection = DBUtil.getConnection();
+            PreparedStatement pStatement = connection
+                    .prepareStatement(getItemString);
+            pStatement.setString(1, itemId);
+            ResultSet resultSet = pStatement.executeQuery();
+            if (resultSet.next()) {
+                item = new Item();
+                item.setItemId(resultSet.getString(1));
+                item.setListPrice(resultSet.getBigDecimal(2));
+                item.setUnitCost(resultSet.getBigDecimal(3));
+                item.setSupplierId(resultSet.getInt(4));
+                Product product = new Product();
+                product.setProductId(resultSet.getString(5));
+                product.setName(resultSet.getString(6));
+                product.setDescription(resultSet.getString(7));
+                product.setCategoryId(resultSet.getString(8));
+                item.setProduct(product);
+                item.setStatus(resultSet.getString(9));
+                item.setAttribute1(resultSet.getString(10));
+                item.setAttribute2(resultSet.getString(11));
+                item.setAttribute3(resultSet.getString(12));
+                item.setAttribute4(resultSet.getString(13));
+                item.setAttribute5(resultSet.getString(14));
+                item.setQuantity(resultSet.getInt(15));
+            }
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return item;
     }
 
     @Override

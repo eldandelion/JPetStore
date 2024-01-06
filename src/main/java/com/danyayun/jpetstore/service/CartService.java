@@ -45,6 +45,24 @@ public class CartService {
         return itemMap.containsKey(itemId);
     }
 
+/*    public void addItem(Item item, boolean isInStock, String userid) {
+        CartItem cartItem = (CartItem) itemMap.get(item.getItemId());
+        if (cartItem == null) {
+            cartItem = new CartItem();
+            cartItem.setItem(item);
+            cartItem.setQuantity(0);
+            cartItem.setInStock(isInStock);
+            itemMap.put(item.getItemId(), cartItem);
+            itemList.add(cartItem);
+            if(userid != null && !userid.equals("")){
+                //数据库中插入
+                cartDao.insertCartItem(cartItem, userid);
+            }
+        }
+        cartItem.incrementQuantity();
+        cartDao.incrementQuantity(cartItem);
+    }*/
+
     public void addItem(Item item, boolean isInStock, String userid) {
         CartItem cartItem = (CartItem) itemMap.get(item.getItemId());
         if (cartItem == null) {
