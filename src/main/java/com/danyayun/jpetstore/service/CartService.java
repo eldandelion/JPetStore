@@ -19,20 +19,20 @@ import java.util.*;
 public class CartService {
     private CartDao cartDao;
 
-    public CartService(){
-        this.cartDao=new CartDaoImpl();
+    public CartService() {
+        this.cartDao = new CartDaoImpl();
     }
 
-    public Cart getCartListByUser(String userid, List<CartItem> cartItemList1){
-        return cartDao.getCartListByUser(userid,cartItemList1);
-    };
+    public Cart getCartListByUser(String userid, List<CartItem> cartItemList1) {
+        return cartDao.getCartListByUser(userid, cartItemList1);
+    }
+
+    ;
 
     /*public void insertCartItem(List<CartItem> cartItemList, String userid){};
     public void updateCart(String userid, String itemid){};
     public void updateCart(String userid, String itemid, int quantity){};
     public void clearCart(String userid){};*/
-
-
 
 
     void insertCartItem(List<CartItem> cartItemList, String userid) {

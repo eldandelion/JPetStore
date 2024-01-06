@@ -174,7 +174,7 @@
 <%--                        <rect width="100%" height="100%" fill="#55595c"/>--%>
 <%--                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>--%>
 <%--                    </svg>--%>
-                    <img class="bd-placeholder-img card-img-top image-holder crop-image" src="${pageContext.request.contextPath}/${item.attribute2}" width="100%" height="100%">
+                    <img class="bd-placeholder-img card-img-top image-holder crop-image" id="image-holder" src="${pageContext.request.contextPath}/${item.attribute2}" width="100%" height="100%">
                 </div>
 
                 <div class="col-6 d-flex flex-shrink-0 flex-column" id="col-description">

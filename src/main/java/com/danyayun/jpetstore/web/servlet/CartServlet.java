@@ -1,11 +1,13 @@
 package com.danyayun.jpetstore.web.servlet;
 
 import com.danyayun.jpetstore.domain.Account;
+import com.danyayun.jpetstore.service.CartService;
 import com.danyayun.jpetstore.service.LogService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.awt.image.CropImageFilter;
 import java.io.IOException;
 import java.util.Random;
 import java.util.logging.Logger;
@@ -13,6 +15,8 @@ import java.util.logging.Logger;
 @WebServlet(name = "CartServlet", value = "/cart")
 public class CartServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
+
+    private final CartService cartService = new CartService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -22,11 +26,12 @@ public class CartServlet extends HttpServlet {
         String sizeRequest = request.getParameter("cartSizeQuery");
 
         if (sizeRequest != null) {
-            logger.info(sizeRequest);
             flush(Integer.toString(cartSize), response);
 
             return;
         }
+
+
 
 
         // Forward the request to the JSP
