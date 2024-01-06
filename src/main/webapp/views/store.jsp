@@ -333,11 +333,11 @@
                                     <div class="btn-group">
                                         <button type="button"
                                                 class="btn btn-sm btn-outline-secondary rounded-start-4 btn-view"
-                                                onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
+                                               >
                                             View
                                         </button>
                                         <button type="button"
-                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase">
+                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase" value="${item.itemId}">
                                             Purchase
                                         </button>
                                     </div>
@@ -387,11 +387,11 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
-                                                onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
+                                                >
                                             View
                                         </button>
                                         <button type="button"
-                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase">
+                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase" value="${item.itemId}">
                                             Purchase
                                         </button>
                                     </div>
@@ -433,11 +433,11 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
-                                                onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
+                                                >
                                             View
                                         </button>
                                         <button type="button"
-                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase">
+                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase" value="${item.itemId}">
                                             Purchase
                                         </button>
                                     </div>
@@ -479,11 +479,11 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
-                                                onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
+                                               >
                                             View
                                         </button>
                                         <button type="button"
-                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase">
+                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase" value="${item.itemId}">
                                             Purchase
                                         </button>
                                     </div>
@@ -525,11 +525,11 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary rounded-start-4"
-                                                onclick="window.open('${pageContext.request.contextPath}/item?itemId=${item.itemId}', '_blank')">
+                                               >
                                             View
                                         </button>
                                         <button type="button"
-                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase">
+                                                class="btn btn-sm btn-outline-secondary rounded-end-4 btn-purchase" value="${item.itemId}">
                                             Purchase
                                         </button>
                                     </div>

@@ -3,6 +3,7 @@
 <%@ page import="com.danyayun.jpetstore.domain.CartItem" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: daniel
@@ -150,7 +151,7 @@
 
                 </div>
                 <div class="col-auto">
-                    <span class="badge bg-primary p-4 ps-4 pe-4 me-3 rounded-pill" id="badge-counter">3</span>
+                    <span class="badge bg-primary p-4 ps-4 pe-4 me-3 rounded-pill" id="badge-counter"><%= cartItems.size()%></span>
                 </div>
             </div>
 
@@ -177,56 +178,60 @@
                         </div>
 
 
-                        <div class="row m-2 ps-2 pe-2">
+                        <c:forEach var="item" items="${sessionScope.cartItems}">
+                            <div class="row m-2 ps-2 pe-2">
+                                <hr>
+                                <div class="col-4">
+                                    <div class="container p-0 m-0">
+                                        <div class="row">
+<%--                                            <div class="col-auto d-flex flex-column justify-content-center align-content-center">--%>
+<%--                                                <svg class="bd-placeholder-img rounded-circle" width="100" height="100"--%>
+<%--                                                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"--%>
+<%--                                                     preserveAspectRatio="xMidYMid slice" focusable="false">--%>
+<%--                                                    <title>Placeholder</title>--%>
+<%--                                                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>--%>
+<%--                                                </svg>--%>
+<%--                                            </div>--%>
+                                                <div class="col-6 d-flex flex-column justify-content-center align-content-center">
+                                                <img class="bd-placeholder-img rounded-circle card-img-top image-holder crop-image" src="${pageContext.request.contextPath}/${item.item.attribute2}" width="130" height="140">
 
-                            <c:forEach var="item" items="${sessionScope.cartItems}">
-                            <hr>
-                            <div class="col-4">
-                                <div class="container p-0 m-0">
-                                    <div class="row">
-                                        <div class="col-auto d-flex flex-column justify-content-center align-content-center">
-                                            <svg class="bd-placeholder-img rounded-circle" width="100" height="100"
-                                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
-                                                 preserveAspectRatio="xMidYMid slice" focusable="false">
-                                                <title>Placeholder</title>
-                                                <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
-                                            </svg>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="container p-0 m-0">
-                                                <div class="row">
-                                                    <div class="col-12 d-flex flex-column justify-content-center">
-                                                        <h6 class="my-0">${item.item.product.name}</h6>
-                                                        <small class="text-body-secondary">Brief description</small>
-                                                        <small class="text-body-secondary">Product ID: 3124241</small>
-                                                        <small class="text-body-secondary">Item ID: 3124241</small>
-                                                        <small class="text-body-secondary"
-                                                               id="text-remove">Remove</small>
+                                                 </div>
+                                            <div class="col-6">
+                                                <div class="container p-0 m-0">
+                                                    <div class="row">
+                                                        <div class="col-12 d-flex flex-column justify-content-center">
+                                                            <h6 class="my-0">${item.item.product.name}</h6>
+                                                            <small class="text-body-secondary">${item.item.product.description}</small>
+                                                            <small class="text-body-secondary">Product ID: ${item.item.product.productId}</small>
+                                                            <small class="text-body-secondary">Item ID: ${item.item.itemId}</small>
+                                                            <small class="text-body-secondary"
+                                                                   id="text-remove">Remove</small>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#"
-                                                             onclick="decrementNumber()">-</a></li>
-                                    <li class="page-item"><a class="page-link disabled" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#"
-                                                             onclick="incrementNumber()">+</a></li>
-                                </ul>
-                            </div>
+                                <div class="col-3 d-flex justify-content-center">
+                                    <ul class="pagination">
+                                        <li class="page-item" ><button class="page-link page-link-decrement" href="#" value="${item.item.itemId}"
+                                                                >-</button></li>
+                                        <li class="page-item"><a class="page-link disabled" href="#">${item.quantity}</a></li>
+                                        <li class="page-item" ><button class="page-link" value="${item.item.itemId}" href="#"
+                                                                >+</button></li>
+                                    </ul>
+                                </div>
 
 
-                            <div class="col-3 text-center">
-                                <span class="badge rounded-pill badge-counter">12$</span>
+                                <div class="col-3 text-center">
+                                    <span class="badge rounded-pill badge-counter"><fmt:formatNumber value="${item.item.listPrice}" pattern="$#,##0.00"/></span>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <span class="badge rounded-pill badge-counter">
+                                        <fmt:formatNumber value="${item.total}" pattern="$#,##0.00"/></span>
+                                </div>
                             </div>
-                            <div class="col-2 text-end">
-                                <span class="badge rounded-pill badge-counter">12$</span>
-                            </div>
-                        </div>
                         </c:forEach>
 
 
@@ -253,7 +258,6 @@
 
 
         </div>
-    </div>
 
 
         <%--    <footer class="text-body-secondary mt-5 text-center text-small">--%>

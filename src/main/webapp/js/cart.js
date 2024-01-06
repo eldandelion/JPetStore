@@ -26,3 +26,18 @@ function updateNumberElement(group) {
     var numberElement = document.getElementById('number-' + group);
     numberElement.innerText = numbers[group];
 }
+
+const pageItemsDecrement = document.querySelectorAll('.page-link-decrement');
+
+// Add click event listener to each button
+pageItemsDecrement.forEach(function(button) {
+
+    button.addEventListener('click', function(event) {
+        // Get the value of the clicked button
+        const itemId = event.target.value;
+        // Display the value in the console window
+
+
+
+    });
+});
