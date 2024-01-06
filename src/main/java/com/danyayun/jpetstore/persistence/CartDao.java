@@ -8,6 +8,24 @@ import java.sql.ResultSet;
 import java.util.List;
 
 public interface CartDao {
+
+    void insertCartItem(CartItem cartItem, String userid);
+
+    List<CartItem> getCartItemListByUserid(String userid);
+
+    void incrementQuantity(CartItem cartItem);
+
+    void removeItemById(CartItem cartItem);
+
+    void updateQuantityByItemId(CartItem cartItem, int quantity);
+
+    void removeAllCartItemsByUserid(String userid);
+
+
+}
+
+
+/*
     Cart getCartListByUser(String userid, List<CartItem> cartItemList1);
     void insertCartItem(List<CartItem> cartItemList, String userid);
     void updateCart(String userid, String itemid);
@@ -17,7 +35,4 @@ public interface CartDao {
     //下面两个存在访问权限的冲突
     //CartItem resultSetToCartItem(ResultSet resultSet);
     //Item getItem(String itemId);
-
-
-
-}
+ */

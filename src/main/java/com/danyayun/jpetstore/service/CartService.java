@@ -18,37 +18,123 @@ import java.util.*;
 
 public class CartService {
     private CartDao cartDao;
-
-    public CartService() {
-        this.cartDao = new CartDaoImpl();
+    public CartService(){
+        cartDao = new CartDaoImpl();
     }
 
-    public Cart getCartListByUser(String userid, List<CartItem> cartItemList1) {
-        return cartDao.getCartListByUser(userid, cartItemList1);
+    private final Map<String, CartItem> itemMap = Collections.synchronizedMap(new HashMap<String, CartItem>());
+    private  List<CartItem> itemList = new ArrayList<CartItem>();
+
+    public Iterator<CartItem> getCartItems() {
+        return itemList.iterator();
     }
 
-    ;
-
-    /*public void insertCartItem(List<CartItem> cartItemList, String userid){};
-    public void updateCart(String userid, String itemid){};
-    public void updateCart(String userid, String itemid, int quantity){};
-    public void clearCart(String userid){};*/
-
-
-    void insertCartItem(List<CartItem> cartItemList, String userid) {
-
+    public List<CartItem> getCartItemList() {
+        return itemList;
     }
 
-    void updateCart(String userid, String itemid) {
+    public int getNumberOfItems() {
+        return itemList.size();
     }
 
-    void updateCart(String userid, String itemid, int quantity) {
-
+    public Iterator<CartItem> getAllCartItems() {
+        return itemList.iterator();
     }
 
-    void clearCart(String userid) {
+    public boolean containsItemId(String itemId) {
+        return itemMap.containsKey(itemId);
+    }
 
+    public void addItem(Item item, boolean isInStock, String userid) {
+        CartItem cartItem = (CartItem) itemMap.get(item.getItemId());
+        if (cartItem == null) {
+            cartItem = new CartItem();
+            cartItem.setItem(item);
+            cartItem.setQuantity(0);
+            cartItem.setInStock(isInStock);
+            itemMap.put(item.getItemId(), cartItem);
+            itemList.add(cartItem);
+            if(userid != null && !userid.equals("")){
+                //数据库中插入
+                cartDao.insertCartItem(cartItem, userid);
+            }
+        }
+        cartItem.incrementQuantity();
+        cartDao.incrementQuantity(cartItem);
+    }
+
+    public Item removeItemById(String itemId) {
+        CartItem cartItem = (CartItem) itemMap.remove(itemId);
+        if (cartItem == null) {
+            return null;
+        } else {
+            itemList.remove(cartItem);
+            cartDao.removeItemById(cartItem);
+            return cartItem.getItem();
+        }
+    }
+
+    public void incrementQuantityByItemId(String itemId) {
+        CartItem cartItem = (CartItem) itemMap.get(itemId);
+        cartItem.incrementQuantity();
+        cartDao.incrementQuantity(cartItem);
+    }
+
+    public void setQuantityByItemId(String itemId, int quantity) {
+        CartItem cartItem = (CartItem) itemMap.get(itemId);
+        cartItem.setQuantity(quantity);
+//    cartDao.incrementQuantity(cartItem);
+        cartDao.updateQuantityByItemId(cartItem, quantity);
+    }
+
+    public BigDecimal getSubTotal() {
+        BigDecimal subTotal = new BigDecimal("0");
+        Iterator<CartItem> items = getAllCartItems();
+        while (items.hasNext()) {
+            CartItem cartItem = (CartItem) items.next();
+            Item item = cartItem.getItem();
+            BigDecimal listPrice = item.getListPrice();
+            BigDecimal quantity = new BigDecimal(String.valueOf(cartItem.getQuantity()));
+            subTotal = subTotal.add(listPrice.multiply(quantity));
+        }
+        return subTotal;
+    }
+
+    public void clear() {
+        itemList.clear();
+        itemMap.clear();
+    }
+
+    public List<CartItem> getCartItemListByUserid(String userid){
+        return cartDao.getCartItemListByUserid(userid);
+    }
+
+    public void addItem1(CartItem cartItem){
+        itemMap.put(cartItem.getItem().getItemId(), cartItem);
+        itemList.add(cartItem);
+    }
+
+    public void removeAllCartItemsByUserid(String userid){
+        cartDao.removeAllCartItemsByUserid(userid);
+    }
+
+    public void addItemQuantity(Item item, boolean isInStock,int quantity) {
+        CartItem cartItem = (CartItem) itemMap.get(item.getItemId());
+        if (cartItem == null) {
+            cartItem = new CartItem();
+            cartItem.setItem(item);
+            cartItem.setQuantity(quantity);
+            cartItem.setInStock(isInStock);
+            itemMap.put(item.getItemId(), cartItem);
+            itemList.add(cartItem);
+        }
+        else {
+            //cartItem.incrementQuantity();
+            cartItem.setQuantity(quantity);
+        }
     }
 
 
 }
+
+
