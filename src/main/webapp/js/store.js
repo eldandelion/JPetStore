@@ -23,7 +23,7 @@ function updateCart() {
     $.ajax({
         url: "/JPetStore_war/cart",
         type: "GET",
-        data: {cartSizeQuery: "give me cart"},
+        data: {purpose: "GET_SIZE"},
         dataType: "json",
 
         success: function (response) {
@@ -223,6 +223,45 @@ function sendSearchRequest(input) {
         }
     });
 }
+
+// Get all the buttons with class "btn-purchase"
+const purchaseButtons = document.querySelectorAll('.btn-purchase');
+
+// Add click event listener to each button
+purchaseButtons.forEach(function(button) {
+
+    button.addEventListener('click', function(event) {
+        event.stopPropagation();
+        // Get the value of the clicked button
+        const itemId = event.target.value;
+        // Display the value in the console window
+
+
+        sendPurchaseRequest(itemId);
+    });
+});
+
+function sendPurchaseRequest(itemId) {
+    $.ajax({
+        url: "/JPetStore_war/cart",
+        type: "POST",
+        data: {
+            purpose: "PURCHASE",
+            itemId: itemId},
+        dataType: "text",
+
+        success: function (response) {
+            // Update the search results container with the response HTML
+            updateCart();
+
+        },
+        error: (error) => {
+            console.log(JSON.stringify(error));
+        }
+    });
+}
+
+
 
 
 

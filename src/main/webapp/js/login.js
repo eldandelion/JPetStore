@@ -79,7 +79,7 @@ $(document).ready(function () {
 $.ajax({
     url: "/JPetStore_war/cart",
     type: "GET",
-    data: {cartSizeQuery: "give me cart"},
+    data: {purpose: "GET_SIZE"},
     dataType: "json",
 
     success: function (response) {

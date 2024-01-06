@@ -29,7 +29,7 @@ function logOut() {
 $.ajax({
     url: "/JPetStore_war/cart",
     type: "GET",
-    data: {cartSizeQuery: "give me profile cart"},
+    data: {purpose: "GET_SIZE"},
     dataType: "json",
 
     success: function (response) {
