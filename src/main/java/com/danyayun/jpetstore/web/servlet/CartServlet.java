@@ -13,6 +13,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.awt.image.CropImageFilter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -34,6 +35,11 @@ public class CartServlet extends HttpServlet {
         String purpose = request.getParameter("purpose");
         if (purpose != null && purpose.equals("GET_SIZE")) {
             flush(Integer.toString(cartSize), response);
+            return;
+        } else if (purpose != null && purpose.equals("GET_SUBTOTAL")) {
+            BigDecimal subtotal = cartService.getSubTotal();
+            String json = "{\"message\": \"" + subtotal + "\"}";
+            flush(json, response);
             return;
         }
 
@@ -103,6 +109,18 @@ public class CartServlet extends HttpServlet {
 
             } else {
                 //TODO 账户不为空，将物品保存到数据库或者如果已存在于数据库中则更新数量
+                Item item = catalogService.getItem(itemId);
+                List<CartItem> cartItems = cartService.getCartItemListByUserid(account.getUsername());
+                if (item != null) {
+                    for (CartItem i : cartItems) {
+                        if (i.getItem().getItemId().equals(itemId)) {
+
+                        }
+                    }
+
+                    cartService.addItem(item, true, account.getUsername());
+                    //cartService.addItemQuantity();
+                }
 
             }
 
@@ -110,11 +128,53 @@ public class CartServlet extends HttpServlet {
             flush(Integer.toString(cartSize), response);
 
 
+        } else if (purpose.equals("INCREMENT")) {
+            String itemId = request.getParameter("itemId");
+
+
+            if (account == null) {
+                if (!cartService.containsItemId(itemId)) {
+                    CartItem cartItem = new CartItem();
+                    Item item = catalogService.getItem(itemId);
+                    cartItem.setItem(item);
+
+                    cartService.addItem1(cartItem);
+                }
+
+                cartService.incrementQuantityByItemId(itemId);
+            }
+
+            List<CartItem> cartItems = cartService.getCartItemList();
+            int quantity = 0;
+            BigDecimal subTotal = cartService.getSubTotal();
+            BigDecimal total = new BigDecimal("0");
+            for (CartItem item : cartItems) {
+                if (item.getItem().getItemId().equals(itemId)) {
+                    quantity = item.getQuantity();
+                    item.calculateTotal();
+                    total = item.getTotal();
+                }
+            }
+
+            String msg = Integer.toString(quantity);
+
+            String json = "{\"message\": \"" + msg + "\", \"itemId\": \"" + itemId + "\", \"total\": \"" + total + "\", \"subTotal\": \"" + subTotal + "\"}";
+
+            flush(json, response);
+
+
+        } else if (purpose.equals("DECREMENT")) {
+            String itemId = request.getParameter("itemId");
+
+            if (account == null) {
+                if (cartService.containsItemId(itemId)) {
+
+                }
+            }
         }
 
 
     }
-
 
     private void flush(String msg, HttpServletResponse response) {
         response.setContentType("application/json");

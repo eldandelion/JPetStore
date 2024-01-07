@@ -16,6 +16,8 @@ public interface CartDao {
 
     void incrementQuantity(CartItem cartItem);
 
+    void decrementQuantity(CartItem cartItem);
+
     void removeItemById(CartItem cartItem);
 
     void updateQuantityByItemId(CartItem cartItem, int quantity);

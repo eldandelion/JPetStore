@@ -4,6 +4,7 @@
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: daniel
@@ -104,10 +105,13 @@
                     <c:when test="${sessionScope.loginAccount != null}">
         <span class="badge d-flex align-items-center ms-4 p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill">
             <div class="dropdown">
-                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                         class="bi bi-person-circle me-2" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        <path fill-rule="evenodd"
+                              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                     </svg>
                     <%= account.getUsername() %>
                 </a>
@@ -116,17 +120,22 @@
                                <li>
                     <hr class="dropdown-divider">
                 </li>
-                    <li><a class="dropdown-item" onclick="window.location.href='${pageContext.request.contextPath}/profile'">Profile</a></li>
+                    <li><a class="dropdown-item"
+                           onclick="window.location.href='${pageContext.request.contextPath}/profile'">Profile</a></li>
                 </ul>
             </div>
         </span>
                     </c:when>
                     <c:otherwise>
-          <span class="badge d-flex align-items-center ms-4 p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill" id="login-button">
-                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none pe-1" aria-expanded="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+          <span class="badge d-flex align-items-center ms-4 p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-pill"
+                id="login-button">
+                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none pe-1"
+                   aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                         class="bi bi-person-circle me-2" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        <path fill-rule="evenodd"
+                              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                     </svg>
                     Log In
                 </a>
@@ -151,7 +160,8 @@
 
                 </div>
                 <div class="col-auto">
-                    <span class="badge bg-primary p-4 ps-4 pe-4 me-3 rounded-pill" id="badge-counter"><%= cartItems.size()%></span>
+                <span class="badge bg-primary p-4 ps-4 pe-4 me-3 rounded-pill"
+                      id="badge-counter"><%= cartItems.size()%></span>
                 </div>
             </div>
 
@@ -177,6 +187,23 @@
 
                         </div>
 
+                        <c:set var="cartItems" value="${sessionScope.cartItems}" />
+                        <c:set var="size" value="${fn:length(cartItems)}" />
+
+                        <c:if test="${size == 0}">
+                        <div class="row m-2 ps-2 pe-2">
+                            <hr>
+                            <div class="col-12">
+                                <h2 class="h2 text-secondary" style="color: #482a00 !important;">
+                                    Nothing in here
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-emoji-tear-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM9.5 3.5a.5.5 0 0 0 .5.5c.838 0 1.65.416 2.053 1.224a.5.5 0 1 0 .894-.448C12.351 3.584 11.162 3 10 3a.5.5 0 0 0-.5.5ZM7 6.5C7 5.672 6.552 5 6 5s-1 .672-1 1.5S5.448 8 6 8s1-.672 1-1.5ZM4.5 13c.828 0 1.5-.746 1.5-1.667 0-.706-.882-2.29-1.294-2.99a.238.238 0 0 0-.412 0C3.882 9.044 3 10.628 3 11.334 3 12.253 3.672 13 4.5 13ZM8 11.197c.916 0 1.607.408 2.25.826.212.138.424-.069.282-.277-.564-.83-1.558-2.049-2.532-2.049-.53 0-1.066.361-1.536.824.083.179.162.36.232.535.045.115.092.241.135.373A3.1 3.1 0 0 1 8 11.197ZM10 8c.552 0 1-.672 1-1.5S10.552 5 10 5s-1 .672-1 1.5S9.448 8 10 8ZM6.5 3c-1.162 0-2.35.584-2.947 1.776a.5.5 0 1 0 .894.448C4.851 4.416 5.662 4 6.5 4a.5.5 0 0 0 0-1Z"/>
+                                    </svg>
+                                </h2>
+                            </div>
+                        </div>
+                        </c:if>
+
 
                         <c:forEach var="item" items="${sessionScope.cartItems}">
                             <div class="row m-2 ps-2 pe-2">
@@ -184,26 +211,30 @@
                                 <div class="col-4">
                                     <div class="container p-0 m-0">
                                         <div class="row">
-<%--                                            <div class="col-auto d-flex flex-column justify-content-center align-content-center">--%>
-<%--                                                <svg class="bd-placeholder-img rounded-circle" width="100" height="100"--%>
-<%--                                                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"--%>
-<%--                                                     preserveAspectRatio="xMidYMid slice" focusable="false">--%>
-<%--                                                    <title>Placeholder</title>--%>
-<%--                                                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>--%>
-<%--                                                </svg>--%>
-<%--                                            </div>--%>
-                                                <div class="col-6 d-flex flex-column justify-content-center align-content-center">
-                                                <img class="bd-placeholder-img rounded-circle card-img-top image-holder crop-image" src="${pageContext.request.contextPath}/${item.item.attribute2}" width="130" height="140">
+                                                <%--                                            <div class="col-auto d-flex flex-column justify-content-center align-content-center">--%>
+                                                <%--                                                <svg class="bd-placeholder-img rounded-circle" width="100" height="100"--%>
+                                                <%--                                                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"--%>
+                                                <%--                                                     preserveAspectRatio="xMidYMid slice" focusable="false">--%>
+                                                <%--                                                    <title>Placeholder</title>--%>
+                                                <%--                                                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>--%>
+                                                <%--                                                </svg>--%>
+                                                <%--                                            </div>--%>
+                                            <div class="col-6 d-flex flex-column justify-content-center align-content-center">
+                                                <img class="bd-placeholder-img rounded-circle card-img-top image-holder crop-image"
+                                                     src="${pageContext.request.contextPath}/${item.item.attribute2}"
+                                                     width="130" height="140">
 
-                                                 </div>
+                                            </div>
                                             <div class="col-6">
                                                 <div class="container p-0 m-0">
                                                     <div class="row">
                                                         <div class="col-12 d-flex flex-column justify-content-center">
                                                             <h6 class="my-0">${item.item.product.name}</h6>
                                                             <small class="text-body-secondary">${item.item.product.description}</small>
-                                                            <small class="text-body-secondary">Product ID: ${item.item.product.productId}</small>
-                                                            <small class="text-body-secondary">Item ID: ${item.item.itemId}</small>
+                                                            <small class="text-body-secondary">Product
+                                                                ID: ${item.item.product.productId}</small>
+                                                            <small class="text-body-secondary">Item
+                                                                ID: ${item.item.itemId}</small>
                                                             <small class="text-body-secondary"
                                                                    id="text-remove">Remove</small>
                                                         </div>
@@ -215,20 +246,33 @@
                                 </div>
                                 <div class="col-3 d-flex justify-content-center">
                                     <ul class="pagination">
-                                        <li class="page-item" ><button class="page-link page-link-decrement" href="#" value="${item.item.itemId}"
-                                                                >-</button></li>
-                                        <li class="page-item"><a class="page-link disabled" href="#">${item.quantity}</a></li>
-                                        <li class="page-item" ><button class="page-link" value="${item.item.itemId}" href="#"
-                                                                >+</button></li>
+                                        <li class="page-item">
+                                            <button class="page-link page-link-decrement" href="#"
+                                                    value="${item.item.itemId}"
+                                            >-
+                                            </button>
+                                        </li>
+                                        <li class="page-item">
+                                            <button class="page-link page-link-quantity disabled"
+                                                    value="${item.item.itemId}" href="#">${item.quantity}</button>
+                                        </li>
+                                        <li class="page-item">
+                                            <button class="page-link page-link-increment" value="${item.item.itemId}"
+                                                    href="#"
+                                            >+
+                                            </button>
+                                        </li>
                                     </ul>
                                 </div>
 
 
                                 <div class="col-3 text-center">
-                                    <span class="badge rounded-pill badge-counter"><fmt:formatNumber value="${item.item.listPrice}" pattern="$#,##0.00"/></span>
+                                <span class="badge rounded-pill badge-counter"><fmt:formatNumber
+                                        value="${item.item.listPrice}" pattern="$#,##0.00"/></span>
                                 </div>
                                 <div class="col-2 text-end">
-                                    <span class="badge rounded-pill badge-counter">
+                                    <span data-value="${item.item.itemId}"
+                                          class="badge rounded-pill badge-counter badge-total">
                                         <fmt:formatNumber value="${item.total}" pattern="$#,##0.00"/></span>
                                 </div>
                             </div>
@@ -243,7 +287,7 @@
 
                             </div>
                             <div class="col-6 text-end">
-                                <strong>$20</strong>
+                                <strong id="subtotal">$20</strong>
 
                             </div>
 
@@ -279,13 +323,16 @@
 
             <div class="row me-2">
                 <div class="col-6">
-                    <span class="text-body-secondary text-uppercase">Items 3</span>
+                    <span class="text-body-secondary text-uppercase">Items <%=cartItems.size()%></span>
                 </div>
                 <div class="col-6 text-end">
-                    <span class="text-body-secondary text-uppercase">432$</span>
+                    <span class="text-body-secondary text-uppercase" id="subtotalSidebar">$0.00</span>
                 </div>
 
             </div>
+            <c:choose>
+            <c:when test="${sessionScope.loginAccount != null}">
+
 
             <div class="row mt-3">
                 <div class="col-12">
@@ -297,8 +344,8 @@
             <div class="row mt-3 me-2">
 
                 <select class="form-select" aria-label="Address">
-                    <option selected value="1">One</option>
-                    <option value="2">Two</option>
+                    <option selected value="1"><%= account.getAddress1()%>></option>
+                    <option value="2"><%= account.getAddress2()%></option>
                 </select>
             </div>
         </div>
@@ -306,9 +353,41 @@
 
         <div class="flex-grow-1"></div>
 
+
+
         <button class="w-100 btn btn-primary btn-lg mt-5 mb-2 rounded-5 text-uppercase" id="buttonSubmit"
                 type="submit">Checkout
         </button>
+
+
+
+        </c:when>
+
+        <c:otherwise>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <span class="text-body-secondary text-uppercase">Log in or create account to add shipping address</span>
+                </div>
+
+            </div>
+            </div>
+
+
+
+
+            <div class="flex-grow-1"></div>
+
+
+
+            <button class="w-100 btn btn-primary btn-lg mt-5 mb-2 rounded-5 text-uppercase" id="loginButton"
+                    >Log in
+            </button>
+
+
+
+        </c:otherwise>
+        </c:choose>
+
 
 
     </div>
@@ -321,5 +400,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+<script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script defer src="${pageContext.request.contextPath}/js/cart.js"></script>
 </html>

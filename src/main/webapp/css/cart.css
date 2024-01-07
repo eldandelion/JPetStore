@@ -31,7 +31,7 @@
     background-color: #ffffff;
 }
 
-#buttonSubmit {
+#buttonSubmit, #loginButton {
     margin-bottom: 60px;
     --bs-btn-bg:  #ffb865;
     --bs-btn-border-color:  #ffb865;

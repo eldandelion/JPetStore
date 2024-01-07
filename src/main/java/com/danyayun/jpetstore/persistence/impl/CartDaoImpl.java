@@ -193,6 +193,29 @@ public class CartDaoImpl implements CartDao {
         }
     }
 
+    public void decrementQuantity(CartItem cartItem) {
+        try {
+            Connection connection = DBUtil.getConnection();
+            PreparedStatement pStatement = connection
+                    .prepareStatement(incrementQuantityString);
+
+            pStatement.setInt(1, cartItem.getQuantity());
+            pStatement.setString(2, cartItem.getItem().getItemId());
+
+            int res = pStatement.executeUpdate();
+            if (res == 1) {
+                System.out.println("decrementQuantity成功");
+            } else {
+                System.out.println("decrementQuantity失败");
+            }
+
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void removeItemById(CartItem cartItem) {
         try {

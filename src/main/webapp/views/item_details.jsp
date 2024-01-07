@@ -240,7 +240,7 @@
                     <div class="container-details">
                         <hr>
                         <div class="row p-0">
-                            <div class="col-6 justify-content-start align-content-center">
+                            <div class="col-12 justify-content-start align-content-center">
 
 
                              <span class="badge bg-primary p-3 ps-3 pe-3 rounded-pill" id="badge-price">
@@ -249,15 +249,7 @@
 
                             </div>
 
-                            <div class="col-6 d-flex justify-content-end align-content-center">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#"
-                                                             onclick="decrementNumber()">-</a></li>
-                                    <li class="page-item"><a class="page-link disabled" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#"
-                                                             onclick="incrementNumber()">+</a></li>
-                                </ul>
-                            </div>
+
                         </div>
 
 

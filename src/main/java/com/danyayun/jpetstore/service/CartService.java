@@ -98,6 +98,12 @@ public class CartService {
         cartDao.incrementQuantity(cartItem);
     }
 
+    public void decrementQuantityByItemId(String itemId) {
+        CartItem cartItem = (CartItem) itemMap.get(itemId);
+        cartItem.decrementQuantity();
+        cartDao.decrementQuantity(cartItem);
+    }
+
     public void setQuantityByItemId(String itemId, int quantity) {
         CartItem cartItem = (CartItem) itemMap.get(itemId);
         cartItem.setQuantity(quantity);
